@@ -8,7 +8,7 @@ codegen:
 		--additional-properties packageName=digiseg_api,projectName=digiseg-api-client \
 		--git-user-id digiseg-labs \
 		--git-repo-id api-client-python
-	mv ${GENERATED_DIR}/digiseg_api .
+	cp -r ${GENERATED_DIR}/digiseg_api .
 	mv ${GENERATED_DIR}/pyproject.toml .
 	mv ${GENERATED_DIR}/setup.cfg .
 	mv ${GENERATED_DIR}/setup.py .
