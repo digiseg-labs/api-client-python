@@ -113,8 +113,7 @@ class AccountsApi:
             '201': "CreateUserInAccount201Response",
             '400': None,
             '403': None,
-            '404': None
-            
+            '404': None,
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -187,8 +186,7 @@ class AccountsApi:
             '201': "CreateUserInAccount201Response",
             '400': None,
             '403': None,
-            '404': None
-            
+            '404': None,
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -261,8 +259,7 @@ class AccountsApi:
             '201': "CreateUserInAccount201Response",
             '400': None,
             '403': None,
-            '404': None
-            
+            '404': None,
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -284,7 +281,6 @@ class AccountsApi:
         _host = None
 
         _collection_formats: Dict[str, str] = {
-            
         }
 
         _path_params: Dict[str, str] = {}
@@ -407,8 +403,7 @@ class AccountsApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "GetAccountById200Response",
             '403': None,
-            '404': None
-            
+            '404': None,
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -476,8 +471,7 @@ class AccountsApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "GetAccountById200Response",
             '403': None,
-            '404': None
-            
+            '404': None,
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -545,8 +539,7 @@ class AccountsApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "GetAccountById200Response",
             '403': None,
-            '404': None
-            
+            '404': None,
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -567,7 +560,6 @@ class AccountsApi:
         _host = None
 
         _collection_formats: Dict[str, str] = {
-            
         }
 
         _path_params: Dict[str, str] = {}
@@ -683,8 +675,7 @@ class AccountsApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "GetUsersByAccountId200Response",
             '403': None,
-            '404': None
-            
+            '404': None,
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -760,8 +751,7 @@ class AccountsApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "GetUsersByAccountId200Response",
             '403': None,
-            '404': None
-            
+            '404': None,
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -837,8 +827,7 @@ class AccountsApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "GetUsersByAccountId200Response",
             '403': None,
-            '404': None
-            
+            '404': None,
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -861,7 +850,6 @@ class AccountsApi:
         _host = None
 
         _collection_formats: Dict[str, str] = {
-            
         }
 
         _path_params: Dict[str, str] = {}

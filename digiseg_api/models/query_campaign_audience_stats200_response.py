@@ -20,21 +20,19 @@ import json
 
 
 from typing import Any, ClassVar, Dict, List, Optional
-from pydantic import BaseModel, StrictStr
-from pydantic import Field
-from digiseg_api.models.measurement import Measurement
+from pydantic import BaseModel
+from digiseg_api.models.campaign_audience_stats import CampaignAudienceStats
 try:
     from typing import Self
 except ImportError:
     from typing_extensions import Self
 
-class CountryStats(BaseModel):
+class QueryCampaignAudienceStats200Response(BaseModel):
     """
-    CountryStats
+    QueryCampaignAudienceStats200Response
     """ # noqa: E501
-    measurements: Optional[List[Measurement]] = Field(default=None, description="Measurements related to this object")
-    code: Optional[StrictStr] = Field(default=None, description="Country code of the country")
-    __properties: ClassVar[List[str]] = ["measurements", "code"]
+    data: Optional[CampaignAudienceStats] = None
+    __properties: ClassVar[List[str]] = ["data"]
 
     model_config = {
         "populate_by_name": True,
@@ -54,7 +52,7 @@ class CountryStats(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:
-        """Create an instance of CountryStats from a JSON string"""
+        """Create an instance of QueryCampaignAudienceStats200Response from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -73,18 +71,14 @@ class CountryStats(BaseModel):
             },
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in measurements (list)
-        _items = []
-        if self.measurements:
-            for _item in self.measurements:
-                if _item:
-                    _items.append(_item.to_dict())
-            _dict['measurements'] = _items
+        # override the default output from pydantic by calling `to_dict()` of data
+        if self.data:
+            _dict['data'] = self.data.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Dict) -> Self:
-        """Create an instance of CountryStats from a dict"""
+        """Create an instance of QueryCampaignAudienceStats200Response from a dict"""
         if obj is None:
             return None
 
@@ -92,8 +86,7 @@ class CountryStats(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "measurements": [Measurement.from_dict(_item) for _item in obj.get("measurements")] if obj.get("measurements") is not None else None,
-            "code": obj.get("code")
+            "data": CampaignAudienceStats.from_dict(obj.get("data")) if obj.get("data") is not None else None
         })
         return _obj
 

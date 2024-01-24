@@ -107,8 +107,7 @@ class AudiencesApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "AudienceResponse",
             '400': "ErrorResponse",
-            '500': "ErrorResponse"
-            
+            '500': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -176,8 +175,7 @@ class AudiencesApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "AudienceResponse",
             '400': "ErrorResponse",
-            '500': "ErrorResponse"
-            
+            '500': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -245,8 +243,7 @@ class AudiencesApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "AudienceResponse",
             '400': "ErrorResponse",
-            '500': "ErrorResponse"
-            
+            '500': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -267,7 +264,6 @@ class AudiencesApi:
         _host = None
 
         _collection_formats: Dict[str, str] = {
-            
         }
 
         _path_params: Dict[str, str] = {}
@@ -377,8 +373,7 @@ class AudiencesApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ResolveAudiencesOfMultipleResponse",
             '400': "ErrorResponse",
-            '500': "ErrorResponse"
-            
+            '500': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -446,8 +441,7 @@ class AudiencesApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ResolveAudiencesOfMultipleResponse",
             '400': "ErrorResponse",
-            '500': "ErrorResponse"
-            
+            '500': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -515,8 +509,7 @@ class AudiencesApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ResolveAudiencesOfMultipleResponse",
             '400': "ErrorResponse",
-            '500': "ErrorResponse"
-            
+            '500': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -537,7 +530,6 @@ class AudiencesApi:
         _host = None
 
         _collection_formats: Dict[str, str] = {
-            
         }
 
         _path_params: Dict[str, str] = {}
@@ -658,8 +650,7 @@ class AudiencesApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "AudienceResponse",
             '400': "ErrorResponse",
-            '500': "ErrorResponse"
-            
+            '500': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -727,8 +718,7 @@ class AudiencesApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "AudienceResponse",
             '400': "ErrorResponse",
-            '500': "ErrorResponse"
-            
+            '500': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -796,8 +786,7 @@ class AudiencesApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "AudienceResponse",
             '400': "ErrorResponse",
-            '500': "ErrorResponse"
-            
+            '500': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -818,7 +807,6 @@ class AudiencesApi:
         _host = None
 
         _collection_formats: Dict[str, str] = {
-            
         }
 
         _path_params: Dict[str, str] = {}

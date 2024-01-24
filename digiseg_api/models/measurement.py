@@ -32,7 +32,7 @@ class Measurement(BaseModel):
     """
     Represents a single measurement
     """ # noqa: E501
-    event: Optional[StrictStr] = Field(default=None, description="The event that triggered the measurement, typically `impression` or `click`")
+    event: StrictStr = Field(description="The event that triggered the measurement, typically `impression` or `click`")
     count: Optional[StrictInt] = Field(default=None, description="The real value of the measurement, typically a counter value (integer)")
     fraction_of_total: Optional[Union[Annotated[float, Field(le=1, strict=True, ge=0)], Annotated[int, Field(le=1, strict=True, ge=0)]]] = Field(default=None, description="The fraction of events that fall within this object compared to the total of the category or segment (usually represented by the measurement's parent's parent). For example, if the measurement is \"impression\" on the `home_type` \"Apartment\" object, then the `fraction_of_total` represents the number of impressions on apartments compared to impressions from other `home_type` values. ")
     conversion_rate: Optional[Union[Annotated[float, Field(le=1, strict=True, ge=0)], Annotated[int, Field(le=1, strict=True, ge=0)]]] = Field(default=None, description="The rate of conversion to this measurement. Typically applies to measurements like \"click\" where it will represent the rate of impressions that turn into a click. ")
@@ -40,7 +40,8 @@ class Measurement(BaseModel):
 
     model_config = {
         "populate_by_name": True,
-        "validate_assignment": True
+        "validate_assignment": True,
+        "protected_namespaces": (),
     }
 
 

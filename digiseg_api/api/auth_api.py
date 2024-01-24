@@ -104,8 +104,7 @@ class AuthApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "AuthTokenResponse"
-            
+            '200': "AuthTokenResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -171,8 +170,7 @@ class AuthApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "AuthTokenResponse"
-            
+            '200': "AuthTokenResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -238,8 +236,7 @@ class AuthApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "AuthTokenResponse"
-            
+            '200': "AuthTokenResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -260,7 +257,6 @@ class AuthApi:
         _host = None
 
         _collection_formats: Dict[str, str] = {
-            
         }
 
         _path_params: Dict[str, str] = {}
@@ -382,8 +378,7 @@ class AuthApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '201': "CreateApiKey201Response",
             '403': None,
-            '404': None
-            
+            '404': None,
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -455,8 +450,7 @@ class AuthApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '201': "CreateApiKey201Response",
             '403': None,
-            '404': None
-            
+            '404': None,
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -528,8 +522,7 @@ class AuthApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '201': "CreateApiKey201Response",
             '403': None,
-            '404': None
-            
+            '404': None,
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -551,7 +544,6 @@ class AuthApi:
         _host = None
 
         _collection_formats: Dict[str, str] = {
-            
         }
 
         _path_params: Dict[str, str] = {}
@@ -676,7 +668,9 @@ class AuthApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            
+            '204': None,
+            '403': None,
+            '404': None,
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -746,7 +740,9 @@ class AuthApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            
+            '204': None,
+            '403': None,
+            '404': None,
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -816,7 +812,9 @@ class AuthApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            
+            '204': None,
+            '403': None,
+            '404': None,
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -838,7 +836,6 @@ class AuthApi:
         _host = None
 
         _collection_formats: Dict[str, str] = {
-            
         }
 
         _path_params: Dict[str, str] = {}
@@ -946,8 +943,7 @@ class AuthApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "GetApiKeyById200Response",
             '403': None,
-            '404': None
-            
+            '404': None,
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1019,8 +1015,7 @@ class AuthApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "GetApiKeyById200Response",
             '403': None,
-            '404': None
-            
+            '404': None,
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1092,8 +1087,7 @@ class AuthApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "GetApiKeyById200Response",
             '403': None,
-            '404': None
-            
+            '404': None,
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1115,7 +1109,6 @@ class AuthApi:
         _host = None
 
         _collection_formats: Dict[str, str] = {
-            
         }
 
         _path_params: Dict[str, str] = {}
@@ -1225,8 +1218,7 @@ class AuthApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "GetApiKeysByUserId200Response",
             '403': None,
-            '404': None
-            
+            '404': None,
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1294,8 +1286,7 @@ class AuthApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "GetApiKeysByUserId200Response",
             '403': None,
-            '404': None
-            
+            '404': None,
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1363,8 +1354,7 @@ class AuthApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "GetApiKeysByUserId200Response",
             '403': None,
-            '404': None
-            
+            '404': None,
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1385,7 +1375,6 @@ class AuthApi:
         _host = None
 
         _collection_formats: Dict[str, str] = {
-            
         }
 
         _path_params: Dict[str, str] = {}

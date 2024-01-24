@@ -19,8 +19,8 @@ import re  # noqa: F401
 import json
 
 
-from typing import Any, ClassVar, Dict, List, Optional
-from pydantic import BaseModel, StrictStr
+from typing import Any, ClassVar, Dict, List
+from pydantic import BaseModel
 from digiseg_api.models.audience_stats import AudienceStats
 try:
     from typing import Self
@@ -31,13 +31,13 @@ class AudienceCategoryStats(BaseModel):
     """
     AudienceCategoryStats
     """ # noqa: E501
-    name: Optional[StrictStr] = None
-    audiences: Optional[List[AudienceStats]] = None
-    __properties: ClassVar[List[str]] = ["name", "audiences"]
+    audiences: List[AudienceStats]
+    __properties: ClassVar[List[str]] = ["audiences"]
 
     model_config = {
         "populate_by_name": True,
-        "validate_assignment": True
+        "validate_assignment": True,
+        "protected_namespaces": (),
     }
 
 
@@ -90,7 +90,6 @@ class AudienceCategoryStats(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "name": obj.get("name"),
             "audiences": [AudienceStats.from_dict(_item) for _item in obj.get("audiences")] if obj.get("audiences") is not None else None
         })
         return _obj

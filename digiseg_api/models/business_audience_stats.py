@@ -22,7 +22,7 @@ import json
 from typing import Any, ClassVar, Dict, List, Optional
 from pydantic import BaseModel
 from pydantic import Field
-from digiseg_api.models.business_audience_stats_all_of_audience_categories import BusinessAudienceStatsAllOfAudienceCategories
+from digiseg_api.models.business_audience_stats_audience_categories import BusinessAudienceStatsAudienceCategories
 from digiseg_api.models.measurement import Measurement
 try:
     from typing import Self
@@ -34,12 +34,13 @@ class BusinessAudienceStats(BaseModel):
     Measurements (overall and per audience) for traffic resolved as business users
     """ # noqa: E501
     measurements: Optional[List[Measurement]] = Field(default=None, description="Measurements related to this object")
-    audience_categories: Optional[BusinessAudienceStatsAllOfAudienceCategories] = None
+    audience_categories: Optional[BusinessAudienceStatsAudienceCategories] = None
     __properties: ClassVar[List[str]] = ["measurements", "audience_categories"]
 
     model_config = {
         "populate_by_name": True,
-        "validate_assignment": True
+        "validate_assignment": True,
+        "protected_namespaces": (),
     }
 
 
@@ -96,7 +97,7 @@ class BusinessAudienceStats(BaseModel):
 
         _obj = cls.model_validate({
             "measurements": [Measurement.from_dict(_item) for _item in obj.get("measurements")] if obj.get("measurements") is not None else None,
-            "audience_categories": BusinessAudienceStatsAllOfAudienceCategories.from_dict(obj.get("audience_categories")) if obj.get("audience_categories") is not None else None
+            "audience_categories": BusinessAudienceStatsAudienceCategories.from_dict(obj.get("audience_categories")) if obj.get("audience_categories") is not None else None
         })
         return _obj
 

@@ -35,13 +35,13 @@ class AudienceStats(BaseModel):
     """ # noqa: E501
     measurements: Optional[List[Measurement]] = Field(default=None, description="Measurements related to this object")
     comparisons: Optional[List[Comparison]] = None
-    name: Optional[StrictStr] = Field(default=None, description="The name of the audience")
     code: Optional[StrictStr] = Field(default=None, description="The code of the audience")
-    __properties: ClassVar[List[str]] = ["measurements", "comparisons", "name", "code"]
+    __properties: ClassVar[List[str]] = ["measurements", "comparisons", "code"]
 
     model_config = {
         "populate_by_name": True,
-        "validate_assignment": True
+        "validate_assignment": True,
+        "protected_namespaces": (),
     }
 
 
@@ -103,7 +103,6 @@ class AudienceStats(BaseModel):
         _obj = cls.model_validate({
             "measurements": [Measurement.from_dict(_item) for _item in obj.get("measurements")] if obj.get("measurements") is not None else None,
             "comparisons": [Comparison.from_dict(_item) for _item in obj.get("comparisons")] if obj.get("comparisons") is not None else None,
-            "name": obj.get("name"),
             "code": obj.get("code")
         })
         return _obj
