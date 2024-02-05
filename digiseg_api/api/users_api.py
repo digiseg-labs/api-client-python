@@ -34,8 +34,8 @@ from digiseg_api.models.api_key_mutation import ApiKeyMutation
 from digiseg_api.models.create_api_key201_response import CreateApiKey201Response
 from digiseg_api.models.create_user_in_account201_response import CreateUserInAccount201Response
 from digiseg_api.models.get_api_key_by_id200_response import GetApiKeyById200Response
-from digiseg_api.models.get_api_keys_by_user_id200_response import GetApiKeysByUserId200Response
-from digiseg_api.models.get_users_by_account_id200_response import GetUsersByAccountId200Response
+from digiseg_api.models.list_api_keys_by_user_id200_response import ListApiKeysByUserId200Response
+from digiseg_api.models.list_users_by_account_id200_response import ListUsersByAccountId200Response
 from digiseg_api.models.user_mutation import UserMutation
 
 from digiseg_api.api_client import ApiClient
@@ -74,8 +74,9 @@ class UsersApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> CreateApiKey201Response:
-        """Create API key for user
+        """Create API key
 
+        Create API key for the given user. When an API key is created, the `token` value will be exposed in the response. This token can be passed as the `X-API-KEY` header value for future requests. It is not obtainable in other API requests (ie. the client must decide how to keep the API key token in e.g. a vault or similar). 
 
         :param user_id: (required)
         :type user_id: str
@@ -146,8 +147,9 @@ class UsersApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[CreateApiKey201Response]:
-        """Create API key for user
+        """Create API key
 
+        Create API key for the given user. When an API key is created, the `token` value will be exposed in the response. This token can be passed as the `X-API-KEY` header value for future requests. It is not obtainable in other API requests (ie. the client must decide how to keep the API key token in e.g. a vault or similar). 
 
         :param user_id: (required)
         :type user_id: str
@@ -218,8 +220,9 @@ class UsersApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Create API key for user
+        """Create API key
 
+        Create API key for the given user. When an API key is created, the `token` value will be exposed in the response. This token can be passed as the `X-API-KEY` header value for future requests. It is not obtainable in other API requests (ie. the client must decide how to keep the API key token in e.g. a vault or similar). 
 
         :param user_id: (required)
         :type user_id: str
@@ -368,6 +371,7 @@ class UsersApi:
     ) -> CreateUserInAccount201Response:
         """Create user
 
+        Create a user within the referenced account. 
 
         :param account_id: (required)
         :type account_id: str
@@ -441,6 +445,7 @@ class UsersApi:
     ) -> ApiResponse[CreateUserInAccount201Response]:
         """Create user
 
+        Create a user within the referenced account. 
 
         :param account_id: (required)
         :type account_id: str
@@ -514,6 +519,7 @@ class UsersApi:
     ) -> RESTResponseType:
         """Create user
 
+        Create a user within the referenced account. 
 
         :param account_id: (required)
         :type account_id: str
@@ -1454,270 +1460,6 @@ class UsersApi:
 
 
     @validate_call
-    def get_api_keys_by_user_id(
-        self,
-        user_id: StrictStr,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> GetApiKeysByUserId200Response:
-        """List API keys for user
-
-
-        :param user_id: (required)
-        :type user_id: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_api_keys_by_user_id_serialize(
-            user_id=user_id,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "GetApiKeysByUserId200Response",
-            '403': None,
-            '404': None,
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-
-    @validate_call
-    def get_api_keys_by_user_id_with_http_info(
-        self,
-        user_id: StrictStr,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[GetApiKeysByUserId200Response]:
-        """List API keys for user
-
-
-        :param user_id: (required)
-        :type user_id: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_api_keys_by_user_id_serialize(
-            user_id=user_id,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "GetApiKeysByUserId200Response",
-            '403': None,
-            '404': None,
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-
-    @validate_call
-    def get_api_keys_by_user_id_without_preload_content(
-        self,
-        user_id: StrictStr,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """List API keys for user
-
-
-        :param user_id: (required)
-        :type user_id: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_api_keys_by_user_id_serialize(
-            user_id=user_id,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "GetApiKeysByUserId200Response",
-            '403': None,
-            '404': None,
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-
-    def _get_api_keys_by_user_id_serialize(
-        self,
-        user_id,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> Tuple:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, str] = {}
-        _body_params: Optional[bytes] = None
-
-        # process the path parameters
-        if user_id is not None:
-            _path_params['user_id'] = user_id
-        # process the query parameters
-        # process the header parameters
-        # process the form parameters
-        # process the body parameter
-
-
-        # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'application/json'
-            ]
-        )
-
-
-        # authentication setting
-        _auth_settings: List[str] = [
-            'oAuth', 
-            'bearerAuth', 
-            'apiKeyHeaderAuth', 
-            'apiKeyQueryParamAuth'
-        ]
-
-        return self.api_client.param_serialize(
-            method='GET',
-            resource_path='/users/{user_id}/apikeys',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            auth_settings=_auth_settings,
-            collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
-
-
-
-
-    @validate_call
     def get_current_user(
         self,
         _request_timeout: Union[
@@ -2231,11 +1973,9 @@ class UsersApi:
 
 
     @validate_call
-    def get_users_by_account_id(
+    def list_api_keys_by_user_id(
         self,
-        account_id: StrictStr,
-        page_size: Annotated[Optional[Annotated[int, Field(le=500, strict=True, ge=1)]], Field(description="The desired page size")] = None,
-        page_after: Annotated[Optional[StrictStr], Field(description="Optional pagination parameter, indicating the previous cursor value to paginate beyond. The value to provide here is opaque, but can be found in previous requests in the `meta.page.last_cursor` field. ")] = None,
+        user_id: StrictStr,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2248,16 +1988,12 @@ class UsersApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> GetUsersByAccountId200Response:
-        """List users for account
+    ) -> ListApiKeysByUserId200Response:
+        """List API keys for user
 
 
-        :param account_id: (required)
-        :type account_id: str
-        :param page_size: The desired page size
-        :type page_size: int
-        :param page_after: Optional pagination parameter, indicating the previous cursor value to paginate beyond. The value to provide here is opaque, but can be found in previous requests in the `meta.page.last_cursor` field. 
-        :type page_after: str
+        :param user_id: (required)
+        :type user_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2280,10 +2016,8 @@ class UsersApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._get_users_by_account_id_serialize(
-            account_id=account_id,
-            page_size=page_size,
-            page_after=page_after,
+        _param = self._list_api_keys_by_user_id_serialize(
+            user_id=user_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2291,7 +2025,7 @@ class UsersApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "GetUsersByAccountId200Response",
+            '200': "ListApiKeysByUserId200Response",
             '403': None,
             '404': None,
         }
@@ -2307,7 +2041,203 @@ class UsersApi:
 
 
     @validate_call
-    def get_users_by_account_id_with_http_info(
+    def list_api_keys_by_user_id_with_http_info(
+        self,
+        user_id: StrictStr,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ListApiKeysByUserId200Response]:
+        """List API keys for user
+
+
+        :param user_id: (required)
+        :type user_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._list_api_keys_by_user_id_serialize(
+            user_id=user_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ListApiKeysByUserId200Response",
+            '403': None,
+            '404': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def list_api_keys_by_user_id_without_preload_content(
+        self,
+        user_id: StrictStr,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """List API keys for user
+
+
+        :param user_id: (required)
+        :type user_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._list_api_keys_by_user_id_serialize(
+            user_id=user_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ListApiKeysByUserId200Response",
+            '403': None,
+            '404': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _list_api_keys_by_user_id_serialize(
+        self,
+        user_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> Tuple:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, str] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if user_id is not None:
+            _path_params['user_id'] = user_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            [
+                'application/json'
+            ]
+        )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'oAuth', 
+            'bearerAuth', 
+            'apiKeyHeaderAuth', 
+            'apiKeyQueryParamAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/users/{user_id}/apikeys',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def list_users_by_account_id(
         self,
         account_id: StrictStr,
         page_size: Annotated[Optional[Annotated[int, Field(le=500, strict=True, ge=1)]], Field(description="The desired page size")] = None,
@@ -2324,7 +2254,7 @@ class UsersApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[GetUsersByAccountId200Response]:
+    ) -> ListUsersByAccountId200Response:
         """List users for account
 
 
@@ -2356,7 +2286,7 @@ class UsersApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._get_users_by_account_id_serialize(
+        _param = self._list_users_by_account_id_serialize(
             account_id=account_id,
             page_size=page_size,
             page_after=page_after,
@@ -2367,7 +2297,83 @@ class UsersApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "GetUsersByAccountId200Response",
+            '200': "ListUsersByAccountId200Response",
+            '403': None,
+            '404': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def list_users_by_account_id_with_http_info(
+        self,
+        account_id: StrictStr,
+        page_size: Annotated[Optional[Annotated[int, Field(le=500, strict=True, ge=1)]], Field(description="The desired page size")] = None,
+        page_after: Annotated[Optional[StrictStr], Field(description="Optional pagination parameter, indicating the previous cursor value to paginate beyond. The value to provide here is opaque, but can be found in previous requests in the `meta.page.last_cursor` field. ")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ListUsersByAccountId200Response]:
+        """List users for account
+
+
+        :param account_id: (required)
+        :type account_id: str
+        :param page_size: The desired page size
+        :type page_size: int
+        :param page_after: Optional pagination parameter, indicating the previous cursor value to paginate beyond. The value to provide here is opaque, but can be found in previous requests in the `meta.page.last_cursor` field. 
+        :type page_after: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._list_users_by_account_id_serialize(
+            account_id=account_id,
+            page_size=page_size,
+            page_after=page_after,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ListUsersByAccountId200Response",
             '403': None,
             '404': None,
         }
@@ -2383,7 +2389,7 @@ class UsersApi:
 
 
     @validate_call
-    def get_users_by_account_id_without_preload_content(
+    def list_users_by_account_id_without_preload_content(
         self,
         account_id: StrictStr,
         page_size: Annotated[Optional[Annotated[int, Field(le=500, strict=True, ge=1)]], Field(description="The desired page size")] = None,
@@ -2432,7 +2438,7 @@ class UsersApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._get_users_by_account_id_serialize(
+        _param = self._list_users_by_account_id_serialize(
             account_id=account_id,
             page_size=page_size,
             page_after=page_after,
@@ -2443,7 +2449,7 @@ class UsersApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "GetUsersByAccountId200Response",
+            '200': "ListUsersByAccountId200Response",
             '403': None,
             '404': None,
         }
@@ -2454,7 +2460,7 @@ class UsersApi:
         return response_data.response
 
 
-    def _get_users_by_account_id_serialize(
+    def _list_users_by_account_id_serialize(
         self,
         account_id,
         page_size,

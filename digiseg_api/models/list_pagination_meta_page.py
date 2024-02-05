@@ -20,7 +20,7 @@ import json
 
 
 from typing import Any, ClassVar, Dict, List, Optional
-from pydantic import BaseModel, StrictInt, StrictStr
+from pydantic import BaseModel, StrictBool, StrictInt, StrictStr
 from pydantic import Field
 try:
     from typing import Self
@@ -31,10 +31,11 @@ class ListPaginationMetaPage(BaseModel):
     """
     ListPaginationMetaPage
     """ # noqa: E501
-    total: Optional[StrictInt] = Field(default=None, description="The total amount of elements in the list (the returned `data` can be paginated)")
+    total: Optional[StrictInt] = Field(default=None, description="The total amount of elements in the list (the returned `data` may be paginated)")
     first_cursor: Optional[StrictStr] = None
-    last_cursor: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["total", "first_cursor", "last_cursor"]
+    last_cursor: Optional[StrictStr] = Field(default=None, description="Indicates the cursor value to use in `page[after]`, when paginating to the next page")
+    range_truncated: StrictBool = Field(description="Indicates whether the list has been truncated (ie. more items can be queried using pagination)", alias="rangeTruncated")
+    __properties: ClassVar[List[str]] = ["total", "first_cursor", "last_cursor", "rangeTruncated"]
 
     model_config = {
         "populate_by_name": True,
@@ -87,7 +88,8 @@ class ListPaginationMetaPage(BaseModel):
         _obj = cls.model_validate({
             "total": obj.get("total"),
             "first_cursor": obj.get("first_cursor"),
-            "last_cursor": obj.get("last_cursor")
+            "last_cursor": obj.get("last_cursor"),
+            "rangeTruncated": obj.get("rangeTruncated")
         })
         return _obj
 

@@ -20,24 +20,20 @@ import json
 
 
 from typing import Any, ClassVar, Dict, List, Optional
-from pydantic import BaseModel, StrictStr
-from pydantic import Field
-from digiseg_api.models.permission_scopes import PermissionScopes
+from pydantic import BaseModel, StrictInt
+from digiseg_api.models.population_source_business_category_set import PopulationSourceBusinessCategorySet
 try:
     from typing import Self
 except ImportError:
     from typing_extensions import Self
 
-class AuthTokenRequest(BaseModel):
+class PopulationSourceBusinessSection(BaseModel):
     """
-    AuthTokenRequest
+    PopulationSourceBusinessSection
     """ # noqa: E501
-    username: StrictStr = Field(description="The username (typically an email address) of the user to authenticate")
-    otp: Optional[StrictStr] = Field(default=None, description="A one-time password provided to perform passwordless auth")
-    password: Optional[StrictStr] = Field(default=None, description="The password for the given username")
-    refresh_token: Optional[StrictStr] = Field(default=None, description="A previously issued refresh token for the given username")
-    scopes: Optional[PermissionScopes] = None
-    __properties: ClassVar[List[str]] = ["username", "otp", "password", "refresh_token", "scopes"]
+    audience_categories: Optional[PopulationSourceBusinessCategorySet] = None
+    count: Optional[StrictInt] = None
+    __properties: ClassVar[List[str]] = ["audience_categories", "count"]
 
     model_config = {
         "populate_by_name": True,
@@ -57,7 +53,7 @@ class AuthTokenRequest(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:
-        """Create an instance of AuthTokenRequest from a JSON string"""
+        """Create an instance of PopulationSourceBusinessSection from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -76,14 +72,14 @@ class AuthTokenRequest(BaseModel):
             },
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of scopes
-        if self.scopes:
-            _dict['scopes'] = self.scopes.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of audience_categories
+        if self.audience_categories:
+            _dict['audience_categories'] = self.audience_categories.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Dict) -> Self:
-        """Create an instance of AuthTokenRequest from a dict"""
+        """Create an instance of PopulationSourceBusinessSection from a dict"""
         if obj is None:
             return None
 
@@ -91,11 +87,8 @@ class AuthTokenRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "username": obj.get("username"),
-            "otp": obj.get("otp"),
-            "password": obj.get("password"),
-            "refresh_token": obj.get("refresh_token"),
-            "scopes": PermissionScopes.from_dict(obj.get("scopes")) if obj.get("scopes") is not None else None
+            "audience_categories": PopulationSourceBusinessCategorySet.from_dict(obj.get("audience_categories")) if obj.get("audience_categories") is not None else None,
+            "count": obj.get("count")
         })
         return _obj
 

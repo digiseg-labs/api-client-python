@@ -19,25 +19,22 @@ import re  # noqa: F401
 import json
 
 
-from typing import Any, ClassVar, Dict, List, Optional
-from pydantic import BaseModel, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional, Union
+from pydantic import BaseModel
 from pydantic import Field
-from digiseg_api.models.permission_scopes import PermissionScopes
+from typing_extensions import Annotated
 try:
     from typing import Self
 except ImportError:
     from typing_extensions import Self
 
-class AuthTokenRequest(BaseModel):
+class PopulationAudienceCategorySetSection(BaseModel):
     """
-    AuthTokenRequest
+    PopulationAudienceCategorySetSection
     """ # noqa: E501
-    username: StrictStr = Field(description="The username (typically an email address) of the user to authenticate")
-    otp: Optional[StrictStr] = Field(default=None, description="A one-time password provided to perform passwordless auth")
-    password: Optional[StrictStr] = Field(default=None, description="The password for the given username")
-    refresh_token: Optional[StrictStr] = Field(default=None, description="A previously issued refresh token for the given username")
-    scopes: Optional[PermissionScopes] = None
-    __properties: ClassVar[List[str]] = ["username", "otp", "password", "refresh_token", "scopes"]
+    fraction_of_total: Optional[Union[Annotated[float, Field(le=1, strict=True, ge=0)], Annotated[int, Field(le=1, strict=True, ge=0)]]] = Field(default=None, description="The fraction of events that fall within this object compared to the total of the category or segment (usually represented by the measurement's parent's parent). For example, if the measurement is \"impression\" on the `home_type` \"Apartment\" object, then the `fraction_of_total` represents the number of impressions on apartments compared to impressions from other `home_type` values. ")
+    audience_categories: Optional[Dict[str, Dict[str, Union[Annotated[float, Field(le=1, strict=True, ge=0)], Annotated[int, Field(le=1, strict=True, ge=0)]]]]] = Field(default=None, description="An object with category codes as keys, objects with audience codes and fractions of totals as keys.")
+    __properties: ClassVar[List[str]] = ["fraction_of_total", "audience_categories"]
 
     model_config = {
         "populate_by_name": True,
@@ -57,7 +54,7 @@ class AuthTokenRequest(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:
-        """Create an instance of AuthTokenRequest from a JSON string"""
+        """Create an instance of PopulationAudienceCategorySetSection from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -76,14 +73,11 @@ class AuthTokenRequest(BaseModel):
             },
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of scopes
-        if self.scopes:
-            _dict['scopes'] = self.scopes.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Dict) -> Self:
-        """Create an instance of AuthTokenRequest from a dict"""
+        """Create an instance of PopulationAudienceCategorySetSection from a dict"""
         if obj is None:
             return None
 
@@ -91,11 +85,8 @@ class AuthTokenRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "username": obj.get("username"),
-            "otp": obj.get("otp"),
-            "password": obj.get("password"),
-            "refresh_token": obj.get("refresh_token"),
-            "scopes": PermissionScopes.from_dict(obj.get("scopes")) if obj.get("scopes") is not None else None
+            "fraction_of_total": obj.get("fraction_of_total"),
+            "audience_categories": obj.get("audience_categories")
         })
         return _obj
 

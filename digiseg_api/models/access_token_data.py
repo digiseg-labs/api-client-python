@@ -20,24 +20,22 @@ import json
 
 
 from typing import Any, ClassVar, Dict, List, Optional
-from pydantic import BaseModel, StrictStr
+from pydantic import BaseModel, StrictInt, StrictStr
 from pydantic import Field
-from digiseg_api.models.permission_scopes import PermissionScopes
 try:
     from typing import Self
 except ImportError:
     from typing_extensions import Self
 
-class AuthTokenRequest(BaseModel):
+class AccessTokenData(BaseModel):
     """
-    AuthTokenRequest
+    AccessTokenData
     """ # noqa: E501
-    username: StrictStr = Field(description="The username (typically an email address) of the user to authenticate")
-    otp: Optional[StrictStr] = Field(default=None, description="A one-time password provided to perform passwordless auth")
-    password: Optional[StrictStr] = Field(default=None, description="The password for the given username")
-    refresh_token: Optional[StrictStr] = Field(default=None, description="A previously issued refresh token for the given username")
-    scopes: Optional[PermissionScopes] = None
-    __properties: ClassVar[List[str]] = ["username", "otp", "password", "refresh_token", "scopes"]
+    access_token: StrictStr = Field(description="A short-lived token (usable for 1 hour) to be used in subsequent requests")
+    token_type: StrictStr = Field(description="The type of access token returned")
+    expires_in: StrictInt = Field(description="The duration of time (in seconds) the access token is granted for")
+    refresh_token: Optional[StrictStr] = Field(default=None, description="A long-lived token that can be used to generate new access tokens even after the returned access token expires.")
+    __properties: ClassVar[List[str]] = ["access_token", "token_type", "expires_in", "refresh_token"]
 
     model_config = {
         "populate_by_name": True,
@@ -57,7 +55,7 @@ class AuthTokenRequest(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:
-        """Create an instance of AuthTokenRequest from a JSON string"""
+        """Create an instance of AccessTokenData from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -76,14 +74,11 @@ class AuthTokenRequest(BaseModel):
             },
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of scopes
-        if self.scopes:
-            _dict['scopes'] = self.scopes.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Dict) -> Self:
-        """Create an instance of AuthTokenRequest from a dict"""
+        """Create an instance of AccessTokenData from a dict"""
         if obj is None:
             return None
 
@@ -91,11 +86,10 @@ class AuthTokenRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "username": obj.get("username"),
-            "otp": obj.get("otp"),
-            "password": obj.get("password"),
-            "refresh_token": obj.get("refresh_token"),
-            "scopes": PermissionScopes.from_dict(obj.get("scopes")) if obj.get("scopes") is not None else None
+            "access_token": obj.get("access_token"),
+            "token_type": obj.get("token_type"),
+            "expires_in": obj.get("expires_in"),
+            "refresh_token": obj.get("refresh_token")
         })
         return _obj
 

@@ -18,26 +18,26 @@ import pprint
 import re  # noqa: F401
 import json
 
-
+from datetime import datetime
 from typing import Any, ClassVar, Dict, List, Optional
 from pydantic import BaseModel, StrictStr
 from pydantic import Field
-from digiseg_api.models.permission_scopes import PermissionScopes
+from digiseg_api.models.registration_request import RegistrationRequest
 try:
     from typing import Self
 except ImportError:
     from typing_extensions import Self
 
-class AuthTokenRequest(BaseModel):
+class RegistrationByIdResponseData(BaseModel):
     """
-    AuthTokenRequest
+    RegistrationByIdResponseData
     """ # noqa: E501
-    username: StrictStr = Field(description="The username (typically an email address) of the user to authenticate")
-    otp: Optional[StrictStr] = Field(default=None, description="A one-time password provided to perform passwordless auth")
-    password: Optional[StrictStr] = Field(default=None, description="The password for the given username")
-    refresh_token: Optional[StrictStr] = Field(default=None, description="A previously issued refresh token for the given username")
-    scopes: Optional[PermissionScopes] = None
-    __properties: ClassVar[List[str]] = ["username", "otp", "password", "refresh_token", "scopes"]
+    id: Optional[StrictStr] = Field(default=None, description="The ID of the registration")
+    request: Optional[RegistrationRequest] = None
+    expires_at: Optional[datetime] = Field(default=None, description="Date and time of the registration expiry")
+    verified_at: Optional[datetime] = Field(default=None, description="Date and time of the verification, if verified")
+    verification_code: Optional[StrictStr] = Field(default=None, description="The code needed to verify this registration")
+    __properties: ClassVar[List[str]] = ["id", "request", "expires_at", "verified_at", "verification_code"]
 
     model_config = {
         "populate_by_name": True,
@@ -57,7 +57,7 @@ class AuthTokenRequest(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:
-        """Create an instance of AuthTokenRequest from a JSON string"""
+        """Create an instance of RegistrationByIdResponseData from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -76,14 +76,14 @@ class AuthTokenRequest(BaseModel):
             },
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of scopes
-        if self.scopes:
-            _dict['scopes'] = self.scopes.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of request
+        if self.request:
+            _dict['request'] = self.request.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Dict) -> Self:
-        """Create an instance of AuthTokenRequest from a dict"""
+        """Create an instance of RegistrationByIdResponseData from a dict"""
         if obj is None:
             return None
 
@@ -91,11 +91,11 @@ class AuthTokenRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "username": obj.get("username"),
-            "otp": obj.get("otp"),
-            "password": obj.get("password"),
-            "refresh_token": obj.get("refresh_token"),
-            "scopes": PermissionScopes.from_dict(obj.get("scopes")) if obj.get("scopes") is not None else None
+            "id": obj.get("id"),
+            "request": RegistrationRequest.from_dict(obj.get("request")) if obj.get("request") is not None else None,
+            "expires_at": obj.get("expires_at"),
+            "verified_at": obj.get("verified_at"),
+            "verification_code": obj.get("verification_code")
         })
         return _obj
 

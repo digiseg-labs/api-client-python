@@ -31,7 +31,7 @@ from digiseg_api.models.auth_token_request import AuthTokenRequest
 from digiseg_api.models.auth_token_response import AuthTokenResponse
 from digiseg_api.models.create_api_key201_response import CreateApiKey201Response
 from digiseg_api.models.get_api_key_by_id200_response import GetApiKeyById200Response
-from digiseg_api.models.get_api_keys_by_user_id200_response import GetApiKeysByUserId200Response
+from digiseg_api.models.list_api_keys_by_user_id200_response import ListApiKeysByUserId200Response
 
 from digiseg_api.api_client import ApiClient
 from digiseg_api.api_response import ApiResponse
@@ -337,8 +337,9 @@ class AuthApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> CreateApiKey201Response:
-        """Create API key for user
+        """Create API key
 
+        Create API key for the given user. When an API key is created, the `token` value will be exposed in the response. This token can be passed as the `X-API-KEY` header value for future requests. It is not obtainable in other API requests (ie. the client must decide how to keep the API key token in e.g. a vault or similar). 
 
         :param user_id: (required)
         :type user_id: str
@@ -409,8 +410,9 @@ class AuthApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[CreateApiKey201Response]:
-        """Create API key for user
+        """Create API key
 
+        Create API key for the given user. When an API key is created, the `token` value will be exposed in the response. This token can be passed as the `X-API-KEY` header value for future requests. It is not obtainable in other API requests (ie. the client must decide how to keep the API key token in e.g. a vault or similar). 
 
         :param user_id: (required)
         :type user_id: str
@@ -481,8 +483,9 @@ class AuthApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Create API key for user
+        """Create API key
 
+        Create API key for the given user. When an API key is created, the `token` value will be exposed in the response. This token can be passed as the `X-API-KEY` header value for future requests. It is not obtainable in other API requests (ie. the client must decide how to keep the API key token in e.g. a vault or similar). 
 
         :param user_id: (required)
         :type user_id: str
@@ -1164,7 +1167,7 @@ class AuthApi:
 
 
     @validate_call
-    def get_api_keys_by_user_id(
+    def list_api_keys_by_user_id(
         self,
         user_id: StrictStr,
         _request_timeout: Union[
@@ -1179,7 +1182,7 @@ class AuthApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> GetApiKeysByUserId200Response:
+    ) -> ListApiKeysByUserId200Response:
         """List API keys for user
 
 
@@ -1207,7 +1210,7 @@ class AuthApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._get_api_keys_by_user_id_serialize(
+        _param = self._list_api_keys_by_user_id_serialize(
             user_id=user_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -1216,7 +1219,7 @@ class AuthApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "GetApiKeysByUserId200Response",
+            '200': "ListApiKeysByUserId200Response",
             '403': None,
             '404': None,
         }
@@ -1232,7 +1235,7 @@ class AuthApi:
 
 
     @validate_call
-    def get_api_keys_by_user_id_with_http_info(
+    def list_api_keys_by_user_id_with_http_info(
         self,
         user_id: StrictStr,
         _request_timeout: Union[
@@ -1247,7 +1250,7 @@ class AuthApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[GetApiKeysByUserId200Response]:
+    ) -> ApiResponse[ListApiKeysByUserId200Response]:
         """List API keys for user
 
 
@@ -1275,7 +1278,7 @@ class AuthApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._get_api_keys_by_user_id_serialize(
+        _param = self._list_api_keys_by_user_id_serialize(
             user_id=user_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -1284,7 +1287,7 @@ class AuthApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "GetApiKeysByUserId200Response",
+            '200': "ListApiKeysByUserId200Response",
             '403': None,
             '404': None,
         }
@@ -1300,7 +1303,7 @@ class AuthApi:
 
 
     @validate_call
-    def get_api_keys_by_user_id_without_preload_content(
+    def list_api_keys_by_user_id_without_preload_content(
         self,
         user_id: StrictStr,
         _request_timeout: Union[
@@ -1343,7 +1346,7 @@ class AuthApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._get_api_keys_by_user_id_serialize(
+        _param = self._list_api_keys_by_user_id_serialize(
             user_id=user_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -1352,7 +1355,7 @@ class AuthApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "GetApiKeysByUserId200Response",
+            '200': "ListApiKeysByUserId200Response",
             '403': None,
             '404': None,
         }
@@ -1363,7 +1366,7 @@ class AuthApi:
         return response_data.response
 
 
-    def _get_api_keys_by_user_id_serialize(
+    def _list_api_keys_by_user_id_serialize(
         self,
         user_id,
         _request_auth,
