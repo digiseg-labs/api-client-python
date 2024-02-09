@@ -19,23 +19,20 @@ import re  # noqa: F401
 import json
 
 
-from typing import Any, ClassVar, Dict, List, Optional, Union
-from pydantic import BaseModel, StrictFloat, StrictInt
-from pydantic import Field
-from digiseg_api.models.frequency_stats import FrequencyStats
+from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel
+from digiseg_api.models.campaign_frequency_stats import CampaignFrequencyStats
 try:
     from typing import Self
 except ImportError:
     from typing_extensions import Self
 
-class CampaignFrequencyStats(BaseModel):
+class QueryCampaignFrequencyStats200Response(BaseModel):
     """
-    CampaignFrequencyStats
+    QueryCampaignFrequencyStats200Response
     """ # noqa: E501
-    average_frequency: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The average frequency of impressions per user. ")
-    frequencies: Optional[List[FrequencyStats]] = Field(default=None, description="A listing of frequencies observed and the relevant measurements for each. The returned list may be truncated to cut off the \"long tail\" of frequency values. ")
-    count_above_cap: Optional[StrictInt] = Field(default=None, description="The number of users that have generated impressions at a frequency value greater than those represented in `frequencies`. ")
-    __properties: ClassVar[List[str]] = ["average_frequency", "frequencies", "count_above_cap"]
+    data: Optional[CampaignFrequencyStats] = None
+    __properties: ClassVar[List[str]] = ["data"]
 
     model_config = {
         "populate_by_name": True,
@@ -55,7 +52,7 @@ class CampaignFrequencyStats(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:
-        """Create an instance of CampaignFrequencyStats from a JSON string"""
+        """Create an instance of QueryCampaignFrequencyStats200Response from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -74,18 +71,14 @@ class CampaignFrequencyStats(BaseModel):
             },
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in frequencies (list)
-        _items = []
-        if self.frequencies:
-            for _item in self.frequencies:
-                if _item:
-                    _items.append(_item.to_dict())
-            _dict['frequencies'] = _items
+        # override the default output from pydantic by calling `to_dict()` of data
+        if self.data:
+            _dict['data'] = self.data.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Dict) -> Self:
-        """Create an instance of CampaignFrequencyStats from a dict"""
+        """Create an instance of QueryCampaignFrequencyStats200Response from a dict"""
         if obj is None:
             return None
 
@@ -93,9 +86,7 @@ class CampaignFrequencyStats(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "average_frequency": obj.get("average_frequency"),
-            "frequencies": [FrequencyStats.from_dict(_item) for _item in obj.get("frequencies")] if obj.get("frequencies") is not None else None,
-            "count_above_cap": obj.get("count_above_cap")
+            "data": CampaignFrequencyStats.from_dict(obj.get("data")) if obj.get("data") is not None else None
         })
         return _obj
 
