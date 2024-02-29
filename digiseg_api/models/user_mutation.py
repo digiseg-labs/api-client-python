@@ -3,7 +3,7 @@
 """
     Digiseg API
 
-    ### Digiseg API documentation  # Introduction  This API let you harness the power of Digisegs powerful and tracking-free segmentation engine.  Audiences by Digiseg are available in 50+ countries, probablistically mapping neighborhood characteristics to the IP addresses observed on the internet - Household targeting & measurement for the post-cookie world.  ## Developer SDKs  In addition to using these APIs directly through any HTTP client, we provide a set of API client SDKs for popular programming languages:  <div class=\"api-clients\">   <a class=\"api-client-box\" href=\"https://github.com/digiseg-labs/api-client-python\">     <i class=\"api-client-sdk-logo devicon-python-plain\"></i>     <p>API client for Python</p>   </a>   <a class=\"api-client-box\" href=\"https://github.com/digiseg-labs/api-client-go\">     <i class=\"api-client-sdk-logo devicon-go-original-wordmark\"></i>     <p>API client for Go</p>   </a> </div> <div class=\"api-clients-breaker\" />  ## Audience taxonomy  For a catalog of Digisegs audiences, refer to the [Audience list](https://digiseg.io/audiences-list).  There is also an interactive [Audience builder](https://digiseg.io/cookieless-audience-builder/) which lets you discover the targeting reach and power of combining various household characteristics into composite audiences. 
+    ### Digiseg API documentation  # Introduction  This API let you harness the power of Digisegs powerful and tracking-free segmentation engine.  Audiences by Digiseg are available in 50+ countries, probablistically mapping neighborhood characteristics to the IP addresses observed on the internet - Household targeting & measurement for the post-cookie world.  ## Developer SDKs  In addition to using these APIs directly through any HTTP client, we provide a set of API client SDKs for popular programming languages:  <div class=\"api-clients\">   <a class=\"api-client-box\" href=\"https://github.com/digiseg-labs/api-client-python\">     <i class=\"api-client-sdk-logo devicon-python-plain\"></i>     <p>API client for Python</p>   </a>   <a class=\"api-client-box\" href=\"https://github.com/digiseg-labs/api-client-go\">     <i class=\"api-client-sdk-logo devicon-go-original-wordmark\"></i>     <p>API client for Go</p>   </a> </div> <div class=\"api-clients-breaker\" />  ## Audience taxonomy  Digiseg audiences are grouped into private and business audiences. In each group there are categories that then contain the audiences. The API endpoints that communicate audiences and household characteristics, audience codes are being used.  The following table can be used as a reference for audience codes. Note that Digiseg will at times update names of audiences for purposes of internationalization, clarity or other such purposes - but the codes will remain as-is and should be considered a stable point of reference for the audience.  | Group | Category | Audience Code | Audience Name | |-------|----------|---------------|---------------| | private | home_type | a1 | Apartment | |  |  | a2 | House | |  | savings | b1 | No Savings | |  |  | b2 | Smaller Savings | |  |  | b3 | Larger Savings | |  | lifecycle | c1 | Young singles and couples | |  |  | c2 | Young couples with children | |  |  | c3 | Families with school children | |  |  | c4 | Older families | |  |  | c5 | Pensioners | |  | cars | d1 | No cars | |  |  | d2 | 1 car | |  |  | d3 | 2 or more cars | |  | children | e1 | No children | |  |  | e2 | 1 child | |  |  | e3 | 2 or more children | |  | education | f1 | Basic | |  |  | f2 | Medium | |  |  | f3 | Higher | |  | neighbourhood_type | g1 | Countryside | |  |  | g2 | Village | |  |  | g3 | Suburban | |  |  | g4 | City | |  | income | h1 | Lowest 20% | |  |  | h2 | Lowest 20-40% | |  |  | h3 | Middle 40-60% | |  |  | h4 | Highest 60-80% | |  |  | h5 | Top 20% | |  | home_ownership | j1 | Rent | |  |  | j2 | Own | |  | building_age | k1 | Pre 1945 | |  |  | k2 | 1945-1989 | |  |  | k3 | 1990 until today | |  | living_space | l1 | Up to 80 m² | |  |  | l2 | 80-119 m² | |  |  | l3 | Above 120 m² | |  | tech_level | n1 | Basic | |  |  | n2 | Medium | |  |  | n3 | High | | business | size | ba1 | Small Business | |  |  | ba2 | Medium Business | |  |  | ba3 | Larger Business |  There is also an interactive [Audience builder](https://digiseg.io/cookieless-audience-builder/) which lets you discover the targeting reach and power of combining various household characteristics into composite audiences. 
 
     The version of the OpenAPI document: 1.0.0
     Contact: support@digiseg.io
@@ -22,6 +22,7 @@ import json
 from typing import Any, ClassVar, Dict, List, Optional
 from pydantic import BaseModel, StrictBool, StrictStr
 from pydantic import Field
+from digiseg_api.models.user_account_membership import UserAccountMembership
 from digiseg_api.models.user_account_role import UserAccountRole
 try:
     from typing import Self
@@ -34,12 +35,13 @@ class UserMutation(BaseModel):
     """ # noqa: E501
     email: Optional[StrictStr] = Field(default=None, description="The email of the user (used as username when authenticating with password)")
     name: Optional[StrictStr] = Field(default=None, description="Human readable name of the user")
+    account_id: Optional[StrictStr] = Field(default=None, description="ID of the account that this user pertains to. If the user has multiple account memberships, this account ID will represent the primary account of the user. ")
     roles: Optional[List[UserAccountRole]] = Field(default=None, description="The roles that the user has within the account")
     avatar_url: Optional[StrictStr] = Field(default=None, description="The URL to an avatar of the user")
-    account_id: Optional[StrictStr] = Field(default=None, description="ID of the account that this user pertains to")
+    account_memberships: Optional[List[UserAccountMembership]] = None
     is_super_admin: Optional[StrictBool] = Field(default=None, description="Determines if the user is a super admin of Digiseg API services")
     password: Optional[StrictStr] = Field(default=None, description="Password of the user")
-    __properties: ClassVar[List[str]] = ["email", "name", "roles", "avatar_url", "account_id", "is_super_admin", "password"]
+    __properties: ClassVar[List[str]] = ["email", "name", "account_id", "roles", "avatar_url", "account_memberships", "is_super_admin", "password"]
 
     model_config = {
         "populate_by_name": True,
@@ -71,13 +73,22 @@ class UserMutation(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
+        * OpenAPI `readOnly` fields are excluded.
         """
         _dict = self.model_dump(
             by_alias=True,
             exclude={
+                "account_memberships",
             },
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of each item in account_memberships (list)
+        _items = []
+        if self.account_memberships:
+            for _item in self.account_memberships:
+                if _item:
+                    _items.append(_item.to_dict())
+            _dict['account_memberships'] = _items
         return _dict
 
     @classmethod
@@ -92,9 +103,10 @@ class UserMutation(BaseModel):
         _obj = cls.model_validate({
             "email": obj.get("email"),
             "name": obj.get("name"),
+            "account_id": obj.get("account_id"),
             "roles": obj.get("roles"),
             "avatar_url": obj.get("avatar_url"),
-            "account_id": obj.get("account_id"),
+            "account_memberships": [UserAccountMembership.from_dict(_item) for _item in obj.get("account_memberships")] if obj.get("account_memberships") is not None else None,
             "is_super_admin": obj.get("is_super_admin"),
             "password": obj.get("password")
         })

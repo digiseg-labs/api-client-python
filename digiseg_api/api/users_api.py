@@ -3,7 +3,7 @@
 """
     Digiseg API
 
-    ### Digiseg API documentation  # Introduction  This API let you harness the power of Digisegs powerful and tracking-free segmentation engine.  Audiences by Digiseg are available in 50+ countries, probablistically mapping neighborhood characteristics to the IP addresses observed on the internet - Household targeting & measurement for the post-cookie world.  ## Developer SDKs  In addition to using these APIs directly through any HTTP client, we provide a set of API client SDKs for popular programming languages:  <div class=\"api-clients\">   <a class=\"api-client-box\" href=\"https://github.com/digiseg-labs/api-client-python\">     <i class=\"api-client-sdk-logo devicon-python-plain\"></i>     <p>API client for Python</p>   </a>   <a class=\"api-client-box\" href=\"https://github.com/digiseg-labs/api-client-go\">     <i class=\"api-client-sdk-logo devicon-go-original-wordmark\"></i>     <p>API client for Go</p>   </a> </div> <div class=\"api-clients-breaker\" />  ## Audience taxonomy  For a catalog of Digisegs audiences, refer to the [Audience list](https://digiseg.io/audiences-list).  There is also an interactive [Audience builder](https://digiseg.io/cookieless-audience-builder/) which lets you discover the targeting reach and power of combining various household characteristics into composite audiences. 
+    ### Digiseg API documentation  # Introduction  This API let you harness the power of Digisegs powerful and tracking-free segmentation engine.  Audiences by Digiseg are available in 50+ countries, probablistically mapping neighborhood characteristics to the IP addresses observed on the internet - Household targeting & measurement for the post-cookie world.  ## Developer SDKs  In addition to using these APIs directly through any HTTP client, we provide a set of API client SDKs for popular programming languages:  <div class=\"api-clients\">   <a class=\"api-client-box\" href=\"https://github.com/digiseg-labs/api-client-python\">     <i class=\"api-client-sdk-logo devicon-python-plain\"></i>     <p>API client for Python</p>   </a>   <a class=\"api-client-box\" href=\"https://github.com/digiseg-labs/api-client-go\">     <i class=\"api-client-sdk-logo devicon-go-original-wordmark\"></i>     <p>API client for Go</p>   </a> </div> <div class=\"api-clients-breaker\" />  ## Audience taxonomy  Digiseg audiences are grouped into private and business audiences. In each group there are categories that then contain the audiences. The API endpoints that communicate audiences and household characteristics, audience codes are being used.  The following table can be used as a reference for audience codes. Note that Digiseg will at times update names of audiences for purposes of internationalization, clarity or other such purposes - but the codes will remain as-is and should be considered a stable point of reference for the audience.  | Group | Category | Audience Code | Audience Name | |-------|----------|---------------|---------------| | private | home_type | a1 | Apartment | |  |  | a2 | House | |  | savings | b1 | No Savings | |  |  | b2 | Smaller Savings | |  |  | b3 | Larger Savings | |  | lifecycle | c1 | Young singles and couples | |  |  | c2 | Young couples with children | |  |  | c3 | Families with school children | |  |  | c4 | Older families | |  |  | c5 | Pensioners | |  | cars | d1 | No cars | |  |  | d2 | 1 car | |  |  | d3 | 2 or more cars | |  | children | e1 | No children | |  |  | e2 | 1 child | |  |  | e3 | 2 or more children | |  | education | f1 | Basic | |  |  | f2 | Medium | |  |  | f3 | Higher | |  | neighbourhood_type | g1 | Countryside | |  |  | g2 | Village | |  |  | g3 | Suburban | |  |  | g4 | City | |  | income | h1 | Lowest 20% | |  |  | h2 | Lowest 20-40% | |  |  | h3 | Middle 40-60% | |  |  | h4 | Highest 60-80% | |  |  | h5 | Top 20% | |  | home_ownership | j1 | Rent | |  |  | j2 | Own | |  | building_age | k1 | Pre 1945 | |  |  | k2 | 1945-1989 | |  |  | k3 | 1990 until today | |  | living_space | l1 | Up to 80 m² | |  |  | l2 | 80-119 m² | |  |  | l3 | Above 120 m² | |  | tech_level | n1 | Basic | |  |  | n2 | Medium | |  |  | n3 | High | | business | size | ba1 | Small Business | |  |  | ba2 | Medium Business | |  |  | ba3 | Larger Business |  There is also an interactive [Audience builder](https://digiseg.io/cookieless-audience-builder/) which lets you discover the targeting reach and power of combining various household characteristics into composite audiences. 
 
     The version of the OpenAPI document: 1.0.0
     Contact: support@digiseg.io
@@ -30,11 +30,12 @@ from pydantic import StrictStr
 
 from typing import Optional
 
+from digiseg_api.models.api_key_creation import ApiKeyCreation
 from digiseg_api.models.api_key_mutation import ApiKeyMutation
 from digiseg_api.models.create_api_key201_response import CreateApiKey201Response
 from digiseg_api.models.create_user_in_account201_response import CreateUserInAccount201Response
 from digiseg_api.models.get_api_key_by_id200_response import GetApiKeyById200Response
-from digiseg_api.models.list_api_keys_by_user_id200_response import ListApiKeysByUserId200Response
+from digiseg_api.models.list_api_keys_by_account_id200_response import ListApiKeysByAccountId200Response
 from digiseg_api.models.list_users_by_account_id200_response import ListUsersByAccountId200Response
 from digiseg_api.models.user_mutation import UserMutation
 
@@ -60,7 +61,7 @@ class UsersApi:
     def create_api_key(
         self,
         user_id: StrictStr,
-        api_key_mutation: ApiKeyMutation,
+        api_key_creation: ApiKeyCreation,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -80,8 +81,8 @@ class UsersApi:
 
         :param user_id: (required)
         :type user_id: str
-        :param api_key_mutation: (required)
-        :type api_key_mutation: ApiKeyMutation
+        :param api_key_creation: (required)
+        :type api_key_creation: ApiKeyCreation
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -106,7 +107,7 @@ class UsersApi:
 
         _param = self._create_api_key_serialize(
             user_id=user_id,
-            api_key_mutation=api_key_mutation,
+            api_key_creation=api_key_creation,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -133,7 +134,7 @@ class UsersApi:
     def create_api_key_with_http_info(
         self,
         user_id: StrictStr,
-        api_key_mutation: ApiKeyMutation,
+        api_key_creation: ApiKeyCreation,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -153,8 +154,8 @@ class UsersApi:
 
         :param user_id: (required)
         :type user_id: str
-        :param api_key_mutation: (required)
-        :type api_key_mutation: ApiKeyMutation
+        :param api_key_creation: (required)
+        :type api_key_creation: ApiKeyCreation
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -179,7 +180,7 @@ class UsersApi:
 
         _param = self._create_api_key_serialize(
             user_id=user_id,
-            api_key_mutation=api_key_mutation,
+            api_key_creation=api_key_creation,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -206,7 +207,7 @@ class UsersApi:
     def create_api_key_without_preload_content(
         self,
         user_id: StrictStr,
-        api_key_mutation: ApiKeyMutation,
+        api_key_creation: ApiKeyCreation,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -226,8 +227,8 @@ class UsersApi:
 
         :param user_id: (required)
         :type user_id: str
-        :param api_key_mutation: (required)
-        :type api_key_mutation: ApiKeyMutation
+        :param api_key_creation: (required)
+        :type api_key_creation: ApiKeyCreation
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -252,7 +253,7 @@ class UsersApi:
 
         _param = self._create_api_key_serialize(
             user_id=user_id,
-            api_key_mutation=api_key_mutation,
+            api_key_creation=api_key_creation,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -274,7 +275,7 @@ class UsersApi:
     def _create_api_key_serialize(
         self,
         user_id,
-        api_key_mutation,
+        api_key_creation,
         _request_auth,
         _content_type,
         _headers,
@@ -300,8 +301,8 @@ class UsersApi:
         # process the header parameters
         # process the form parameters
         # process the body parameter
-        if api_key_mutation is not None:
-            _body_params = api_key_mutation
+        if api_key_creation is not None:
+            _body_params = api_key_creation
 
 
         # set the HTTP header `Accept`
@@ -1988,7 +1989,7 @@ class UsersApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ListApiKeysByUserId200Response:
+    ) -> ListApiKeysByAccountId200Response:
         """List API keys for user
 
 
@@ -2025,7 +2026,7 @@ class UsersApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ListApiKeysByUserId200Response",
+            '200': "ListApiKeysByAccountId200Response",
             '403': None,
             '404': None,
         }
@@ -2056,7 +2057,7 @@ class UsersApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[ListApiKeysByUserId200Response]:
+    ) -> ApiResponse[ListApiKeysByAccountId200Response]:
         """List API keys for user
 
 
@@ -2093,7 +2094,7 @@ class UsersApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ListApiKeysByUserId200Response",
+            '200': "ListApiKeysByAccountId200Response",
             '403': None,
             '404': None,
         }
@@ -2161,7 +2162,7 @@ class UsersApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ListApiKeysByUserId200Response",
+            '200': "ListApiKeysByAccountId200Response",
             '403': None,
             '404': None,
         }
@@ -2519,6 +2520,313 @@ class UsersApi:
         return self.api_client.param_serialize(
             method='GET',
             resource_path='/accounts/{account_id}/users',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def update_api_key_by_id(
+        self,
+        user_id: StrictStr,
+        key_id: StrictStr,
+        api_key_mutation: ApiKeyMutation,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> GetApiKeyById200Response:
+        """Update API key
+
+
+        :param user_id: (required)
+        :type user_id: str
+        :param key_id: (required)
+        :type key_id: str
+        :param api_key_mutation: (required)
+        :type api_key_mutation: ApiKeyMutation
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._update_api_key_by_id_serialize(
+            user_id=user_id,
+            key_id=key_id,
+            api_key_mutation=api_key_mutation,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "GetApiKeyById200Response",
+            '403': None,
+            '404': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def update_api_key_by_id_with_http_info(
+        self,
+        user_id: StrictStr,
+        key_id: StrictStr,
+        api_key_mutation: ApiKeyMutation,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[GetApiKeyById200Response]:
+        """Update API key
+
+
+        :param user_id: (required)
+        :type user_id: str
+        :param key_id: (required)
+        :type key_id: str
+        :param api_key_mutation: (required)
+        :type api_key_mutation: ApiKeyMutation
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._update_api_key_by_id_serialize(
+            user_id=user_id,
+            key_id=key_id,
+            api_key_mutation=api_key_mutation,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "GetApiKeyById200Response",
+            '403': None,
+            '404': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def update_api_key_by_id_without_preload_content(
+        self,
+        user_id: StrictStr,
+        key_id: StrictStr,
+        api_key_mutation: ApiKeyMutation,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Update API key
+
+
+        :param user_id: (required)
+        :type user_id: str
+        :param key_id: (required)
+        :type key_id: str
+        :param api_key_mutation: (required)
+        :type api_key_mutation: ApiKeyMutation
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._update_api_key_by_id_serialize(
+            user_id=user_id,
+            key_id=key_id,
+            api_key_mutation=api_key_mutation,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "GetApiKeyById200Response",
+            '403': None,
+            '404': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _update_api_key_by_id_serialize(
+        self,
+        user_id,
+        key_id,
+        api_key_mutation,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> Tuple:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, str] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if user_id is not None:
+            _path_params['user_id'] = user_id
+        if key_id is not None:
+            _path_params['key_id'] = key_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if api_key_mutation is not None:
+            _body_params = api_key_mutation
+
+
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            [
+                'application/json'
+            ]
+        )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'oAuth', 
+            'bearerAuth', 
+            'apiKeyHeaderAuth', 
+            'apiKeyQueryParamAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/users/{user_id}/apikeys/{key_id}',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,

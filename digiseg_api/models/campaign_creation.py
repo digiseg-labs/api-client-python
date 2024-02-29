@@ -3,7 +3,7 @@
 """
     Digiseg API
 
-    ### Digiseg API documentation  # Introduction  This API let you harness the power of Digisegs powerful and tracking-free segmentation engine.  Audiences by Digiseg are available in 50+ countries, probablistically mapping neighborhood characteristics to the IP addresses observed on the internet - Household targeting & measurement for the post-cookie world.  ## Developer SDKs  In addition to using these APIs directly through any HTTP client, we provide a set of API client SDKs for popular programming languages:  <div class=\"api-clients\">   <a class=\"api-client-box\" href=\"https://github.com/digiseg-labs/api-client-python\">     <i class=\"api-client-sdk-logo devicon-python-plain\"></i>     <p>API client for Python</p>   </a>   <a class=\"api-client-box\" href=\"https://github.com/digiseg-labs/api-client-go\">     <i class=\"api-client-sdk-logo devicon-go-original-wordmark\"></i>     <p>API client for Go</p>   </a> </div> <div class=\"api-clients-breaker\" />  ## Audience taxonomy  For a catalog of Digisegs audiences, refer to the [Audience list](https://digiseg.io/audiences-list).  There is also an interactive [Audience builder](https://digiseg.io/cookieless-audience-builder/) which lets you discover the targeting reach and power of combining various household characteristics into composite audiences. 
+    ### Digiseg API documentation  # Introduction  This API let you harness the power of Digisegs powerful and tracking-free segmentation engine.  Audiences by Digiseg are available in 50+ countries, probablistically mapping neighborhood characteristics to the IP addresses observed on the internet - Household targeting & measurement for the post-cookie world.  ## Developer SDKs  In addition to using these APIs directly through any HTTP client, we provide a set of API client SDKs for popular programming languages:  <div class=\"api-clients\">   <a class=\"api-client-box\" href=\"https://github.com/digiseg-labs/api-client-python\">     <i class=\"api-client-sdk-logo devicon-python-plain\"></i>     <p>API client for Python</p>   </a>   <a class=\"api-client-box\" href=\"https://github.com/digiseg-labs/api-client-go\">     <i class=\"api-client-sdk-logo devicon-go-original-wordmark\"></i>     <p>API client for Go</p>   </a> </div> <div class=\"api-clients-breaker\" />  ## Audience taxonomy  Digiseg audiences are grouped into private and business audiences. In each group there are categories that then contain the audiences. The API endpoints that communicate audiences and household characteristics, audience codes are being used.  The following table can be used as a reference for audience codes. Note that Digiseg will at times update names of audiences for purposes of internationalization, clarity or other such purposes - but the codes will remain as-is and should be considered a stable point of reference for the audience.  | Group | Category | Audience Code | Audience Name | |-------|----------|---------------|---------------| | private | home_type | a1 | Apartment | |  |  | a2 | House | |  | savings | b1 | No Savings | |  |  | b2 | Smaller Savings | |  |  | b3 | Larger Savings | |  | lifecycle | c1 | Young singles and couples | |  |  | c2 | Young couples with children | |  |  | c3 | Families with school children | |  |  | c4 | Older families | |  |  | c5 | Pensioners | |  | cars | d1 | No cars | |  |  | d2 | 1 car | |  |  | d3 | 2 or more cars | |  | children | e1 | No children | |  |  | e2 | 1 child | |  |  | e3 | 2 or more children | |  | education | f1 | Basic | |  |  | f2 | Medium | |  |  | f3 | Higher | |  | neighbourhood_type | g1 | Countryside | |  |  | g2 | Village | |  |  | g3 | Suburban | |  |  | g4 | City | |  | income | h1 | Lowest 20% | |  |  | h2 | Lowest 20-40% | |  |  | h3 | Middle 40-60% | |  |  | h4 | Highest 60-80% | |  |  | h5 | Top 20% | |  | home_ownership | j1 | Rent | |  |  | j2 | Own | |  | building_age | k1 | Pre 1945 | |  |  | k2 | 1945-1989 | |  |  | k3 | 1990 until today | |  | living_space | l1 | Up to 80 m² | |  |  | l2 | 80-119 m² | |  |  | l3 | Above 120 m² | |  | tech_level | n1 | Basic | |  |  | n2 | Medium | |  |  | n3 | High | | business | size | ba1 | Small Business | |  |  | ba2 | Medium Business | |  |  | ba3 | Larger Business |  There is also an interactive [Audience builder](https://digiseg.io/cookieless-audience-builder/) which lets you discover the targeting reach and power of combining various household characteristics into composite audiences. 
 
     The version of the OpenAPI document: 1.0.0
     Contact: support@digiseg.io
@@ -22,10 +22,12 @@ from datetime import datetime
 from typing import Any, ClassVar, Dict, List, Optional
 from pydantic import BaseModel, StrictStr
 from pydantic import Field
-from typing_extensions import Annotated
+from digiseg_api.models.campaign_event_links import CampaignEventLinks
 from digiseg_api.models.campaign_event_set import CampaignEventSet
 from digiseg_api.models.campaign_ingestion_status import CampaignIngestionStatus
+from digiseg_api.models.campaign_integration_platform import CampaignIntegrationPlatform
 from digiseg_api.models.campaign_lifecycle_stage import CampaignLifecycleStage
+from digiseg_api.models.measurement_client_item import MeasurementClientItem
 try:
     from typing import Self
 except ImportError:
@@ -36,13 +38,18 @@ class CampaignCreation(BaseModel):
     CampaignCreation
     """ # noqa: E501
     name: StrictStr
-    labels: Optional[Annotated[List[StrictStr], Field(max_length=5)]] = Field(default=None, description="A set of labels that users can use to categorize their campaigns. Can be used to indicate type of campaign, customer names or other traits. ")
+    labels: Optional[List[StrictStr]] = Field(default=None, description="A set of labels that users can use to categorize their measurements. Can be used to indicate type of campaign, customer names or other traits. ")
     account_id: Optional[StrictStr] = Field(default=None, description="The ID of the account that owns this campaign")
     start_date: Optional[datetime] = Field(default=None, description="The date for which the campaign and its data ingestion will start.")
     life_cycle_stage: Optional[CampaignLifecycleStage] = None
     ingestion_status: Optional[CampaignIngestionStatus] = None
-    event_set: Optional[CampaignEventSet] = None
-    __properties: ClassVar[List[str]] = ["name", "labels", "account_id", "start_date", "life_cycle_stage", "ingestion_status", "event_set"]
+    event_links: Optional[CampaignEventLinks] = None
+    integration_platform: Optional[CampaignIntegrationPlatform] = None
+    banner_image_url: Optional[StrictStr] = Field(default=None, description="The URL to a banner image for the campaign. Note that the banner image is used only for Digiseg campaign reporting and presentation, it does NOT represent any delivered banner ad creatives or similar. ")
+    client: Optional[MeasurementClientItem] = None
+    event_set: CampaignEventSet
+    client_id: Optional[StrictStr] = Field(default=None, description="The ID of the measurement client that this campaign is for")
+    __properties: ClassVar[List[str]] = ["name", "labels", "account_id", "start_date", "life_cycle_stage", "ingestion_status", "event_links", "integration_platform", "banner_image_url", "client", "event_set", "client_id"]
 
     model_config = {
         "populate_by_name": True,
@@ -76,15 +83,26 @@ class CampaignCreation(BaseModel):
           are ignored.
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
         """
         _dict = self.model_dump(
             by_alias=True,
             exclude={
                 "account_id",
                 "start_date",
+                "banner_image_url",
             },
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of event_links
+        if self.event_links:
+            _dict['event_links'] = self.event_links.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of integration_platform
+        if self.integration_platform:
+            _dict['integration_platform'] = self.integration_platform.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of client
+        if self.client:
+            _dict['client'] = self.client.to_dict()
         return _dict
 
     @classmethod
@@ -103,7 +121,12 @@ class CampaignCreation(BaseModel):
             "start_date": obj.get("start_date"),
             "life_cycle_stage": obj.get("life_cycle_stage"),
             "ingestion_status": obj.get("ingestion_status"),
-            "event_set": obj.get("event_set")
+            "event_links": CampaignEventLinks.from_dict(obj.get("event_links")) if obj.get("event_links") is not None else None,
+            "integration_platform": CampaignIntegrationPlatform.from_dict(obj.get("integration_platform")) if obj.get("integration_platform") is not None else None,
+            "banner_image_url": obj.get("banner_image_url"),
+            "client": MeasurementClientItem.from_dict(obj.get("client")) if obj.get("client") is not None else None,
+            "event_set": obj.get("event_set"),
+            "client_id": obj.get("client_id")
         })
         return _obj
 
