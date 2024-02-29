@@ -17,19 +17,12 @@ Import the package and start using it:
 ```python
 import digiseg_api
 
-# authenticate with username+password
-authRequest = digiseg_api.AuthTokenRequest.from_dict({
-    "username": username,
-    "password": password,
-})
-authResponse = digiseg_api.AuthApi().create_access_token(authRequest)
-accessToken = authResponse.access_token
-
 # look up audiences
-configuration = digiseg_api.Configuration(access_token=accessToken)
+configuration = digiseg_api.Configuration()
+configuration.api_key['apiKeyHeaderAuth'] = apiKey
 with digiseg_api.ApiClient(configuration) as api_client:
     audiencesApi = digiseg_api.AudiencesApi(api_client)
-    audiencesResponse = audiencesApi.resolve_audiences_of_single("152.115.123.174")
+    audiencesResponse = audiencesApi.resolve_audiences_of_single("152.115.123.174", include="core,category")
 ```
 
 ## Examples
