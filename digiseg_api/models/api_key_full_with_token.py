@@ -19,15 +19,12 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from pydantic import BaseModel, StrictStr
-from pydantic import Field
 from digiseg_api.models.api_key_status import ApiKeyStatus
 from digiseg_api.models.permission_scopes import PermissionScopes
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
+from typing import Optional, Set
+from typing_extensions import Self
 
 class ApiKeyFullWithToken(BaseModel):
     """
@@ -49,11 +46,11 @@ class ApiKeyFullWithToken(BaseModel):
     updated_by: Optional[StrictStr] = Field(default=None, description="ID of the user who last updated the object")
     __properties: ClassVar[List[str]] = ["token", "id", "name", "status", "expires_at", "user_id", "account_id", "last_used_at", "token_prefix", "scopes", "created_at", "created_by", "updated_at", "updated_by"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True,
-        "protected_namespaces": (),
-    }
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
 
 
     def to_str(self) -> str:
@@ -66,7 +63,7 @@ class ApiKeyFullWithToken(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of ApiKeyFullWithToken from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
@@ -83,13 +80,15 @@ class ApiKeyFullWithToken(BaseModel):
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
         """
+        excluded_fields: Set[str] = set([
+            "user_id",
+            "last_used_at",
+            "token_prefix",
+        ])
+
         _dict = self.model_dump(
             by_alias=True,
-            exclude={
-                "user_id",
-                "last_used_at",
-                "token_prefix",
-            },
+            exclude=excluded_fields,
             exclude_none=True,
         )
         # override the default output from pydantic by calling `to_dict()` of scopes
@@ -98,7 +97,7 @@ class ApiKeyFullWithToken(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Dict) -> Self:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of ApiKeyFullWithToken from a dict"""
         if obj is None:
             return None
@@ -116,7 +115,7 @@ class ApiKeyFullWithToken(BaseModel):
             "account_id": obj.get("account_id"),
             "last_used_at": obj.get("last_used_at"),
             "token_prefix": obj.get("token_prefix"),
-            "scopes": PermissionScopes.from_dict(obj.get("scopes")) if obj.get("scopes") is not None else None,
+            "scopes": PermissionScopes.from_dict(obj["scopes"]) if obj.get("scopes") is not None else None,
             "created_at": obj.get("created_at"),
             "created_by": obj.get("created_by"),
             "updated_at": obj.get("updated_at"),

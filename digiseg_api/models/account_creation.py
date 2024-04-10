@@ -18,26 +18,33 @@ import pprint
 import re  # noqa: F401
 import json
 
-
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
-from pydantic import BaseModel, StrictStr, field_validator
-from pydantic import Field
 from typing_extensions import Annotated
 from digiseg_api.models.account_owner_creation import AccountOwnerCreation
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
+from digiseg_api.models.company_size import CompanySize
+from digiseg_api.models.company_type import CompanyType
+from digiseg_api.models.postal_address import PostalAddress
+from typing import Optional, Set
+from typing_extensions import Self
 
 class AccountCreation(BaseModel):
     """
     AccountCreation
     """ # noqa: E501
     name: Optional[StrictStr] = Field(default=None, description="Human readable name of the account")
+    logo_url: Optional[StrictStr] = Field(default=None, description="The URL to the logo of the account")
+    website_url: Optional[StrictStr] = Field(default=None, description="URL of the account's primary website")
+    billing_country: Optional[Annotated[str, Field(strict=True, max_length=2)]] = Field(default=None, description="Country code of the account. Requires `owner` role to change.")
+    company_type: Optional[CompanyType] = None
+    company_size: Optional[CompanySize] = None
+    has_clients: Optional[StrictBool] = Field(default=None, description="Determines whether the account has clients that they work for, or if their activities are for themselves.")
     slug: Optional[Annotated[str, Field(min_length=4, strict=True, max_length=12)]] = Field(default=None, description="A short human-readable name to identify the account. Must be lower-case and between 4 and 16 characters.")
-    owner_id: Optional[StrictStr] = Field(default=None, description="ID of the user who is the ultimate owner of the account")
+    owner_id: Optional[StrictStr] = Field(default=None, description="ID of the user who is the ultimate owner of the account. Deprecated in favor of the `owner` role of the user's account membership.")
+    billing_email: Optional[StrictStr] = Field(default=None, description="The email address to send billing information to. Requires `owner` role to change.")
+    billing_address: Optional[PostalAddress] = None
     owner: Optional[AccountOwnerCreation] = None
-    __properties: ClassVar[List[str]] = ["name", "slug", "owner_id", "owner"]
+    __properties: ClassVar[List[str]] = ["name", "logo_url", "website_url", "billing_country", "company_type", "company_size", "has_clients", "slug", "owner_id", "billing_email", "billing_address", "owner"]
 
     @field_validator('slug')
     def slug_validate_regular_expression(cls, value):
@@ -49,11 +56,11 @@ class AccountCreation(BaseModel):
             raise ValueError(r"must validate the regular expression /^[a-z]{4,16}$/")
         return value
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True,
-        "protected_namespaces": (),
-    }
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
 
 
     def to_str(self) -> str:
@@ -66,7 +73,7 @@ class AccountCreation(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of AccountCreation from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
@@ -80,19 +87,24 @@ class AccountCreation(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
+        excluded_fields: Set[str] = set([
+        ])
+
         _dict = self.model_dump(
             by_alias=True,
-            exclude={
-            },
+            exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of billing_address
+        if self.billing_address:
+            _dict['billing_address'] = self.billing_address.to_dict()
         # override the default output from pydantic by calling `to_dict()` of owner
         if self.owner:
             _dict['owner'] = self.owner.to_dict()
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Dict) -> Self:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of AccountCreation from a dict"""
         if obj is None:
             return None
@@ -102,9 +114,17 @@ class AccountCreation(BaseModel):
 
         _obj = cls.model_validate({
             "name": obj.get("name"),
+            "logo_url": obj.get("logo_url"),
+            "website_url": obj.get("website_url"),
+            "billing_country": obj.get("billing_country"),
+            "company_type": obj.get("company_type"),
+            "company_size": obj.get("company_size"),
+            "has_clients": obj.get("has_clients"),
             "slug": obj.get("slug"),
             "owner_id": obj.get("owner_id"),
-            "owner": AccountOwnerCreation.from_dict(obj.get("owner")) if obj.get("owner") is not None else None
+            "billing_email": obj.get("billing_email"),
+            "billing_address": PostalAddress.from_dict(obj["billing_address"]) if obj.get("billing_address") is not None else None,
+            "owner": AccountOwnerCreation.from_dict(obj["owner"]) if obj.get("owner") is not None else None
         })
         return _obj
 

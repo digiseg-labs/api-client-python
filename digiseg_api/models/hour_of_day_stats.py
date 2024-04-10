@@ -18,19 +18,15 @@ import pprint
 import re  # noqa: F401
 import json
 
-
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
-from pydantic import BaseModel
-from pydantic import Field
 from digiseg_api.models.measurements_container import MeasurementsContainer
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
+from typing import Optional, Set
+from typing_extensions import Self
 
 class HourOfDayStats(BaseModel):
     """
-    Contains statistics about the time of day that campaign activity has been measured. The 24 hour time format is used to represent measurements for each hour. The time zone used to record these measurements is the time zone of the measured user, or UTC if the user's location cannot be resolved. 
+    Contains statistics about the time of day that study activity has been measured. The 24 hour time format is used to represent measurements for each hour. The time zone used to record these measurements is the time zone of the measured user, or UTC if the user's location cannot be resolved. 
     """ # noqa: E501
     var_10: Optional[MeasurementsContainer] = Field(default=None, alias="10")
     var_11: Optional[MeasurementsContainer] = Field(default=None, alias="11")
@@ -58,11 +54,11 @@ class HourOfDayStats(BaseModel):
     var_09: Optional[MeasurementsContainer] = Field(default=None, alias="09")
     __properties: ClassVar[List[str]] = ["10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "00", "01", "02", "03", "04", "05", "06", "07", "08", "09"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True,
-        "protected_namespaces": (),
-    }
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
 
 
     def to_str(self) -> str:
@@ -75,7 +71,7 @@ class HourOfDayStats(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of HourOfDayStats from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
@@ -89,10 +85,12 @@ class HourOfDayStats(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
+        excluded_fields: Set[str] = set([
+        ])
+
         _dict = self.model_dump(
             by_alias=True,
-            exclude={
-            },
+            exclude=excluded_fields,
             exclude_none=True,
         )
         # override the default output from pydantic by calling `to_dict()` of var_10
@@ -170,7 +168,7 @@ class HourOfDayStats(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Dict) -> Self:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of HourOfDayStats from a dict"""
         if obj is None:
             return None
@@ -179,30 +177,30 @@ class HourOfDayStats(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "10": MeasurementsContainer.from_dict(obj.get("10")) if obj.get("10") is not None else None,
-            "11": MeasurementsContainer.from_dict(obj.get("11")) if obj.get("11") is not None else None,
-            "12": MeasurementsContainer.from_dict(obj.get("12")) if obj.get("12") is not None else None,
-            "13": MeasurementsContainer.from_dict(obj.get("13")) if obj.get("13") is not None else None,
-            "14": MeasurementsContainer.from_dict(obj.get("14")) if obj.get("14") is not None else None,
-            "15": MeasurementsContainer.from_dict(obj.get("15")) if obj.get("15") is not None else None,
-            "16": MeasurementsContainer.from_dict(obj.get("16")) if obj.get("16") is not None else None,
-            "17": MeasurementsContainer.from_dict(obj.get("17")) if obj.get("17") is not None else None,
-            "18": MeasurementsContainer.from_dict(obj.get("18")) if obj.get("18") is not None else None,
-            "19": MeasurementsContainer.from_dict(obj.get("19")) if obj.get("19") is not None else None,
-            "20": MeasurementsContainer.from_dict(obj.get("20")) if obj.get("20") is not None else None,
-            "21": MeasurementsContainer.from_dict(obj.get("21")) if obj.get("21") is not None else None,
-            "22": MeasurementsContainer.from_dict(obj.get("22")) if obj.get("22") is not None else None,
-            "23": MeasurementsContainer.from_dict(obj.get("23")) if obj.get("23") is not None else None,
-            "00": MeasurementsContainer.from_dict(obj.get("00")) if obj.get("00") is not None else None,
-            "01": MeasurementsContainer.from_dict(obj.get("01")) if obj.get("01") is not None else None,
-            "02": MeasurementsContainer.from_dict(obj.get("02")) if obj.get("02") is not None else None,
-            "03": MeasurementsContainer.from_dict(obj.get("03")) if obj.get("03") is not None else None,
-            "04": MeasurementsContainer.from_dict(obj.get("04")) if obj.get("04") is not None else None,
-            "05": MeasurementsContainer.from_dict(obj.get("05")) if obj.get("05") is not None else None,
-            "06": MeasurementsContainer.from_dict(obj.get("06")) if obj.get("06") is not None else None,
-            "07": MeasurementsContainer.from_dict(obj.get("07")) if obj.get("07") is not None else None,
-            "08": MeasurementsContainer.from_dict(obj.get("08")) if obj.get("08") is not None else None,
-            "09": MeasurementsContainer.from_dict(obj.get("09")) if obj.get("09") is not None else None
+            "10": MeasurementsContainer.from_dict(obj["10"]) if obj.get("10") is not None else None,
+            "11": MeasurementsContainer.from_dict(obj["11"]) if obj.get("11") is not None else None,
+            "12": MeasurementsContainer.from_dict(obj["12"]) if obj.get("12") is not None else None,
+            "13": MeasurementsContainer.from_dict(obj["13"]) if obj.get("13") is not None else None,
+            "14": MeasurementsContainer.from_dict(obj["14"]) if obj.get("14") is not None else None,
+            "15": MeasurementsContainer.from_dict(obj["15"]) if obj.get("15") is not None else None,
+            "16": MeasurementsContainer.from_dict(obj["16"]) if obj.get("16") is not None else None,
+            "17": MeasurementsContainer.from_dict(obj["17"]) if obj.get("17") is not None else None,
+            "18": MeasurementsContainer.from_dict(obj["18"]) if obj.get("18") is not None else None,
+            "19": MeasurementsContainer.from_dict(obj["19"]) if obj.get("19") is not None else None,
+            "20": MeasurementsContainer.from_dict(obj["20"]) if obj.get("20") is not None else None,
+            "21": MeasurementsContainer.from_dict(obj["21"]) if obj.get("21") is not None else None,
+            "22": MeasurementsContainer.from_dict(obj["22"]) if obj.get("22") is not None else None,
+            "23": MeasurementsContainer.from_dict(obj["23"]) if obj.get("23") is not None else None,
+            "00": MeasurementsContainer.from_dict(obj["00"]) if obj.get("00") is not None else None,
+            "01": MeasurementsContainer.from_dict(obj["01"]) if obj.get("01") is not None else None,
+            "02": MeasurementsContainer.from_dict(obj["02"]) if obj.get("02") is not None else None,
+            "03": MeasurementsContainer.from_dict(obj["03"]) if obj.get("03") is not None else None,
+            "04": MeasurementsContainer.from_dict(obj["04"]) if obj.get("04") is not None else None,
+            "05": MeasurementsContainer.from_dict(obj["05"]) if obj.get("05") is not None else None,
+            "06": MeasurementsContainer.from_dict(obj["06"]) if obj.get("06") is not None else None,
+            "07": MeasurementsContainer.from_dict(obj["07"]) if obj.get("07") is not None else None,
+            "08": MeasurementsContainer.from_dict(obj["08"]) if obj.get("08") is not None else None,
+            "09": MeasurementsContainer.from_dict(obj["09"]) if obj.get("09") is not None else None
         })
         return _obj
 

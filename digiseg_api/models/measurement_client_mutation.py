@@ -18,14 +18,10 @@ import pprint
 import re  # noqa: F401
 import json
 
-
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from pydantic import BaseModel, StrictStr
-from pydantic import Field
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
+from typing import Optional, Set
+from typing_extensions import Self
 
 class MeasurementClientMutation(BaseModel):
     """
@@ -36,11 +32,11 @@ class MeasurementClientMutation(BaseModel):
     logo_url: Optional[StrictStr] = Field(default=None, description="The URL of an image representing the measurement client")
     __properties: ClassVar[List[str]] = ["name", "account_id", "logo_url"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True,
-        "protected_namespaces": (),
-    }
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
 
 
     def to_str(self) -> str:
@@ -53,7 +49,7 @@ class MeasurementClientMutation(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of MeasurementClientMutation from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
@@ -69,18 +65,20 @@ class MeasurementClientMutation(BaseModel):
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
         """
+        excluded_fields: Set[str] = set([
+            "account_id",
+            "logo_url",
+        ])
+
         _dict = self.model_dump(
             by_alias=True,
-            exclude={
-                "account_id",
-                "logo_url",
-            },
+            exclude=excluded_fields,
             exclude_none=True,
         )
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Dict) -> Self:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of MeasurementClientMutation from a dict"""
         if obj is None:
             return None

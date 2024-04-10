@@ -18,16 +18,13 @@ import pprint
 import re  # noqa: F401
 import json
 
-
+from pydantic import BaseModel, ConfigDict
 from typing import Any, ClassVar, Dict, List, Optional
-from pydantic import BaseModel
 from digiseg_api.models.list_pagination_links import ListPaginationLinks
 from digiseg_api.models.list_pagination_meta import ListPaginationMeta
 from digiseg_api.models.measurement_client_item import MeasurementClientItem
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
+from typing import Optional, Set
+from typing_extensions import Self
 
 class ListMeasurementClients200Response(BaseModel):
     """
@@ -38,11 +35,11 @@ class ListMeasurementClients200Response(BaseModel):
     links: Optional[ListPaginationLinks] = None
     __properties: ClassVar[List[str]] = ["data", "meta", "links"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True,
-        "protected_namespaces": (),
-    }
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
 
 
     def to_str(self) -> str:
@@ -55,7 +52,7 @@ class ListMeasurementClients200Response(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of ListMeasurementClients200Response from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
@@ -69,10 +66,12 @@ class ListMeasurementClients200Response(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
+        excluded_fields: Set[str] = set([
+        ])
+
         _dict = self.model_dump(
             by_alias=True,
-            exclude={
-            },
+            exclude=excluded_fields,
             exclude_none=True,
         )
         # override the default output from pydantic by calling `to_dict()` of each item in data (list)
@@ -91,7 +90,7 @@ class ListMeasurementClients200Response(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Dict) -> Self:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of ListMeasurementClients200Response from a dict"""
         if obj is None:
             return None
@@ -100,9 +99,9 @@ class ListMeasurementClients200Response(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "data": [MeasurementClientItem.from_dict(_item) for _item in obj.get("data")] if obj.get("data") is not None else None,
-            "meta": ListPaginationMeta.from_dict(obj.get("meta")) if obj.get("meta") is not None else None,
-            "links": ListPaginationLinks.from_dict(obj.get("links")) if obj.get("links") is not None else None
+            "data": [MeasurementClientItem.from_dict(_item) for _item in obj["data"]] if obj.get("data") is not None else None,
+            "meta": ListPaginationMeta.from_dict(obj["meta"]) if obj.get("meta") is not None else None,
+            "links": ListPaginationLinks.from_dict(obj["links"]) if obj.get("links") is not None else None
         })
         return _obj
 

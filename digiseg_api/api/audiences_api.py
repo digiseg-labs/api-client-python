@@ -12,29 +12,19 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-
-import io
 import warnings
-
 from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
-from typing import Dict, List, Optional, Tuple, Union, Any
-
-try:
-    from typing import Annotated
-except ImportError:
-    from typing_extensions import Annotated
-
-from pydantic import Field
+from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
-from pydantic import StrictStr, field_validator
 
+from pydantic import Field, StrictStr, field_validator
 from typing import Optional
-
+from typing_extensions import Annotated
 from digiseg_api.models.audience_response import AudienceResponse
 from digiseg_api.models.resolve_audiences_of_multiple_request import ResolveAudiencesOfMultipleRequest
 from digiseg_api.models.resolve_audiences_of_multiple_response import ResolveAudiencesOfMultipleResponse
 
-from digiseg_api.api_client import ApiClient
+from digiseg_api.api_client import ApiClient, RequestSerialized
 from digiseg_api.api_response import ApiResponse
 from digiseg_api.rest import RESTResponseType
 
@@ -272,7 +262,7 @@ class AudiencesApi:
         _content_type,
         _headers,
         _host_index,
-    ) -> Tuple:
+    ) -> RequestSerialized:
 
         _host = None
 
@@ -555,7 +545,7 @@ class AudiencesApi:
         _content_type,
         _headers,
         _host_index,
-    ) -> Tuple:
+    ) -> RequestSerialized:
 
         _host = None
 
@@ -849,7 +839,7 @@ class AudiencesApi:
         _content_type,
         _headers,
         _host_index,
-    ) -> Tuple:
+    ) -> RequestSerialized:
 
         _host = None
 

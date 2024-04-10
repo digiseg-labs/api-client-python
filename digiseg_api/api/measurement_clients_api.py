@@ -12,29 +12,19 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-
-import io
 import warnings
-
 from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
-from typing import Dict, List, Optional, Tuple, Union, Any
-
-try:
-    from typing import Annotated
-except ImportError:
-    from typing_extensions import Annotated
-
-from pydantic import Field
+from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
-from pydantic import StrictBytes, StrictStr
 
+from pydantic import Field, StrictBytes, StrictStr
 from typing import Optional, Union
-
+from typing_extensions import Annotated
 from digiseg_api.models.create_measurement_client201_response import CreateMeasurementClient201Response
 from digiseg_api.models.list_measurement_clients200_response import ListMeasurementClients200Response
 from digiseg_api.models.measurement_client_mutation import MeasurementClientMutation
 
-from digiseg_api.api_client import ApiClient
+from digiseg_api.api_client import ApiClient, RequestSerialized
 from digiseg_api.api_response import ApiResponse
 from digiseg_api.rest import RESTResponseType
 
@@ -256,7 +246,7 @@ class MeasurementClientsApi:
         _content_type,
         _headers,
         _host_index,
-    ) -> Tuple:
+    ) -> RequestSerialized:
 
         _host = None
 
@@ -530,7 +520,7 @@ class MeasurementClientsApi:
         _content_type,
         _headers,
         _host_index,
-    ) -> Tuple:
+    ) -> RequestSerialized:
 
         _host = None
 
@@ -785,7 +775,7 @@ class MeasurementClientsApi:
         _content_type,
         _headers,
         _host_index,
-    ) -> Tuple:
+    ) -> RequestSerialized:
 
         _host = None
 
@@ -1043,7 +1033,7 @@ class MeasurementClientsApi:
         _content_type,
         _headers,
         _host_index,
-    ) -> Tuple:
+    ) -> RequestSerialized:
 
         _host = None
 
@@ -1298,7 +1288,7 @@ class MeasurementClientsApi:
         _content_type,
         _headers,
         _host_index,
-    ) -> Tuple:
+    ) -> RequestSerialized:
 
         _host = None
 
@@ -1598,7 +1588,7 @@ class MeasurementClientsApi:
         _content_type,
         _headers,
         _host_index,
-    ) -> Tuple:
+    ) -> RequestSerialized:
 
         _host = None
 
@@ -1886,7 +1876,7 @@ class MeasurementClientsApi:
         _content_type,
         _headers,
         _host_index,
-    ) -> Tuple:
+    ) -> RequestSerialized:
 
         _host = None
 
@@ -2175,7 +2165,7 @@ class MeasurementClientsApi:
         _content_type,
         _headers,
         _host_index,
-    ) -> Tuple:
+    ) -> RequestSerialized:
 
         _host = None
 
@@ -2199,7 +2189,7 @@ class MeasurementClientsApi:
         if body is not None:
             # convert to byte array if the input is a file name (str)
             if isinstance(body, str):
-                with io.open(body, "rb") as _fp:
+                with open(body, "rb") as _fp:
                     _body_params = _fp.read()
             else:
                 _body_params = body

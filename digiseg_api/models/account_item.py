@@ -18,15 +18,12 @@ import pprint
 import re  # noqa: F401
 import json
 
-
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
-from pydantic import BaseModel, StrictStr, field_validator
-from pydantic import Field
 from typing_extensions import Annotated
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
+from digiseg_api.models.company_size import CompanySize
+from typing import Optional, Set
+from typing_extensions import Self
 
 class AccountItem(BaseModel):
     """
@@ -34,8 +31,14 @@ class AccountItem(BaseModel):
     """ # noqa: E501
     id: Optional[StrictStr] = Field(default=None, description="Unique ID for the object")
     name: Optional[StrictStr] = Field(default=None, description="Human readable name of the account")
+    logo_url: Optional[StrictStr] = Field(default=None, description="The URL to the logo of the account")
+    website_url: Optional[StrictStr] = Field(default=None, description="URL of the account's primary website")
+    billing_country: Optional[Annotated[str, Field(strict=True, max_length=2)]] = Field(default=None, description="Country code of the account. Requires `owner` role to change.")
+    company_type: Optional[Annotated[str, Field(strict=True, max_length=64)]] = Field(default=None, description="The type of company that the account represents. Note that for forward-compatibility the data type here is simply a string. The values, if present, will however typically originate from the `CompanyType` enum. ")
+    company_size: Optional[CompanySize] = None
+    has_clients: Optional[StrictBool] = Field(default=None, description="Determines whether the account has clients that they work for, or if their activities are for themselves.")
     slug: Optional[Annotated[str, Field(min_length=4, strict=True, max_length=12)]] = Field(default=None, description="A short human-readable name to identify the account. Must be lower-case and between 4 and 16 characters.")
-    __properties: ClassVar[List[str]] = ["id", "name", "slug"]
+    __properties: ClassVar[List[str]] = ["id", "name", "logo_url", "website_url", "billing_country", "company_type", "company_size", "has_clients", "slug"]
 
     @field_validator('slug')
     def slug_validate_regular_expression(cls, value):
@@ -47,11 +50,11 @@ class AccountItem(BaseModel):
             raise ValueError(r"must validate the regular expression /^[a-z]{4,16}$/")
         return value
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True,
-        "protected_namespaces": (),
-    }
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
 
 
     def to_str(self) -> str:
@@ -64,7 +67,7 @@ class AccountItem(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of AccountItem from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
@@ -78,16 +81,18 @@ class AccountItem(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
+        excluded_fields: Set[str] = set([
+        ])
+
         _dict = self.model_dump(
             by_alias=True,
-            exclude={
-            },
+            exclude=excluded_fields,
             exclude_none=True,
         )
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Dict) -> Self:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of AccountItem from a dict"""
         if obj is None:
             return None
@@ -98,6 +103,12 @@ class AccountItem(BaseModel):
         _obj = cls.model_validate({
             "id": obj.get("id"),
             "name": obj.get("name"),
+            "logo_url": obj.get("logo_url"),
+            "website_url": obj.get("website_url"),
+            "billing_country": obj.get("billing_country"),
+            "company_type": obj.get("company_type"),
+            "company_size": obj.get("company_size"),
+            "has_clients": obj.get("has_clients"),
             "slug": obj.get("slug")
         })
         return _obj

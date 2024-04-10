@@ -12,20 +12,12 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-
-import io
 import warnings
-
 from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
-from typing import Dict, List, Optional, Tuple, Union, Any
-
-try:
-    from typing import Annotated
-except ImportError:
-    from typing_extensions import Annotated
+from typing import Any, Dict, List, Optional, Tuple, Union
+from typing_extensions import Annotated
 
 from pydantic import StrictStr
-
 from digiseg_api.models.api_key_creation import ApiKeyCreation
 from digiseg_api.models.api_key_mutation import ApiKeyMutation
 from digiseg_api.models.auth_token_request import AuthTokenRequest
@@ -34,7 +26,7 @@ from digiseg_api.models.create_api_key201_response import CreateApiKey201Respons
 from digiseg_api.models.get_api_key_by_id200_response import GetApiKeyById200Response
 from digiseg_api.models.list_api_keys_by_account_id200_response import ListApiKeysByAccountId200Response
 
-from digiseg_api.api_client import ApiClient
+from digiseg_api.api_client import ApiClient, RequestSerialized
 from digiseg_api.api_response import ApiResponse
 from digiseg_api.rest import RESTResponseType
 
@@ -253,7 +245,7 @@ class AuthApi:
         _content_type,
         _headers,
         _host_index,
-    ) -> Tuple:
+    ) -> RequestSerialized:
 
         _host = None
 
@@ -543,7 +535,7 @@ class AuthApi:
         _content_type,
         _headers,
         _host_index,
-    ) -> Tuple:
+    ) -> RequestSerialized:
 
         _host = None
 
@@ -835,7 +827,7 @@ class AuthApi:
         _content_type,
         _headers,
         _host_index,
-    ) -> Tuple:
+    ) -> RequestSerialized:
 
         _host = None
 
@@ -1108,7 +1100,7 @@ class AuthApi:
         _content_type,
         _headers,
         _host_index,
-    ) -> Tuple:
+    ) -> RequestSerialized:
 
         _host = None
 
@@ -1374,7 +1366,7 @@ class AuthApi:
         _content_type,
         _headers,
         _host_index,
-    ) -> Tuple:
+    ) -> RequestSerialized:
 
         _host = None
 
@@ -1638,7 +1630,7 @@ class AuthApi:
         _content_type,
         _headers,
         _host_index,
-    ) -> Tuple:
+    ) -> RequestSerialized:
 
         _host = None
 
@@ -1928,7 +1920,7 @@ class AuthApi:
         _content_type,
         _headers,
         _host_index,
-    ) -> Tuple:
+    ) -> RequestSerialized:
 
         _host = None
 

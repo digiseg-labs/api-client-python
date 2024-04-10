@@ -18,16 +18,13 @@ import pprint
 import re  # noqa: F401
 import json
 
-
+from datetime import datetime
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from pydantic import BaseModel, StrictBool, StrictStr
-from pydantic import Field
 from digiseg_api.models.user_account_membership import UserAccountMembership
 from digiseg_api.models.user_account_role import UserAccountRole
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
+from typing import Optional, Set
+from typing_extensions import Self
 
 class UserMutation(BaseModel):
     """
@@ -38,16 +35,17 @@ class UserMutation(BaseModel):
     account_id: Optional[StrictStr] = Field(default=None, description="ID of the account that this user pertains to. If the user has multiple account memberships, this account ID will represent the primary account of the user. ")
     roles: Optional[List[UserAccountRole]] = Field(default=None, description="The roles that the user has within the account")
     avatar_url: Optional[StrictStr] = Field(default=None, description="The URL to an avatar of the user")
+    logged_in_at: Optional[datetime] = Field(default=None, description="The approximate last time that the user logged in")
     account_memberships: Optional[List[UserAccountMembership]] = None
     is_super_admin: Optional[StrictBool] = Field(default=None, description="Determines if the user is a super admin of Digiseg API services")
     password: Optional[StrictStr] = Field(default=None, description="Password of the user")
-    __properties: ClassVar[List[str]] = ["email", "name", "account_id", "roles", "avatar_url", "account_memberships", "is_super_admin", "password"]
+    __properties: ClassVar[List[str]] = ["email", "name", "account_id", "roles", "avatar_url", "logged_in_at", "account_memberships", "is_super_admin", "password"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True,
-        "protected_namespaces": (),
-    }
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
 
 
     def to_str(self) -> str:
@@ -60,7 +58,7 @@ class UserMutation(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of UserMutation from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
@@ -74,12 +72,16 @@ class UserMutation(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
         """
+        excluded_fields: Set[str] = set([
+            "logged_in_at",
+            "account_memberships",
+        ])
+
         _dict = self.model_dump(
             by_alias=True,
-            exclude={
-                "account_memberships",
-            },
+            exclude=excluded_fields,
             exclude_none=True,
         )
         # override the default output from pydantic by calling `to_dict()` of each item in account_memberships (list)
@@ -92,7 +94,7 @@ class UserMutation(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Dict) -> Self:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of UserMutation from a dict"""
         if obj is None:
             return None
@@ -106,7 +108,8 @@ class UserMutation(BaseModel):
             "account_id": obj.get("account_id"),
             "roles": obj.get("roles"),
             "avatar_url": obj.get("avatar_url"),
-            "account_memberships": [UserAccountMembership.from_dict(_item) for _item in obj.get("account_memberships")] if obj.get("account_memberships") is not None else None,
+            "logged_in_at": obj.get("logged_in_at"),
+            "account_memberships": [UserAccountMembership.from_dict(_item) for _item in obj["account_memberships"]] if obj.get("account_memberships") is not None else None,
             "is_super_admin": obj.get("is_super_admin"),
             "password": obj.get("password")
         })

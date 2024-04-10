@@ -18,15 +18,11 @@ import pprint
 import re  # noqa: F401
 import json
 
-
+from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing import Any, ClassVar, Dict, List, Optional
-from pydantic import BaseModel, StrictBool
-from pydantic import Field
 from digiseg_api.models.user_account_membership import UserAccountMembership
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
+from typing import Optional, Set
+from typing_extensions import Self
 
 class UserAux(BaseModel):
     """
@@ -36,11 +32,11 @@ class UserAux(BaseModel):
     is_super_admin: Optional[StrictBool] = Field(default=None, description="Determines if the user is a super admin of Digiseg API services")
     __properties: ClassVar[List[str]] = ["account_memberships", "is_super_admin"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True,
-        "protected_namespaces": (),
-    }
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
 
 
     def to_str(self) -> str:
@@ -53,7 +49,7 @@ class UserAux(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of UserAux from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
@@ -68,11 +64,13 @@ class UserAux(BaseModel):
           are ignored.
         * OpenAPI `readOnly` fields are excluded.
         """
+        excluded_fields: Set[str] = set([
+            "account_memberships",
+        ])
+
         _dict = self.model_dump(
             by_alias=True,
-            exclude={
-                "account_memberships",
-            },
+            exclude=excluded_fields,
             exclude_none=True,
         )
         # override the default output from pydantic by calling `to_dict()` of each item in account_memberships (list)
@@ -85,7 +83,7 @@ class UserAux(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Dict) -> Self:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of UserAux from a dict"""
         if obj is None:
             return None
@@ -94,7 +92,7 @@ class UserAux(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "account_memberships": [UserAccountMembership.from_dict(_item) for _item in obj.get("account_memberships")] if obj.get("account_memberships") is not None else None,
+            "account_memberships": [UserAccountMembership.from_dict(_item) for _item in obj["account_memberships"]] if obj.get("account_memberships") is not None else None,
             "is_super_admin": obj.get("is_super_admin")
         })
         return _obj

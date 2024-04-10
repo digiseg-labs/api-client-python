@@ -18,15 +18,12 @@ import pprint
 import re  # noqa: F401
 import json
 
-
+from datetime import datetime
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from pydantic import BaseModel, StrictStr
-from pydantic import Field
 from digiseg_api.models.user_account_role import UserAccountRole
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
+from typing import Optional, Set
+from typing_extensions import Self
 
 class UserBase(BaseModel):
     """
@@ -37,13 +34,14 @@ class UserBase(BaseModel):
     account_id: Optional[StrictStr] = Field(default=None, description="ID of the account that this user pertains to. If the user has multiple account memberships, this account ID will represent the primary account of the user. ")
     roles: Optional[List[UserAccountRole]] = Field(default=None, description="The roles that the user has within the account")
     avatar_url: Optional[StrictStr] = Field(default=None, description="The URL to an avatar of the user")
-    __properties: ClassVar[List[str]] = ["email", "name", "account_id", "roles", "avatar_url"]
+    logged_in_at: Optional[datetime] = Field(default=None, description="The approximate last time that the user logged in")
+    __properties: ClassVar[List[str]] = ["email", "name", "account_id", "roles", "avatar_url", "logged_in_at"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True,
-        "protected_namespaces": (),
-    }
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
 
 
     def to_str(self) -> str:
@@ -56,7 +54,7 @@ class UserBase(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of UserBase from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
@@ -69,17 +67,21 @@ class UserBase(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
+        * OpenAPI `readOnly` fields are excluded.
         """
+        excluded_fields: Set[str] = set([
+            "logged_in_at",
+        ])
+
         _dict = self.model_dump(
             by_alias=True,
-            exclude={
-            },
+            exclude=excluded_fields,
             exclude_none=True,
         )
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Dict) -> Self:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of UserBase from a dict"""
         if obj is None:
             return None
@@ -92,7 +94,8 @@ class UserBase(BaseModel):
             "name": obj.get("name"),
             "account_id": obj.get("account_id"),
             "roles": obj.get("roles"),
-            "avatar_url": obj.get("avatar_url")
+            "avatar_url": obj.get("avatar_url"),
+            "logged_in_at": obj.get("logged_in_at")
         })
         return _obj
 

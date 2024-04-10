@@ -18,15 +18,11 @@ import pprint
 import re  # noqa: F401
 import json
 
-
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional, Union
-from pydantic import BaseModel
-from pydantic import Field
 from typing_extensions import Annotated
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
+from typing import Optional, Set
+from typing_extensions import Self
 
 class PopulationAudienceCategorySetSection(BaseModel):
     """
@@ -36,11 +32,11 @@ class PopulationAudienceCategorySetSection(BaseModel):
     audience_categories: Optional[Dict[str, Dict[str, Union[Annotated[float, Field(le=1, strict=True, ge=0)], Annotated[int, Field(le=1, strict=True, ge=0)]]]]] = Field(default=None, description="An object with category codes as keys, objects with audience codes and fractions of totals as keys.")
     __properties: ClassVar[List[str]] = ["fraction_of_total", "audience_categories"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True,
-        "protected_namespaces": (),
-    }
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
 
 
     def to_str(self) -> str:
@@ -53,7 +49,7 @@ class PopulationAudienceCategorySetSection(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of PopulationAudienceCategorySetSection from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
@@ -67,16 +63,18 @@ class PopulationAudienceCategorySetSection(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
+        excluded_fields: Set[str] = set([
+        ])
+
         _dict = self.model_dump(
             by_alias=True,
-            exclude={
-            },
+            exclude=excluded_fields,
             exclude_none=True,
         )
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Dict) -> Self:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of PopulationAudienceCategorySetSection from a dict"""
         if obj is None:
             return None

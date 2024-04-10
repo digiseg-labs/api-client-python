@@ -19,15 +19,12 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from pydantic import BaseModel, StrictStr
-from pydantic import Field
 from digiseg_api.models.api_key_status import ApiKeyStatus
 from digiseg_api.models.permission_scopes import PermissionScopes
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
+from typing import Optional, Set
+from typing_extensions import Self
 
 class ApiKeyCreation(BaseModel):
     """
@@ -43,11 +40,11 @@ class ApiKeyCreation(BaseModel):
     scopes: Optional[PermissionScopes] = None
     __properties: ClassVar[List[str]] = ["name", "status", "expires_at", "user_id", "account_id", "last_used_at", "token_prefix", "scopes"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True,
-        "protected_namespaces": (),
-    }
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
 
 
     def to_str(self) -> str:
@@ -60,7 +57,7 @@ class ApiKeyCreation(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of ApiKeyCreation from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
@@ -77,13 +74,15 @@ class ApiKeyCreation(BaseModel):
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
         """
+        excluded_fields: Set[str] = set([
+            "user_id",
+            "last_used_at",
+            "token_prefix",
+        ])
+
         _dict = self.model_dump(
             by_alias=True,
-            exclude={
-                "user_id",
-                "last_used_at",
-                "token_prefix",
-            },
+            exclude=excluded_fields,
             exclude_none=True,
         )
         # override the default output from pydantic by calling `to_dict()` of scopes
@@ -92,7 +91,7 @@ class ApiKeyCreation(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Dict) -> Self:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of ApiKeyCreation from a dict"""
         if obj is None:
             return None
@@ -108,7 +107,7 @@ class ApiKeyCreation(BaseModel):
             "account_id": obj.get("account_id"),
             "last_used_at": obj.get("last_used_at"),
             "token_prefix": obj.get("token_prefix"),
-            "scopes": PermissionScopes.from_dict(obj.get("scopes")) if obj.get("scopes") is not None else None
+            "scopes": PermissionScopes.from_dict(obj["scopes"]) if obj.get("scopes") is not None else None
         })
         return _obj
 

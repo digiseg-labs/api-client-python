@@ -18,17 +18,13 @@ import pprint
 import re  # noqa: F401
 import json
 
-
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from pydantic import BaseModel, StrictStr
-from pydantic import Field
 from digiseg_api.models.population_source_business_section import PopulationSourceBusinessSection
 from digiseg_api.models.population_source_not_resolved_section import PopulationSourceNotResolvedSection
 from digiseg_api.models.population_source_private_section import PopulationSourcePrivateSection
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
+from typing import Optional, Set
+from typing_extensions import Self
 
 class PopulationSource(BaseModel):
     """
@@ -42,11 +38,11 @@ class PopulationSource(BaseModel):
     business: PopulationSourceBusinessSection
     __properties: ClassVar[List[str]] = ["name", "source", "meta", "not_resolved", "private", "business"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True,
-        "protected_namespaces": (),
-    }
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
 
 
     def to_str(self) -> str:
@@ -59,7 +55,7 @@ class PopulationSource(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of PopulationSource from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
@@ -73,10 +69,12 @@ class PopulationSource(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
+        excluded_fields: Set[str] = set([
+        ])
+
         _dict = self.model_dump(
             by_alias=True,
-            exclude={
-            },
+            exclude=excluded_fields,
             exclude_none=True,
         )
         # override the default output from pydantic by calling `to_dict()` of not_resolved
@@ -91,7 +89,7 @@ class PopulationSource(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Dict) -> Self:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of PopulationSource from a dict"""
         if obj is None:
             return None
@@ -103,9 +101,9 @@ class PopulationSource(BaseModel):
             "name": obj.get("name"),
             "source": obj.get("source"),
             "meta": obj.get("meta"),
-            "not_resolved": PopulationSourceNotResolvedSection.from_dict(obj.get("not_resolved")) if obj.get("not_resolved") is not None else None,
-            "private": PopulationSourcePrivateSection.from_dict(obj.get("private")) if obj.get("private") is not None else None,
-            "business": PopulationSourceBusinessSection.from_dict(obj.get("business")) if obj.get("business") is not None else None
+            "not_resolved": PopulationSourceNotResolvedSection.from_dict(obj["not_resolved"]) if obj.get("not_resolved") is not None else None,
+            "private": PopulationSourcePrivateSection.from_dict(obj["private"]) if obj.get("private") is not None else None,
+            "business": PopulationSourceBusinessSection.from_dict(obj["business"]) if obj.get("business") is not None else None
         })
         return _obj
 

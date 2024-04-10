@@ -15,21 +15,13 @@
 
 from __future__ import annotations
 import json
-import pprint
-import re  # noqa: F401
 from enum import Enum
-
-
-
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
+from typing_extensions import Self
 
 
 class UserAccountRole(str, Enum):
     """
-    Determines the role of a user within an account
+    Determines the role of a user within an account. The permissions of each role are defined to fulfill the following use cases: * `user` is a basic role needed to make use of the platforms primary features. * `admin` is required to perform administrative functions on the account, such as adding members to it. Admin permissions does NOT include removing the account altogether or billing-related actions. * `owner` is required to make changes to account billing, or delete the account. 
     """
 
     """

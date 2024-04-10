@@ -18,19 +18,15 @@ import pprint
 import re  # noqa: F401
 import json
 
-
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
-from pydantic import BaseModel
-from pydantic import Field
 from digiseg_api.models.measurements_container import MeasurementsContainer
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
+from typing import Optional, Set
+from typing_extensions import Self
 
 class DayOfMonthStats(BaseModel):
     """
-    Contains statistics about the day of the month that campaign activity has been measured. The time zone used to record these measurements is the time zone of the measured user, or UTC if the user's location cannot be resolved. 
+    Contains statistics about the day of the month that study activity has been measured. The time zone used to record these measurements is the time zone of the measured user, or UTC if the user's location cannot be resolved. 
     """ # noqa: E501
     var_0: Optional[MeasurementsContainer] = Field(default=None, alias="0")
     var_1: Optional[MeasurementsContainer] = Field(default=None, alias="1")
@@ -66,11 +62,11 @@ class DayOfMonthStats(BaseModel):
     var_31: Optional[MeasurementsContainer] = Field(default=None, alias="31")
     __properties: ClassVar[List[str]] = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True,
-        "protected_namespaces": (),
-    }
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
 
 
     def to_str(self) -> str:
@@ -83,7 +79,7 @@ class DayOfMonthStats(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of DayOfMonthStats from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
@@ -97,10 +93,12 @@ class DayOfMonthStats(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
+        excluded_fields: Set[str] = set([
+        ])
+
         _dict = self.model_dump(
             by_alias=True,
-            exclude={
-            },
+            exclude=excluded_fields,
             exclude_none=True,
         )
         # override the default output from pydantic by calling `to_dict()` of var_0
@@ -202,7 +200,7 @@ class DayOfMonthStats(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Dict) -> Self:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of DayOfMonthStats from a dict"""
         if obj is None:
             return None
@@ -211,38 +209,38 @@ class DayOfMonthStats(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "0": MeasurementsContainer.from_dict(obj.get("0")) if obj.get("0") is not None else None,
-            "1": MeasurementsContainer.from_dict(obj.get("1")) if obj.get("1") is not None else None,
-            "2": MeasurementsContainer.from_dict(obj.get("2")) if obj.get("2") is not None else None,
-            "3": MeasurementsContainer.from_dict(obj.get("3")) if obj.get("3") is not None else None,
-            "4": MeasurementsContainer.from_dict(obj.get("4")) if obj.get("4") is not None else None,
-            "5": MeasurementsContainer.from_dict(obj.get("5")) if obj.get("5") is not None else None,
-            "6": MeasurementsContainer.from_dict(obj.get("6")) if obj.get("6") is not None else None,
-            "7": MeasurementsContainer.from_dict(obj.get("7")) if obj.get("7") is not None else None,
-            "8": MeasurementsContainer.from_dict(obj.get("8")) if obj.get("8") is not None else None,
-            "9": MeasurementsContainer.from_dict(obj.get("9")) if obj.get("9") is not None else None,
-            "10": MeasurementsContainer.from_dict(obj.get("10")) if obj.get("10") is not None else None,
-            "11": MeasurementsContainer.from_dict(obj.get("11")) if obj.get("11") is not None else None,
-            "12": MeasurementsContainer.from_dict(obj.get("12")) if obj.get("12") is not None else None,
-            "13": MeasurementsContainer.from_dict(obj.get("13")) if obj.get("13") is not None else None,
-            "14": MeasurementsContainer.from_dict(obj.get("14")) if obj.get("14") is not None else None,
-            "15": MeasurementsContainer.from_dict(obj.get("15")) if obj.get("15") is not None else None,
-            "16": MeasurementsContainer.from_dict(obj.get("16")) if obj.get("16") is not None else None,
-            "17": MeasurementsContainer.from_dict(obj.get("17")) if obj.get("17") is not None else None,
-            "18": MeasurementsContainer.from_dict(obj.get("18")) if obj.get("18") is not None else None,
-            "19": MeasurementsContainer.from_dict(obj.get("19")) if obj.get("19") is not None else None,
-            "20": MeasurementsContainer.from_dict(obj.get("20")) if obj.get("20") is not None else None,
-            "21": MeasurementsContainer.from_dict(obj.get("21")) if obj.get("21") is not None else None,
-            "22": MeasurementsContainer.from_dict(obj.get("22")) if obj.get("22") is not None else None,
-            "23": MeasurementsContainer.from_dict(obj.get("23")) if obj.get("23") is not None else None,
-            "24": MeasurementsContainer.from_dict(obj.get("24")) if obj.get("24") is not None else None,
-            "25": MeasurementsContainer.from_dict(obj.get("25")) if obj.get("25") is not None else None,
-            "26": MeasurementsContainer.from_dict(obj.get("26")) if obj.get("26") is not None else None,
-            "27": MeasurementsContainer.from_dict(obj.get("27")) if obj.get("27") is not None else None,
-            "28": MeasurementsContainer.from_dict(obj.get("28")) if obj.get("28") is not None else None,
-            "29": MeasurementsContainer.from_dict(obj.get("29")) if obj.get("29") is not None else None,
-            "30": MeasurementsContainer.from_dict(obj.get("30")) if obj.get("30") is not None else None,
-            "31": MeasurementsContainer.from_dict(obj.get("31")) if obj.get("31") is not None else None
+            "0": MeasurementsContainer.from_dict(obj["0"]) if obj.get("0") is not None else None,
+            "1": MeasurementsContainer.from_dict(obj["1"]) if obj.get("1") is not None else None,
+            "2": MeasurementsContainer.from_dict(obj["2"]) if obj.get("2") is not None else None,
+            "3": MeasurementsContainer.from_dict(obj["3"]) if obj.get("3") is not None else None,
+            "4": MeasurementsContainer.from_dict(obj["4"]) if obj.get("4") is not None else None,
+            "5": MeasurementsContainer.from_dict(obj["5"]) if obj.get("5") is not None else None,
+            "6": MeasurementsContainer.from_dict(obj["6"]) if obj.get("6") is not None else None,
+            "7": MeasurementsContainer.from_dict(obj["7"]) if obj.get("7") is not None else None,
+            "8": MeasurementsContainer.from_dict(obj["8"]) if obj.get("8") is not None else None,
+            "9": MeasurementsContainer.from_dict(obj["9"]) if obj.get("9") is not None else None,
+            "10": MeasurementsContainer.from_dict(obj["10"]) if obj.get("10") is not None else None,
+            "11": MeasurementsContainer.from_dict(obj["11"]) if obj.get("11") is not None else None,
+            "12": MeasurementsContainer.from_dict(obj["12"]) if obj.get("12") is not None else None,
+            "13": MeasurementsContainer.from_dict(obj["13"]) if obj.get("13") is not None else None,
+            "14": MeasurementsContainer.from_dict(obj["14"]) if obj.get("14") is not None else None,
+            "15": MeasurementsContainer.from_dict(obj["15"]) if obj.get("15") is not None else None,
+            "16": MeasurementsContainer.from_dict(obj["16"]) if obj.get("16") is not None else None,
+            "17": MeasurementsContainer.from_dict(obj["17"]) if obj.get("17") is not None else None,
+            "18": MeasurementsContainer.from_dict(obj["18"]) if obj.get("18") is not None else None,
+            "19": MeasurementsContainer.from_dict(obj["19"]) if obj.get("19") is not None else None,
+            "20": MeasurementsContainer.from_dict(obj["20"]) if obj.get("20") is not None else None,
+            "21": MeasurementsContainer.from_dict(obj["21"]) if obj.get("21") is not None else None,
+            "22": MeasurementsContainer.from_dict(obj["22"]) if obj.get("22") is not None else None,
+            "23": MeasurementsContainer.from_dict(obj["23"]) if obj.get("23") is not None else None,
+            "24": MeasurementsContainer.from_dict(obj["24"]) if obj.get("24") is not None else None,
+            "25": MeasurementsContainer.from_dict(obj["25"]) if obj.get("25") is not None else None,
+            "26": MeasurementsContainer.from_dict(obj["26"]) if obj.get("26") is not None else None,
+            "27": MeasurementsContainer.from_dict(obj["27"]) if obj.get("27") is not None else None,
+            "28": MeasurementsContainer.from_dict(obj["28"]) if obj.get("28") is not None else None,
+            "29": MeasurementsContainer.from_dict(obj["29"]) if obj.get("29") is not None else None,
+            "30": MeasurementsContainer.from_dict(obj["30"]) if obj.get("30") is not None else None,
+            "31": MeasurementsContainer.from_dict(obj["31"]) if obj.get("31") is not None else None
         })
         return _obj
 

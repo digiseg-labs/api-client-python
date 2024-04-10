@@ -18,19 +18,15 @@ import pprint
 import re  # noqa: F401
 import json
 
-
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
-from pydantic import BaseModel
-from pydantic import Field
 from digiseg_api.models.measurements_container import MeasurementsContainer
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
+from typing import Optional, Set
+from typing_extensions import Self
 
 class DayOfWeekStats(BaseModel):
     """
-    Contains statistics about the week days that campaign activity has been measured. The time zone used to record these measurements is the time zone of the measured user, or UTC if the user's location cannot be resolved. 
+    Contains statistics about the week days that study activity has been measured. The time zone used to record these measurements is the time zone of the measured user, or UTC if the user's location cannot be resolved. 
     """ # noqa: E501
     monday: Optional[MeasurementsContainer] = Field(default=None, alias="Monday")
     tuesday: Optional[MeasurementsContainer] = Field(default=None, alias="Tuesday")
@@ -41,11 +37,11 @@ class DayOfWeekStats(BaseModel):
     sunday: Optional[MeasurementsContainer] = Field(default=None, alias="Sunday")
     __properties: ClassVar[List[str]] = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True,
-        "protected_namespaces": (),
-    }
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
 
 
     def to_str(self) -> str:
@@ -58,7 +54,7 @@ class DayOfWeekStats(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of DayOfWeekStats from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
@@ -72,10 +68,12 @@ class DayOfWeekStats(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
+        excluded_fields: Set[str] = set([
+        ])
+
         _dict = self.model_dump(
             by_alias=True,
-            exclude={
-            },
+            exclude=excluded_fields,
             exclude_none=True,
         )
         # override the default output from pydantic by calling `to_dict()` of monday
@@ -102,7 +100,7 @@ class DayOfWeekStats(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Dict) -> Self:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of DayOfWeekStats from a dict"""
         if obj is None:
             return None
@@ -111,13 +109,13 @@ class DayOfWeekStats(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "Monday": MeasurementsContainer.from_dict(obj.get("Monday")) if obj.get("Monday") is not None else None,
-            "Tuesday": MeasurementsContainer.from_dict(obj.get("Tuesday")) if obj.get("Tuesday") is not None else None,
-            "Wednesday": MeasurementsContainer.from_dict(obj.get("Wednesday")) if obj.get("Wednesday") is not None else None,
-            "Thursday": MeasurementsContainer.from_dict(obj.get("Thursday")) if obj.get("Thursday") is not None else None,
-            "Friday": MeasurementsContainer.from_dict(obj.get("Friday")) if obj.get("Friday") is not None else None,
-            "Saturday": MeasurementsContainer.from_dict(obj.get("Saturday")) if obj.get("Saturday") is not None else None,
-            "Sunday": MeasurementsContainer.from_dict(obj.get("Sunday")) if obj.get("Sunday") is not None else None
+            "Monday": MeasurementsContainer.from_dict(obj["Monday"]) if obj.get("Monday") is not None else None,
+            "Tuesday": MeasurementsContainer.from_dict(obj["Tuesday"]) if obj.get("Tuesday") is not None else None,
+            "Wednesday": MeasurementsContainer.from_dict(obj["Wednesday"]) if obj.get("Wednesday") is not None else None,
+            "Thursday": MeasurementsContainer.from_dict(obj["Thursday"]) if obj.get("Thursday") is not None else None,
+            "Friday": MeasurementsContainer.from_dict(obj["Friday"]) if obj.get("Friday") is not None else None,
+            "Saturday": MeasurementsContainer.from_dict(obj["Saturday"]) if obj.get("Saturday") is not None else None,
+            "Sunday": MeasurementsContainer.from_dict(obj["Sunday"]) if obj.get("Sunday") is not None else None
         })
         return _obj
 

@@ -19,14 +19,13 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
-from pydantic import BaseModel, StrictStr, field_validator
-from pydantic import Field
 from typing_extensions import Annotated
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
+from digiseg_api.models.company_size import CompanySize
+from digiseg_api.models.postal_address import PostalAddress
+from typing import Optional, Set
+from typing_extensions import Self
 
 class AccountFull(BaseModel):
     """
@@ -34,13 +33,21 @@ class AccountFull(BaseModel):
     """ # noqa: E501
     id: Optional[StrictStr] = Field(default=None, description="Unique ID for the object")
     name: Optional[StrictStr] = Field(default=None, description="Human readable name of the account")
+    logo_url: Optional[StrictStr] = Field(default=None, description="The URL to the logo of the account")
+    website_url: Optional[StrictStr] = Field(default=None, description="URL of the account's primary website")
+    billing_country: Optional[Annotated[str, Field(strict=True, max_length=2)]] = Field(default=None, description="Country code of the account. Requires `owner` role to change.")
+    company_type: Optional[Annotated[str, Field(strict=True, max_length=64)]] = Field(default=None, description="The type of company that the account represents. Note that for forward-compatibility the data type here is simply a string. The values, if present, will however typically originate from the `CompanyType` enum. ")
+    company_size: Optional[CompanySize] = None
+    has_clients: Optional[StrictBool] = Field(default=None, description="Determines whether the account has clients that they work for, or if their activities are for themselves.")
     slug: Optional[Annotated[str, Field(min_length=4, strict=True, max_length=12)]] = Field(default=None, description="A short human-readable name to identify the account. Must be lower-case and between 4 and 16 characters.")
-    owner_id: Optional[StrictStr] = Field(default=None, description="ID of the user who is the ultimate owner of the account")
+    owner_id: Optional[StrictStr] = Field(default=None, description="ID of the user who is the ultimate owner of the account. Deprecated in favor of the `owner` role of the user's account membership.")
+    billing_email: Optional[StrictStr] = Field(default=None, description="The email address to send billing information to. Requires `owner` role to change.")
+    billing_address: Optional[PostalAddress] = None
     created_at: Optional[datetime] = Field(default=None, description="Date and time of the object creation")
     created_by: Optional[StrictStr] = Field(default=None, description="ID of the user who created the object")
     updated_at: Optional[datetime] = Field(default=None, description="Date and time of the latest update to the object")
     updated_by: Optional[StrictStr] = Field(default=None, description="ID of the user who last updated the object")
-    __properties: ClassVar[List[str]] = ["id", "name", "slug", "owner_id", "created_at", "created_by", "updated_at", "updated_by"]
+    __properties: ClassVar[List[str]] = ["id", "name", "logo_url", "website_url", "billing_country", "company_type", "company_size", "has_clients", "slug", "owner_id", "billing_email", "billing_address", "created_at", "created_by", "updated_at", "updated_by"]
 
     @field_validator('slug')
     def slug_validate_regular_expression(cls, value):
@@ -52,11 +59,11 @@ class AccountFull(BaseModel):
             raise ValueError(r"must validate the regular expression /^[a-z]{4,16}$/")
         return value
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True,
-        "protected_namespaces": (),
-    }
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
 
 
     def to_str(self) -> str:
@@ -69,7 +76,7 @@ class AccountFull(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of AccountFull from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
@@ -83,16 +90,21 @@ class AccountFull(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
+        excluded_fields: Set[str] = set([
+        ])
+
         _dict = self.model_dump(
             by_alias=True,
-            exclude={
-            },
+            exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of billing_address
+        if self.billing_address:
+            _dict['billing_address'] = self.billing_address.to_dict()
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Dict) -> Self:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of AccountFull from a dict"""
         if obj is None:
             return None
@@ -103,8 +115,16 @@ class AccountFull(BaseModel):
         _obj = cls.model_validate({
             "id": obj.get("id"),
             "name": obj.get("name"),
+            "logo_url": obj.get("logo_url"),
+            "website_url": obj.get("website_url"),
+            "billing_country": obj.get("billing_country"),
+            "company_type": obj.get("company_type"),
+            "company_size": obj.get("company_size"),
+            "has_clients": obj.get("has_clients"),
             "slug": obj.get("slug"),
             "owner_id": obj.get("owner_id"),
+            "billing_email": obj.get("billing_email"),
+            "billing_address": PostalAddress.from_dict(obj["billing_address"]) if obj.get("billing_address") is not None else None,
             "created_at": obj.get("created_at"),
             "created_by": obj.get("created_by"),
             "updated_at": obj.get("updated_at"),

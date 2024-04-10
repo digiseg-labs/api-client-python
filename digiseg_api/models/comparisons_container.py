@@ -18,14 +18,11 @@ import pprint
 import re  # noqa: F401
 import json
 
-
+from pydantic import BaseModel, ConfigDict
 from typing import Any, ClassVar, Dict, List, Optional
-from pydantic import BaseModel
 from digiseg_api.models.comparison import Comparison
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
+from typing import Optional, Set
+from typing_extensions import Self
 
 class ComparisonsContainer(BaseModel):
     """
@@ -34,11 +31,11 @@ class ComparisonsContainer(BaseModel):
     comparisons: Optional[List[Comparison]] = None
     __properties: ClassVar[List[str]] = ["comparisons"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True,
-        "protected_namespaces": (),
-    }
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
 
 
     def to_str(self) -> str:
@@ -51,7 +48,7 @@ class ComparisonsContainer(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of ComparisonsContainer from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
@@ -65,10 +62,12 @@ class ComparisonsContainer(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
+        excluded_fields: Set[str] = set([
+        ])
+
         _dict = self.model_dump(
             by_alias=True,
-            exclude={
-            },
+            exclude=excluded_fields,
             exclude_none=True,
         )
         # override the default output from pydantic by calling `to_dict()` of each item in comparisons (list)
@@ -81,7 +80,7 @@ class ComparisonsContainer(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Dict) -> Self:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of ComparisonsContainer from a dict"""
         if obj is None:
             return None
@@ -90,7 +89,7 @@ class ComparisonsContainer(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "comparisons": [Comparison.from_dict(_item) for _item in obj.get("comparisons")] if obj.get("comparisons") is not None else None
+            "comparisons": [Comparison.from_dict(_item) for _item in obj["comparisons"]] if obj.get("comparisons") is not None else None
         })
         return _obj
 

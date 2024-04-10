@@ -18,16 +18,12 @@ import pprint
 import re  # noqa: F401
 import json
 
-
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
-from pydantic import BaseModel
-from pydantic import Field
 from digiseg_api.models.business_audience_stats_audience_categories import BusinessAudienceStatsAudienceCategories
 from digiseg_api.models.measurement import Measurement
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
+from typing import Optional, Set
+from typing_extensions import Self
 
 class BusinessAudienceStats(BaseModel):
     """
@@ -37,11 +33,11 @@ class BusinessAudienceStats(BaseModel):
     audience_categories: Optional[BusinessAudienceStatsAudienceCategories] = None
     __properties: ClassVar[List[str]] = ["measurements", "audience_categories"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True,
-        "protected_namespaces": (),
-    }
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
 
 
     def to_str(self) -> str:
@@ -54,7 +50,7 @@ class BusinessAudienceStats(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of BusinessAudienceStats from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
@@ -68,10 +64,12 @@ class BusinessAudienceStats(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
+        excluded_fields: Set[str] = set([
+        ])
+
         _dict = self.model_dump(
             by_alias=True,
-            exclude={
-            },
+            exclude=excluded_fields,
             exclude_none=True,
         )
         # override the default output from pydantic by calling `to_dict()` of each item in measurements (list)
@@ -87,7 +85,7 @@ class BusinessAudienceStats(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Dict) -> Self:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of BusinessAudienceStats from a dict"""
         if obj is None:
             return None
@@ -96,8 +94,8 @@ class BusinessAudienceStats(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "measurements": [Measurement.from_dict(_item) for _item in obj.get("measurements")] if obj.get("measurements") is not None else None,
-            "audience_categories": BusinessAudienceStatsAudienceCategories.from_dict(obj.get("audience_categories")) if obj.get("audience_categories") is not None else None
+            "measurements": [Measurement.from_dict(_item) for _item in obj["measurements"]] if obj.get("measurements") is not None else None,
+            "audience_categories": BusinessAudienceStatsAudienceCategories.from_dict(obj["audience_categories"]) if obj.get("audience_categories") is not None else None
         })
         return _obj
 

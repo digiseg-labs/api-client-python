@@ -18,9 +18,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-
+from pydantic import BaseModel, ConfigDict
 from typing import Any, ClassVar, Dict, List
-from pydantic import BaseModel
 from digiseg_api.models.population_source_private_category_set_building_age import PopulationSourcePrivateCategorySetBuildingAge
 from digiseg_api.models.population_source_private_category_set_cars import PopulationSourcePrivateCategorySetCars
 from digiseg_api.models.population_source_private_category_set_children import PopulationSourcePrivateCategorySetChildren
@@ -33,10 +32,8 @@ from digiseg_api.models.population_source_private_category_set_living_space impo
 from digiseg_api.models.population_source_private_category_set_neighbourhood_type import PopulationSourcePrivateCategorySetNeighbourhoodType
 from digiseg_api.models.population_source_private_category_set_savings import PopulationSourcePrivateCategorySetSavings
 from digiseg_api.models.population_source_private_category_set_tech_level import PopulationSourcePrivateCategorySetTechLevel
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
+from typing import Optional, Set
+from typing_extensions import Self
 
 class PopulationSourcePrivateCategorySet(BaseModel):
     """
@@ -56,11 +53,11 @@ class PopulationSourcePrivateCategorySet(BaseModel):
     tech_level: PopulationSourcePrivateCategorySetTechLevel
     __properties: ClassVar[List[str]] = ["home_type", "savings", "lifecycle", "cars", "children", "education", "neighbourhood_type", "income", "home_ownership", "building_age", "living_space", "tech_level"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True,
-        "protected_namespaces": (),
-    }
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
 
 
     def to_str(self) -> str:
@@ -73,7 +70,7 @@ class PopulationSourcePrivateCategorySet(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of PopulationSourcePrivateCategorySet from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
@@ -87,10 +84,12 @@ class PopulationSourcePrivateCategorySet(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
+        excluded_fields: Set[str] = set([
+        ])
+
         _dict = self.model_dump(
             by_alias=True,
-            exclude={
-            },
+            exclude=excluded_fields,
             exclude_none=True,
         )
         # override the default output from pydantic by calling `to_dict()` of home_type
@@ -132,7 +131,7 @@ class PopulationSourcePrivateCategorySet(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Dict) -> Self:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of PopulationSourcePrivateCategorySet from a dict"""
         if obj is None:
             return None
@@ -141,18 +140,18 @@ class PopulationSourcePrivateCategorySet(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "home_type": PopulationSourcePrivateCategorySetHomeType.from_dict(obj.get("home_type")) if obj.get("home_type") is not None else None,
-            "savings": PopulationSourcePrivateCategorySetSavings.from_dict(obj.get("savings")) if obj.get("savings") is not None else None,
-            "lifecycle": PopulationSourcePrivateCategorySetLifecycle.from_dict(obj.get("lifecycle")) if obj.get("lifecycle") is not None else None,
-            "cars": PopulationSourcePrivateCategorySetCars.from_dict(obj.get("cars")) if obj.get("cars") is not None else None,
-            "children": PopulationSourcePrivateCategorySetChildren.from_dict(obj.get("children")) if obj.get("children") is not None else None,
-            "education": PopulationSourcePrivateCategorySetEducation.from_dict(obj.get("education")) if obj.get("education") is not None else None,
-            "neighbourhood_type": PopulationSourcePrivateCategorySetNeighbourhoodType.from_dict(obj.get("neighbourhood_type")) if obj.get("neighbourhood_type") is not None else None,
-            "income": PopulationSourcePrivateCategorySetIncome.from_dict(obj.get("income")) if obj.get("income") is not None else None,
-            "home_ownership": PopulationSourcePrivateCategorySetHomeOwnership.from_dict(obj.get("home_ownership")) if obj.get("home_ownership") is not None else None,
-            "building_age": PopulationSourcePrivateCategorySetBuildingAge.from_dict(obj.get("building_age")) if obj.get("building_age") is not None else None,
-            "living_space": PopulationSourcePrivateCategorySetLivingSpace.from_dict(obj.get("living_space")) if obj.get("living_space") is not None else None,
-            "tech_level": PopulationSourcePrivateCategorySetTechLevel.from_dict(obj.get("tech_level")) if obj.get("tech_level") is not None else None
+            "home_type": PopulationSourcePrivateCategorySetHomeType.from_dict(obj["home_type"]) if obj.get("home_type") is not None else None,
+            "savings": PopulationSourcePrivateCategorySetSavings.from_dict(obj["savings"]) if obj.get("savings") is not None else None,
+            "lifecycle": PopulationSourcePrivateCategorySetLifecycle.from_dict(obj["lifecycle"]) if obj.get("lifecycle") is not None else None,
+            "cars": PopulationSourcePrivateCategorySetCars.from_dict(obj["cars"]) if obj.get("cars") is not None else None,
+            "children": PopulationSourcePrivateCategorySetChildren.from_dict(obj["children"]) if obj.get("children") is not None else None,
+            "education": PopulationSourcePrivateCategorySetEducation.from_dict(obj["education"]) if obj.get("education") is not None else None,
+            "neighbourhood_type": PopulationSourcePrivateCategorySetNeighbourhoodType.from_dict(obj["neighbourhood_type"]) if obj.get("neighbourhood_type") is not None else None,
+            "income": PopulationSourcePrivateCategorySetIncome.from_dict(obj["income"]) if obj.get("income") is not None else None,
+            "home_ownership": PopulationSourcePrivateCategorySetHomeOwnership.from_dict(obj["home_ownership"]) if obj.get("home_ownership") is not None else None,
+            "building_age": PopulationSourcePrivateCategorySetBuildingAge.from_dict(obj["building_age"]) if obj.get("building_age") is not None else None,
+            "living_space": PopulationSourcePrivateCategorySetLivingSpace.from_dict(obj["living_space"]) if obj.get("living_space") is not None else None,
+            "tech_level": PopulationSourcePrivateCategorySetTechLevel.from_dict(obj["tech_level"]) if obj.get("tech_level") is not None else None
         })
         return _obj
 
