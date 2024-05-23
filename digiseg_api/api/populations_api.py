@@ -41,7 +41,7 @@ class PopulationsApi:
 
 
     @validate_call
-    def get_popuplation_by_key(
+    async def get_popuplation_by_key(
         self,
         category_key: Annotated[StrictStr, Field(description="An identifier for the category")],
         population_key: Annotated[StrictStr, Field(description="An identifier for the population")],
@@ -100,11 +100,11 @@ class PopulationsApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "GetPopuplationByKey200Response",
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -112,7 +112,7 @@ class PopulationsApi:
 
 
     @validate_call
-    def get_popuplation_by_key_with_http_info(
+    async def get_popuplation_by_key_with_http_info(
         self,
         category_key: Annotated[StrictStr, Field(description="An identifier for the category")],
         population_key: Annotated[StrictStr, Field(description="An identifier for the population")],
@@ -171,11 +171,11 @@ class PopulationsApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "GetPopuplationByKey200Response",
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -183,7 +183,7 @@ class PopulationsApi:
 
 
     @validate_call
-    def get_popuplation_by_key_without_preload_content(
+    async def get_popuplation_by_key_without_preload_content(
         self,
         category_key: Annotated[StrictStr, Field(description="An identifier for the category")],
         population_key: Annotated[StrictStr, Field(description="An identifier for the population")],
@@ -242,7 +242,7 @@ class PopulationsApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "GetPopuplationByKey200Response",
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -317,7 +317,7 @@ class PopulationsApi:
 
 
     @validate_call
-    def list_popuplations(
+    async def list_popuplations(
         self,
         category_key: Annotated[StrictStr, Field(description="An identifier for the category")],
         _request_timeout: Union[
@@ -372,11 +372,11 @@ class PopulationsApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ListPopuplations200Response",
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -384,7 +384,7 @@ class PopulationsApi:
 
 
     @validate_call
-    def list_popuplations_with_http_info(
+    async def list_popuplations_with_http_info(
         self,
         category_key: Annotated[StrictStr, Field(description="An identifier for the category")],
         _request_timeout: Union[
@@ -439,11 +439,11 @@ class PopulationsApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ListPopuplations200Response",
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -451,7 +451,7 @@ class PopulationsApi:
 
 
     @validate_call
-    def list_popuplations_without_preload_content(
+    async def list_popuplations_without_preload_content(
         self,
         category_key: Annotated[StrictStr, Field(description="An identifier for the category")],
         _request_timeout: Union[
@@ -506,7 +506,7 @@ class PopulationsApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ListPopuplations200Response",
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )

@@ -48,7 +48,7 @@ class StudiesApi:
 
 
     @validate_call
-    def create_study(
+    async def create_study(
         self,
         study_creation: StudyCreation,
         _request_timeout: Union[
@@ -103,11 +103,11 @@ class StudiesApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '201': "CreateStudy201Response",
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -115,7 +115,7 @@ class StudiesApi:
 
 
     @validate_call
-    def create_study_with_http_info(
+    async def create_study_with_http_info(
         self,
         study_creation: StudyCreation,
         _request_timeout: Union[
@@ -170,11 +170,11 @@ class StudiesApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '201': "CreateStudy201Response",
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -182,7 +182,7 @@ class StudiesApi:
 
 
     @validate_call
-    def create_study_without_preload_content(
+    async def create_study_without_preload_content(
         self,
         study_creation: StudyCreation,
         _request_timeout: Union[
@@ -237,7 +237,7 @@ class StudiesApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '201': "CreateStudy201Response",
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -322,7 +322,7 @@ class StudiesApi:
 
 
     @validate_call
-    def delete_study_banner_image(
+    async def delete_study_banner_image(
         self,
         study_id: StrictStr,
         _request_timeout: Union[
@@ -377,11 +377,11 @@ class StudiesApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '204': None,
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -389,7 +389,7 @@ class StudiesApi:
 
 
     @validate_call
-    def delete_study_banner_image_with_http_info(
+    async def delete_study_banner_image_with_http_info(
         self,
         study_id: StrictStr,
         _request_timeout: Union[
@@ -444,11 +444,11 @@ class StudiesApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '204': None,
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -456,7 +456,7 @@ class StudiesApi:
 
 
     @validate_call
-    def delete_study_banner_image_without_preload_content(
+    async def delete_study_banner_image_without_preload_content(
         self,
         study_id: StrictStr,
         _request_timeout: Union[
@@ -511,7 +511,7 @@ class StudiesApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '204': None,
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -577,7 +577,7 @@ class StudiesApi:
 
 
     @validate_call
-    def delete_study_by_id(
+    async def delete_study_by_id(
         self,
         study_id: StrictStr,
         _request_timeout: Union[
@@ -632,11 +632,11 @@ class StudiesApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '204': None,
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -644,7 +644,7 @@ class StudiesApi:
 
 
     @validate_call
-    def delete_study_by_id_with_http_info(
+    async def delete_study_by_id_with_http_info(
         self,
         study_id: StrictStr,
         _request_timeout: Union[
@@ -699,11 +699,11 @@ class StudiesApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '204': None,
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -711,7 +711,7 @@ class StudiesApi:
 
 
     @validate_call
-    def delete_study_by_id_without_preload_content(
+    async def delete_study_by_id_without_preload_content(
         self,
         study_id: StrictStr,
         _request_timeout: Union[
@@ -766,7 +766,7 @@ class StudiesApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '204': None,
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -832,7 +832,7 @@ class StudiesApi:
 
 
     @validate_call
-    def get_study_banner_image(
+    async def get_study_banner_image(
         self,
         study_id: StrictStr,
         _request_timeout: Union[
@@ -888,11 +888,11 @@ class StudiesApi:
             '200': None,
             '404': None,
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -900,7 +900,7 @@ class StudiesApi:
 
 
     @validate_call
-    def get_study_banner_image_with_http_info(
+    async def get_study_banner_image_with_http_info(
         self,
         study_id: StrictStr,
         _request_timeout: Union[
@@ -956,11 +956,11 @@ class StudiesApi:
             '200': None,
             '404': None,
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -968,7 +968,7 @@ class StudiesApi:
 
 
     @validate_call
-    def get_study_banner_image_without_preload_content(
+    async def get_study_banner_image_without_preload_content(
         self,
         study_id: StrictStr,
         _request_timeout: Union[
@@ -1024,7 +1024,7 @@ class StudiesApi:
             '200': None,
             '404': None,
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -1090,7 +1090,7 @@ class StudiesApi:
 
 
     @validate_call
-    def get_study_by_id(
+    async def get_study_by_id(
         self,
         study_id: StrictStr,
         _request_timeout: Union[
@@ -1145,11 +1145,11 @@ class StudiesApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "CreateStudy201Response",
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -1157,7 +1157,7 @@ class StudiesApi:
 
 
     @validate_call
-    def get_study_by_id_with_http_info(
+    async def get_study_by_id_with_http_info(
         self,
         study_id: StrictStr,
         _request_timeout: Union[
@@ -1212,11 +1212,11 @@ class StudiesApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "CreateStudy201Response",
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -1224,7 +1224,7 @@ class StudiesApi:
 
 
     @validate_call
-    def get_study_by_id_without_preload_content(
+    async def get_study_by_id_without_preload_content(
         self,
         study_id: StrictStr,
         _request_timeout: Union[
@@ -1279,7 +1279,7 @@ class StudiesApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "CreateStudy201Response",
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -1351,7 +1351,7 @@ class StudiesApi:
 
 
     @validate_call
-    def list_studies(
+    async def list_studies(
         self,
         sort: Annotated[Optional[StrictStr], Field(description="Defines the field to sort the result items by. Ascending order is applied by default, but the minus character can be used to indicate descending order instead. ")] = None,
         filter_is_example: Annotated[Optional[StrictBool], Field(description="Optional parameter used to filter for example studies")] = None,
@@ -1430,11 +1430,11 @@ class StudiesApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ListStudies200Response",
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -1442,7 +1442,7 @@ class StudiesApi:
 
 
     @validate_call
-    def list_studies_with_http_info(
+    async def list_studies_with_http_info(
         self,
         sort: Annotated[Optional[StrictStr], Field(description="Defines the field to sort the result items by. Ascending order is applied by default, but the minus character can be used to indicate descending order instead. ")] = None,
         filter_is_example: Annotated[Optional[StrictBool], Field(description="Optional parameter used to filter for example studies")] = None,
@@ -1521,11 +1521,11 @@ class StudiesApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ListStudies200Response",
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -1533,7 +1533,7 @@ class StudiesApi:
 
 
     @validate_call
-    def list_studies_without_preload_content(
+    async def list_studies_without_preload_content(
         self,
         sort: Annotated[Optional[StrictStr], Field(description="Defines the field to sort the result items by. Ascending order is applied by default, but the minus character can be used to indicate descending order instead. ")] = None,
         filter_is_example: Annotated[Optional[StrictBool], Field(description="Optional parameter used to filter for example studies")] = None,
@@ -1612,7 +1612,7 @@ class StudiesApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ListStudies200Response",
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -1716,7 +1716,7 @@ class StudiesApi:
 
 
     @validate_call
-    def query_study_audience_stats(
+    async def query_study_audience_stats(
         self,
         study_id: StrictStr,
         _request_timeout: Union[
@@ -1771,11 +1771,11 @@ class StudiesApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "QueryStudyAudienceStats200Response",
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -1783,7 +1783,7 @@ class StudiesApi:
 
 
     @validate_call
-    def query_study_audience_stats_with_http_info(
+    async def query_study_audience_stats_with_http_info(
         self,
         study_id: StrictStr,
         _request_timeout: Union[
@@ -1838,11 +1838,11 @@ class StudiesApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "QueryStudyAudienceStats200Response",
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -1850,7 +1850,7 @@ class StudiesApi:
 
 
     @validate_call
-    def query_study_audience_stats_without_preload_content(
+    async def query_study_audience_stats_without_preload_content(
         self,
         study_id: StrictStr,
         _request_timeout: Union[
@@ -1905,7 +1905,7 @@ class StudiesApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "QueryStudyAudienceStats200Response",
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -1977,7 +1977,7 @@ class StudiesApi:
 
 
     @validate_call
-    def query_study_country_stats(
+    async def query_study_country_stats(
         self,
         study_id: StrictStr,
         _request_timeout: Union[
@@ -2032,11 +2032,11 @@ class StudiesApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "QueryStudyCountryStats200Response",
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -2044,7 +2044,7 @@ class StudiesApi:
 
 
     @validate_call
-    def query_study_country_stats_with_http_info(
+    async def query_study_country_stats_with_http_info(
         self,
         study_id: StrictStr,
         _request_timeout: Union[
@@ -2099,11 +2099,11 @@ class StudiesApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "QueryStudyCountryStats200Response",
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -2111,7 +2111,7 @@ class StudiesApi:
 
 
     @validate_call
-    def query_study_country_stats_without_preload_content(
+    async def query_study_country_stats_without_preload_content(
         self,
         study_id: StrictStr,
         _request_timeout: Union[
@@ -2166,7 +2166,7 @@ class StudiesApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "QueryStudyCountryStats200Response",
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -2238,7 +2238,7 @@ class StudiesApi:
 
 
     @validate_call
-    def query_study_frequency_stats(
+    async def query_study_frequency_stats(
         self,
         study_id: StrictStr,
         _request_timeout: Union[
@@ -2293,11 +2293,11 @@ class StudiesApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "QueryStudyFrequencyStats200Response",
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -2305,7 +2305,7 @@ class StudiesApi:
 
 
     @validate_call
-    def query_study_frequency_stats_with_http_info(
+    async def query_study_frequency_stats_with_http_info(
         self,
         study_id: StrictStr,
         _request_timeout: Union[
@@ -2360,11 +2360,11 @@ class StudiesApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "QueryStudyFrequencyStats200Response",
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -2372,7 +2372,7 @@ class StudiesApi:
 
 
     @validate_call
-    def query_study_frequency_stats_without_preload_content(
+    async def query_study_frequency_stats_without_preload_content(
         self,
         study_id: StrictStr,
         _request_timeout: Union[
@@ -2427,7 +2427,7 @@ class StudiesApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "QueryStudyFrequencyStats200Response",
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -2499,7 +2499,7 @@ class StudiesApi:
 
 
     @validate_call
-    def query_study_timing_stats(
+    async def query_study_timing_stats(
         self,
         study_id: StrictStr,
         _request_timeout: Union[
@@ -2554,11 +2554,11 @@ class StudiesApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "QueryStudyTimingStats200Response",
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -2566,7 +2566,7 @@ class StudiesApi:
 
 
     @validate_call
-    def query_study_timing_stats_with_http_info(
+    async def query_study_timing_stats_with_http_info(
         self,
         study_id: StrictStr,
         _request_timeout: Union[
@@ -2621,11 +2621,11 @@ class StudiesApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "QueryStudyTimingStats200Response",
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -2633,7 +2633,7 @@ class StudiesApi:
 
 
     @validate_call
-    def query_study_timing_stats_without_preload_content(
+    async def query_study_timing_stats_without_preload_content(
         self,
         study_id: StrictStr,
         _request_timeout: Union[
@@ -2688,7 +2688,7 @@ class StudiesApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "QueryStudyTimingStats200Response",
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -2760,7 +2760,7 @@ class StudiesApi:
 
 
     @validate_call
-    def update_study_by_id(
+    async def update_study_by_id(
         self,
         study_id: StrictStr,
         study_mutation: StudyMutation,
@@ -2819,11 +2819,11 @@ class StudiesApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "CreateStudy201Response",
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -2831,7 +2831,7 @@ class StudiesApi:
 
 
     @validate_call
-    def update_study_by_id_with_http_info(
+    async def update_study_by_id_with_http_info(
         self,
         study_id: StrictStr,
         study_mutation: StudyMutation,
@@ -2890,11 +2890,11 @@ class StudiesApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "CreateStudy201Response",
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -2902,7 +2902,7 @@ class StudiesApi:
 
 
     @validate_call
-    def update_study_by_id_without_preload_content(
+    async def update_study_by_id_without_preload_content(
         self,
         study_id: StrictStr,
         study_mutation: StudyMutation,
@@ -2961,7 +2961,7 @@ class StudiesApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "CreateStudy201Response",
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -3049,7 +3049,7 @@ class StudiesApi:
 
 
     @validate_call
-    def upload_study_banner_image(
+    async def upload_study_banner_image(
         self,
         study_id: StrictStr,
         body: Union[StrictBytes, StrictStr],
@@ -3108,11 +3108,11 @@ class StudiesApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '204': None,
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -3120,7 +3120,7 @@ class StudiesApi:
 
 
     @validate_call
-    def upload_study_banner_image_with_http_info(
+    async def upload_study_banner_image_with_http_info(
         self,
         study_id: StrictStr,
         body: Union[StrictBytes, StrictStr],
@@ -3179,11 +3179,11 @@ class StudiesApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '204': None,
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -3191,7 +3191,7 @@ class StudiesApi:
 
 
     @validate_call
-    def upload_study_banner_image_without_preload_content(
+    async def upload_study_banner_image_without_preload_content(
         self,
         study_id: StrictStr,
         body: Union[StrictBytes, StrictStr],
@@ -3250,7 +3250,7 @@ class StudiesApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '204': None,
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )

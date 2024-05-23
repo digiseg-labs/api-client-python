@@ -44,7 +44,7 @@ class UsageApi:
 
 
     @validate_call
-    def list_audience_data_daily_usage(
+    async def list_audience_data_daily_usage(
         self,
         filter_date_from: Annotated[Optional[date], Field(description="Date to query from")] = None,
         filter_date_to: Annotated[Optional[date], Field(description="Date to query to")] = None,
@@ -107,11 +107,11 @@ class UsageApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ListAudienceDataDailyUsage200Response",
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -119,7 +119,7 @@ class UsageApi:
 
 
     @validate_call
-    def list_audience_data_daily_usage_with_http_info(
+    async def list_audience_data_daily_usage_with_http_info(
         self,
         filter_date_from: Annotated[Optional[date], Field(description="Date to query from")] = None,
         filter_date_to: Annotated[Optional[date], Field(description="Date to query to")] = None,
@@ -182,11 +182,11 @@ class UsageApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ListAudienceDataDailyUsage200Response",
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -194,7 +194,7 @@ class UsageApi:
 
 
     @validate_call
-    def list_audience_data_daily_usage_without_preload_content(
+    async def list_audience_data_daily_usage_without_preload_content(
         self,
         filter_date_from: Annotated[Optional[date], Field(description="Date to query from")] = None,
         filter_date_to: Annotated[Optional[date], Field(description="Date to query to")] = None,
@@ -257,7 +257,7 @@ class UsageApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ListAudienceDataDailyUsage200Response",
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -359,7 +359,7 @@ class UsageApi:
 
 
     @validate_call
-    def list_audience_data_monthly_usage(
+    async def list_audience_data_monthly_usage(
         self,
         filter_year: Annotated[Optional[StrictInt], Field(description="Year to filter by")] = None,
         filter_account_id: Annotated[Optional[StrictStr], Field(description="Optional parameter used to query usage of specific account IDs (only available to super admins). ")] = None,
@@ -418,11 +418,11 @@ class UsageApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ListAudienceDataMonthlyUsage200Response",
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -430,7 +430,7 @@ class UsageApi:
 
 
     @validate_call
-    def list_audience_data_monthly_usage_with_http_info(
+    async def list_audience_data_monthly_usage_with_http_info(
         self,
         filter_year: Annotated[Optional[StrictInt], Field(description="Year to filter by")] = None,
         filter_account_id: Annotated[Optional[StrictStr], Field(description="Optional parameter used to query usage of specific account IDs (only available to super admins). ")] = None,
@@ -489,11 +489,11 @@ class UsageApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ListAudienceDataMonthlyUsage200Response",
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -501,7 +501,7 @@ class UsageApi:
 
 
     @validate_call
-    def list_audience_data_monthly_usage_without_preload_content(
+    async def list_audience_data_monthly_usage_without_preload_content(
         self,
         filter_year: Annotated[Optional[StrictInt], Field(description="Year to filter by")] = None,
         filter_account_id: Annotated[Optional[StrictStr], Field(description="Optional parameter used to query usage of specific account IDs (only available to super admins). ")] = None,
@@ -560,7 +560,7 @@ class UsageApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ListAudienceDataMonthlyUsage200Response",
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -639,7 +639,7 @@ class UsageApi:
 
 
     @validate_call
-    def list_audience_data_realtime_usage(
+    async def list_audience_data_realtime_usage(
         self,
         filter_account_id: Annotated[Optional[StrictStr], Field(description="Optional parameter used to query usage of specific account IDs (only available to super admins). ")] = None,
         _request_timeout: Union[
@@ -694,11 +694,11 @@ class UsageApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ListAudienceDataRealtimeUsage200Response",
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -706,7 +706,7 @@ class UsageApi:
 
 
     @validate_call
-    def list_audience_data_realtime_usage_with_http_info(
+    async def list_audience_data_realtime_usage_with_http_info(
         self,
         filter_account_id: Annotated[Optional[StrictStr], Field(description="Optional parameter used to query usage of specific account IDs (only available to super admins). ")] = None,
         _request_timeout: Union[
@@ -761,11 +761,11 @@ class UsageApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ListAudienceDataRealtimeUsage200Response",
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -773,7 +773,7 @@ class UsageApi:
 
 
     @validate_call
-    def list_audience_data_realtime_usage_without_preload_content(
+    async def list_audience_data_realtime_usage_without_preload_content(
         self,
         filter_account_id: Annotated[Optional[StrictStr], Field(description="Optional parameter used to query usage of specific account IDs (only available to super admins). ")] = None,
         _request_timeout: Union[
@@ -828,7 +828,7 @@ class UsageApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ListAudienceDataRealtimeUsage200Response",
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )

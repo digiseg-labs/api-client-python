@@ -51,7 +51,7 @@ class UsersApi:
 
 
     @validate_call
-    def create_api_key(
+    async def create_api_key(
         self,
         user_id: StrictStr,
         api_key_creation: ApiKeyCreation,
@@ -112,11 +112,11 @@ class UsersApi:
             '403': None,
             '404': None,
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -124,7 +124,7 @@ class UsersApi:
 
 
     @validate_call
-    def create_api_key_with_http_info(
+    async def create_api_key_with_http_info(
         self,
         user_id: StrictStr,
         api_key_creation: ApiKeyCreation,
@@ -185,11 +185,11 @@ class UsersApi:
             '403': None,
             '404': None,
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -197,7 +197,7 @@ class UsersApi:
 
 
     @validate_call
-    def create_api_key_without_preload_content(
+    async def create_api_key_without_preload_content(
         self,
         user_id: StrictStr,
         api_key_creation: ApiKeyCreation,
@@ -258,7 +258,7 @@ class UsersApi:
             '403': None,
             '404': None,
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -346,7 +346,7 @@ class UsersApi:
 
 
     @validate_call
-    def create_user_in_account(
+    async def create_user_in_account(
         self,
         account_id: StrictStr,
         user_creation: UserCreation,
@@ -408,11 +408,11 @@ class UsersApi:
             '403': None,
             '404': None,
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -420,7 +420,7 @@ class UsersApi:
 
 
     @validate_call
-    def create_user_in_account_with_http_info(
+    async def create_user_in_account_with_http_info(
         self,
         account_id: StrictStr,
         user_creation: UserCreation,
@@ -482,11 +482,11 @@ class UsersApi:
             '403': None,
             '404': None,
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -494,7 +494,7 @@ class UsersApi:
 
 
     @validate_call
-    def create_user_in_account_without_preload_content(
+    async def create_user_in_account_without_preload_content(
         self,
         account_id: StrictStr,
         user_creation: UserCreation,
@@ -556,7 +556,7 @@ class UsersApi:
             '403': None,
             '404': None,
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -644,7 +644,7 @@ class UsersApi:
 
 
     @validate_call
-    def delete_api_key_by_id(
+    async def delete_api_key_by_id(
         self,
         user_id: StrictStr,
         key_id: StrictStr,
@@ -704,11 +704,11 @@ class UsersApi:
             '403': None,
             '404': None,
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -716,7 +716,7 @@ class UsersApi:
 
 
     @validate_call
-    def delete_api_key_by_id_with_http_info(
+    async def delete_api_key_by_id_with_http_info(
         self,
         user_id: StrictStr,
         key_id: StrictStr,
@@ -776,11 +776,11 @@ class UsersApi:
             '403': None,
             '404': None,
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -788,7 +788,7 @@ class UsersApi:
 
 
     @validate_call
-    def delete_api_key_by_id_without_preload_content(
+    async def delete_api_key_by_id_without_preload_content(
         self,
         user_id: StrictStr,
         key_id: StrictStr,
@@ -848,7 +848,7 @@ class UsersApi:
             '403': None,
             '404': None,
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -917,7 +917,7 @@ class UsersApi:
 
 
     @validate_call
-    def delete_user_avatar(
+    async def delete_user_avatar(
         self,
         user_id: StrictStr,
         _request_timeout: Union[
@@ -972,11 +972,11 @@ class UsersApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '204': None,
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -984,7 +984,7 @@ class UsersApi:
 
 
     @validate_call
-    def delete_user_avatar_with_http_info(
+    async def delete_user_avatar_with_http_info(
         self,
         user_id: StrictStr,
         _request_timeout: Union[
@@ -1039,11 +1039,11 @@ class UsersApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '204': None,
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -1051,7 +1051,7 @@ class UsersApi:
 
 
     @validate_call
-    def delete_user_avatar_without_preload_content(
+    async def delete_user_avatar_without_preload_content(
         self,
         user_id: StrictStr,
         _request_timeout: Union[
@@ -1106,7 +1106,7 @@ class UsersApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '204': None,
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -1172,7 +1172,7 @@ class UsersApi:
 
 
     @validate_call
-    def delete_user_by_id(
+    async def delete_user_by_id(
         self,
         user_id: StrictStr,
         _request_timeout: Union[
@@ -1228,11 +1228,11 @@ class UsersApi:
             '403': None,
             '404': None,
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -1240,7 +1240,7 @@ class UsersApi:
 
 
     @validate_call
-    def delete_user_by_id_with_http_info(
+    async def delete_user_by_id_with_http_info(
         self,
         user_id: StrictStr,
         _request_timeout: Union[
@@ -1296,11 +1296,11 @@ class UsersApi:
             '403': None,
             '404': None,
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -1308,7 +1308,7 @@ class UsersApi:
 
 
     @validate_call
-    def delete_user_by_id_without_preload_content(
+    async def delete_user_by_id_without_preload_content(
         self,
         user_id: StrictStr,
         _request_timeout: Union[
@@ -1364,7 +1364,7 @@ class UsersApi:
             '403': None,
             '404': None,
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -1430,7 +1430,7 @@ class UsersApi:
 
 
     @validate_call
-    def get_api_key_by_id(
+    async def get_api_key_by_id(
         self,
         user_id: StrictStr,
         key_id: StrictStr,
@@ -1490,11 +1490,11 @@ class UsersApi:
             '403': None,
             '404': None,
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -1502,7 +1502,7 @@ class UsersApi:
 
 
     @validate_call
-    def get_api_key_by_id_with_http_info(
+    async def get_api_key_by_id_with_http_info(
         self,
         user_id: StrictStr,
         key_id: StrictStr,
@@ -1562,11 +1562,11 @@ class UsersApi:
             '403': None,
             '404': None,
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -1574,7 +1574,7 @@ class UsersApi:
 
 
     @validate_call
-    def get_api_key_by_id_without_preload_content(
+    async def get_api_key_by_id_without_preload_content(
         self,
         user_id: StrictStr,
         key_id: StrictStr,
@@ -1634,7 +1634,7 @@ class UsersApi:
             '403': None,
             '404': None,
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -1709,7 +1709,7 @@ class UsersApi:
 
 
     @validate_call
-    def get_current_user(
+    async def get_current_user(
         self,
         _request_timeout: Union[
             None,
@@ -1761,11 +1761,11 @@ class UsersApi:
             '200': "CreateUserInAccount201Response",
             '403': None,
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -1773,7 +1773,7 @@ class UsersApi:
 
 
     @validate_call
-    def get_current_user_with_http_info(
+    async def get_current_user_with_http_info(
         self,
         _request_timeout: Union[
             None,
@@ -1825,11 +1825,11 @@ class UsersApi:
             '200': "CreateUserInAccount201Response",
             '403': None,
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -1837,7 +1837,7 @@ class UsersApi:
 
 
     @validate_call
-    def get_current_user_without_preload_content(
+    async def get_current_user_without_preload_content(
         self,
         _request_timeout: Union[
             None,
@@ -1889,7 +1889,7 @@ class UsersApi:
             '200': "CreateUserInAccount201Response",
             '403': None,
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -1958,7 +1958,7 @@ class UsersApi:
 
 
     @validate_call
-    def get_user_avatar(
+    async def get_user_avatar(
         self,
         user_id: StrictStr,
         _request_timeout: Union[
@@ -2014,11 +2014,11 @@ class UsersApi:
             '200': None,
             '404': None,
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -2026,7 +2026,7 @@ class UsersApi:
 
 
     @validate_call
-    def get_user_avatar_with_http_info(
+    async def get_user_avatar_with_http_info(
         self,
         user_id: StrictStr,
         _request_timeout: Union[
@@ -2082,11 +2082,11 @@ class UsersApi:
             '200': None,
             '404': None,
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -2094,7 +2094,7 @@ class UsersApi:
 
 
     @validate_call
-    def get_user_avatar_without_preload_content(
+    async def get_user_avatar_without_preload_content(
         self,
         user_id: StrictStr,
         _request_timeout: Union[
@@ -2150,7 +2150,7 @@ class UsersApi:
             '200': None,
             '404': None,
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -2216,7 +2216,7 @@ class UsersApi:
 
 
     @validate_call
-    def get_user_by_id(
+    async def get_user_by_id(
         self,
         user_id: StrictStr,
         _request_timeout: Union[
@@ -2272,11 +2272,11 @@ class UsersApi:
             '403': None,
             '404': None,
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -2284,7 +2284,7 @@ class UsersApi:
 
 
     @validate_call
-    def get_user_by_id_with_http_info(
+    async def get_user_by_id_with_http_info(
         self,
         user_id: StrictStr,
         _request_timeout: Union[
@@ -2340,11 +2340,11 @@ class UsersApi:
             '403': None,
             '404': None,
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -2352,7 +2352,7 @@ class UsersApi:
 
 
     @validate_call
-    def get_user_by_id_without_preload_content(
+    async def get_user_by_id_without_preload_content(
         self,
         user_id: StrictStr,
         _request_timeout: Union[
@@ -2408,7 +2408,7 @@ class UsersApi:
             '403': None,
             '404': None,
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -2480,7 +2480,7 @@ class UsersApi:
 
 
     @validate_call
-    def list_api_keys_by_user_id(
+    async def list_api_keys_by_user_id(
         self,
         user_id: StrictStr,
         _request_timeout: Union[
@@ -2536,11 +2536,11 @@ class UsersApi:
             '403': None,
             '404': None,
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -2548,7 +2548,7 @@ class UsersApi:
 
 
     @validate_call
-    def list_api_keys_by_user_id_with_http_info(
+    async def list_api_keys_by_user_id_with_http_info(
         self,
         user_id: StrictStr,
         _request_timeout: Union[
@@ -2604,11 +2604,11 @@ class UsersApi:
             '403': None,
             '404': None,
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -2616,7 +2616,7 @@ class UsersApi:
 
 
     @validate_call
-    def list_api_keys_by_user_id_without_preload_content(
+    async def list_api_keys_by_user_id_without_preload_content(
         self,
         user_id: StrictStr,
         _request_timeout: Union[
@@ -2672,7 +2672,7 @@ class UsersApi:
             '403': None,
             '404': None,
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -2744,7 +2744,7 @@ class UsersApi:
 
 
     @validate_call
-    def list_users_by_account_id(
+    async def list_users_by_account_id(
         self,
         account_id: StrictStr,
         filter_platform_roles: Annotated[Optional[UserPlatformRole], Field(description="Filter based on platform roles, e.g. super_admin")] = None,
@@ -2820,11 +2820,11 @@ class UsersApi:
             '403': None,
             '404': None,
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -2832,7 +2832,7 @@ class UsersApi:
 
 
     @validate_call
-    def list_users_by_account_id_with_http_info(
+    async def list_users_by_account_id_with_http_info(
         self,
         account_id: StrictStr,
         filter_platform_roles: Annotated[Optional[UserPlatformRole], Field(description="Filter based on platform roles, e.g. super_admin")] = None,
@@ -2908,11 +2908,11 @@ class UsersApi:
             '403': None,
             '404': None,
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -2920,7 +2920,7 @@ class UsersApi:
 
 
     @validate_call
-    def list_users_by_account_id_without_preload_content(
+    async def list_users_by_account_id_without_preload_content(
         self,
         account_id: StrictStr,
         filter_platform_roles: Annotated[Optional[UserPlatformRole], Field(description="Filter based on platform roles, e.g. super_admin")] = None,
@@ -2996,7 +2996,7 @@ class UsersApi:
             '403': None,
             '404': None,
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -3093,7 +3093,7 @@ class UsersApi:
 
 
     @validate_call
-    def update_api_key_by_id(
+    async def update_api_key_by_id(
         self,
         user_id: StrictStr,
         key_id: StrictStr,
@@ -3157,11 +3157,11 @@ class UsersApi:
             '403': None,
             '404': None,
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -3169,7 +3169,7 @@ class UsersApi:
 
 
     @validate_call
-    def update_api_key_by_id_with_http_info(
+    async def update_api_key_by_id_with_http_info(
         self,
         user_id: StrictStr,
         key_id: StrictStr,
@@ -3233,11 +3233,11 @@ class UsersApi:
             '403': None,
             '404': None,
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -3245,7 +3245,7 @@ class UsersApi:
 
 
     @validate_call
-    def update_api_key_by_id_without_preload_content(
+    async def update_api_key_by_id_without_preload_content(
         self,
         user_id: StrictStr,
         key_id: StrictStr,
@@ -3309,7 +3309,7 @@ class UsersApi:
             '403': None,
             '404': None,
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -3400,7 +3400,7 @@ class UsersApi:
 
 
     @validate_call
-    def update_user_by_id(
+    async def update_user_by_id(
         self,
         user_id: StrictStr,
         user_mutation: UserMutation,
@@ -3461,11 +3461,11 @@ class UsersApi:
             '403': None,
             '404': None,
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -3473,7 +3473,7 @@ class UsersApi:
 
 
     @validate_call
-    def update_user_by_id_with_http_info(
+    async def update_user_by_id_with_http_info(
         self,
         user_id: StrictStr,
         user_mutation: UserMutation,
@@ -3534,11 +3534,11 @@ class UsersApi:
             '403': None,
             '404': None,
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -3546,7 +3546,7 @@ class UsersApi:
 
 
     @validate_call
-    def update_user_by_id_without_preload_content(
+    async def update_user_by_id_without_preload_content(
         self,
         user_id: StrictStr,
         user_mutation: UserMutation,
@@ -3607,7 +3607,7 @@ class UsersApi:
             '403': None,
             '404': None,
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -3695,7 +3695,7 @@ class UsersApi:
 
 
     @validate_call
-    def upload_user_avatar(
+    async def upload_user_avatar(
         self,
         user_id: StrictStr,
         body: Union[StrictBytes, StrictStr],
@@ -3754,11 +3754,11 @@ class UsersApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '204': None,
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -3766,7 +3766,7 @@ class UsersApi:
 
 
     @validate_call
-    def upload_user_avatar_with_http_info(
+    async def upload_user_avatar_with_http_info(
         self,
         user_id: StrictStr,
         body: Union[StrictBytes, StrictStr],
@@ -3825,11 +3825,11 @@ class UsersApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '204': None,
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -3837,7 +3837,7 @@ class UsersApi:
 
 
     @validate_call
-    def upload_user_avatar_without_preload_content(
+    async def upload_user_avatar_without_preload_content(
         self,
         user_id: StrictStr,
         body: Union[StrictBytes, StrictStr],
@@ -3896,7 +3896,7 @@ class UsersApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '204': None,
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )

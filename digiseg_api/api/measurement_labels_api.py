@@ -41,7 +41,7 @@ class MeasurementLabelsApi:
 
 
     @validate_call
-    def list_measurement_labels(
+    async def list_measurement_labels(
         self,
         filter_account_id: Annotated[Optional[StrictStr], Field(description="Optional parameter used to query measurement labels by specific account IDs (only available to super admins). The value `*` is synonymous for \"all accounts\". ")] = None,
         _request_timeout: Union[
@@ -96,11 +96,11 @@ class MeasurementLabelsApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ListMeasurementLabels200Response",
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -108,7 +108,7 @@ class MeasurementLabelsApi:
 
 
     @validate_call
-    def list_measurement_labels_with_http_info(
+    async def list_measurement_labels_with_http_info(
         self,
         filter_account_id: Annotated[Optional[StrictStr], Field(description="Optional parameter used to query measurement labels by specific account IDs (only available to super admins). The value `*` is synonymous for \"all accounts\". ")] = None,
         _request_timeout: Union[
@@ -163,11 +163,11 @@ class MeasurementLabelsApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ListMeasurementLabels200Response",
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -175,7 +175,7 @@ class MeasurementLabelsApi:
 
 
     @validate_call
-    def list_measurement_labels_without_preload_content(
+    async def list_measurement_labels_without_preload_content(
         self,
         filter_account_id: Annotated[Optional[StrictStr], Field(description="Optional parameter used to query measurement labels by specific account IDs (only available to super admins). The value `*` is synonymous for \"all accounts\". ")] = None,
         _request_timeout: Union[
@@ -230,7 +230,7 @@ class MeasurementLabelsApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ListMeasurementLabels200Response",
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )

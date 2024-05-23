@@ -45,7 +45,7 @@ class AuthApi:
 
 
     @validate_call
-    def create_access_token(
+    async def create_access_token(
         self,
         auth_token_request: AuthTokenRequest,
         _request_timeout: Union[
@@ -99,11 +99,11 @@ class AuthApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "AuthTokenResponse",
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -111,7 +111,7 @@ class AuthApi:
 
 
     @validate_call
-    def create_access_token_with_http_info(
+    async def create_access_token_with_http_info(
         self,
         auth_token_request: AuthTokenRequest,
         _request_timeout: Union[
@@ -165,11 +165,11 @@ class AuthApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "AuthTokenResponse",
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -177,7 +177,7 @@ class AuthApi:
 
 
     @validate_call
-    def create_access_token_without_preload_content(
+    async def create_access_token_without_preload_content(
         self,
         auth_token_request: AuthTokenRequest,
         _request_timeout: Union[
@@ -231,7 +231,7 @@ class AuthApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "AuthTokenResponse",
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -313,7 +313,7 @@ class AuthApi:
 
 
     @validate_call
-    def create_api_key(
+    async def create_api_key(
         self,
         user_id: StrictStr,
         api_key_creation: ApiKeyCreation,
@@ -374,11 +374,11 @@ class AuthApi:
             '403': None,
             '404': None,
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -386,7 +386,7 @@ class AuthApi:
 
 
     @validate_call
-    def create_api_key_with_http_info(
+    async def create_api_key_with_http_info(
         self,
         user_id: StrictStr,
         api_key_creation: ApiKeyCreation,
@@ -447,11 +447,11 @@ class AuthApi:
             '403': None,
             '404': None,
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -459,7 +459,7 @@ class AuthApi:
 
 
     @validate_call
-    def create_api_key_without_preload_content(
+    async def create_api_key_without_preload_content(
         self,
         user_id: StrictStr,
         api_key_creation: ApiKeyCreation,
@@ -520,7 +520,7 @@ class AuthApi:
             '403': None,
             '404': None,
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -608,7 +608,7 @@ class AuthApi:
 
 
     @validate_call
-    def delete_api_key_by_id(
+    async def delete_api_key_by_id(
         self,
         user_id: StrictStr,
         key_id: StrictStr,
@@ -668,11 +668,11 @@ class AuthApi:
             '403': None,
             '404': None,
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -680,7 +680,7 @@ class AuthApi:
 
 
     @validate_call
-    def delete_api_key_by_id_with_http_info(
+    async def delete_api_key_by_id_with_http_info(
         self,
         user_id: StrictStr,
         key_id: StrictStr,
@@ -740,11 +740,11 @@ class AuthApi:
             '403': None,
             '404': None,
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -752,7 +752,7 @@ class AuthApi:
 
 
     @validate_call
-    def delete_api_key_by_id_without_preload_content(
+    async def delete_api_key_by_id_without_preload_content(
         self,
         user_id: StrictStr,
         key_id: StrictStr,
@@ -812,7 +812,7 @@ class AuthApi:
             '403': None,
             '404': None,
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -881,7 +881,7 @@ class AuthApi:
 
 
     @validate_call
-    def get_api_key_by_id(
+    async def get_api_key_by_id(
         self,
         user_id: StrictStr,
         key_id: StrictStr,
@@ -941,11 +941,11 @@ class AuthApi:
             '403': None,
             '404': None,
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -953,7 +953,7 @@ class AuthApi:
 
 
     @validate_call
-    def get_api_key_by_id_with_http_info(
+    async def get_api_key_by_id_with_http_info(
         self,
         user_id: StrictStr,
         key_id: StrictStr,
@@ -1013,11 +1013,11 @@ class AuthApi:
             '403': None,
             '404': None,
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -1025,7 +1025,7 @@ class AuthApi:
 
 
     @validate_call
-    def get_api_key_by_id_without_preload_content(
+    async def get_api_key_by_id_without_preload_content(
         self,
         user_id: StrictStr,
         key_id: StrictStr,
@@ -1085,7 +1085,7 @@ class AuthApi:
             '403': None,
             '404': None,
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -1160,7 +1160,7 @@ class AuthApi:
 
 
     @validate_call
-    def list_api_keys_by_account_id(
+    async def list_api_keys_by_account_id(
         self,
         account_id: StrictStr,
         _request_timeout: Union[
@@ -1216,11 +1216,11 @@ class AuthApi:
             '403': None,
             '404': None,
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -1228,7 +1228,7 @@ class AuthApi:
 
 
     @validate_call
-    def list_api_keys_by_account_id_with_http_info(
+    async def list_api_keys_by_account_id_with_http_info(
         self,
         account_id: StrictStr,
         _request_timeout: Union[
@@ -1284,11 +1284,11 @@ class AuthApi:
             '403': None,
             '404': None,
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -1296,7 +1296,7 @@ class AuthApi:
 
 
     @validate_call
-    def list_api_keys_by_account_id_without_preload_content(
+    async def list_api_keys_by_account_id_without_preload_content(
         self,
         account_id: StrictStr,
         _request_timeout: Union[
@@ -1352,7 +1352,7 @@ class AuthApi:
             '403': None,
             '404': None,
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -1424,7 +1424,7 @@ class AuthApi:
 
 
     @validate_call
-    def list_api_keys_by_user_id(
+    async def list_api_keys_by_user_id(
         self,
         user_id: StrictStr,
         _request_timeout: Union[
@@ -1480,11 +1480,11 @@ class AuthApi:
             '403': None,
             '404': None,
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -1492,7 +1492,7 @@ class AuthApi:
 
 
     @validate_call
-    def list_api_keys_by_user_id_with_http_info(
+    async def list_api_keys_by_user_id_with_http_info(
         self,
         user_id: StrictStr,
         _request_timeout: Union[
@@ -1548,11 +1548,11 @@ class AuthApi:
             '403': None,
             '404': None,
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -1560,7 +1560,7 @@ class AuthApi:
 
 
     @validate_call
-    def list_api_keys_by_user_id_without_preload_content(
+    async def list_api_keys_by_user_id_without_preload_content(
         self,
         user_id: StrictStr,
         _request_timeout: Union[
@@ -1616,7 +1616,7 @@ class AuthApi:
             '403': None,
             '404': None,
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -1688,7 +1688,7 @@ class AuthApi:
 
 
     @validate_call
-    def update_api_key_by_id(
+    async def update_api_key_by_id(
         self,
         user_id: StrictStr,
         key_id: StrictStr,
@@ -1752,11 +1752,11 @@ class AuthApi:
             '403': None,
             '404': None,
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -1764,7 +1764,7 @@ class AuthApi:
 
 
     @validate_call
-    def update_api_key_by_id_with_http_info(
+    async def update_api_key_by_id_with_http_info(
         self,
         user_id: StrictStr,
         key_id: StrictStr,
@@ -1828,11 +1828,11 @@ class AuthApi:
             '403': None,
             '404': None,
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -1840,7 +1840,7 @@ class AuthApi:
 
 
     @validate_call
-    def update_api_key_by_id_without_preload_content(
+    async def update_api_key_by_id_without_preload_content(
         self,
         user_id: StrictStr,
         key_id: StrictStr,
@@ -1904,7 +1904,7 @@ class AuthApi:
             '403': None,
             '404': None,
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )

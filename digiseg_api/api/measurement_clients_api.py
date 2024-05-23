@@ -43,7 +43,7 @@ class MeasurementClientsApi:
 
 
     @validate_call
-    def create_measurement_client(
+    async def create_measurement_client(
         self,
         measurement_client_mutation: MeasurementClientMutation,
         _request_timeout: Union[
@@ -98,11 +98,11 @@ class MeasurementClientsApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '201': "CreateMeasurementClient201Response",
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -110,7 +110,7 @@ class MeasurementClientsApi:
 
 
     @validate_call
-    def create_measurement_client_with_http_info(
+    async def create_measurement_client_with_http_info(
         self,
         measurement_client_mutation: MeasurementClientMutation,
         _request_timeout: Union[
@@ -165,11 +165,11 @@ class MeasurementClientsApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '201': "CreateMeasurementClient201Response",
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -177,7 +177,7 @@ class MeasurementClientsApi:
 
 
     @validate_call
-    def create_measurement_client_without_preload_content(
+    async def create_measurement_client_without_preload_content(
         self,
         measurement_client_mutation: MeasurementClientMutation,
         _request_timeout: Union[
@@ -232,7 +232,7 @@ class MeasurementClientsApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '201': "CreateMeasurementClient201Response",
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -317,7 +317,7 @@ class MeasurementClientsApi:
 
 
     @validate_call
-    def delete_client_logo(
+    async def delete_client_logo(
         self,
         client_id: StrictStr,
         _request_timeout: Union[
@@ -372,11 +372,11 @@ class MeasurementClientsApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '204': None,
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -384,7 +384,7 @@ class MeasurementClientsApi:
 
 
     @validate_call
-    def delete_client_logo_with_http_info(
+    async def delete_client_logo_with_http_info(
         self,
         client_id: StrictStr,
         _request_timeout: Union[
@@ -439,11 +439,11 @@ class MeasurementClientsApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '204': None,
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -451,7 +451,7 @@ class MeasurementClientsApi:
 
 
     @validate_call
-    def delete_client_logo_without_preload_content(
+    async def delete_client_logo_without_preload_content(
         self,
         client_id: StrictStr,
         _request_timeout: Union[
@@ -506,7 +506,7 @@ class MeasurementClientsApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '204': None,
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -572,7 +572,7 @@ class MeasurementClientsApi:
 
 
     @validate_call
-    def delete_measurement_client_by_id(
+    async def delete_measurement_client_by_id(
         self,
         client_id: StrictStr,
         _request_timeout: Union[
@@ -627,11 +627,11 @@ class MeasurementClientsApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '204': None,
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -639,7 +639,7 @@ class MeasurementClientsApi:
 
 
     @validate_call
-    def delete_measurement_client_by_id_with_http_info(
+    async def delete_measurement_client_by_id_with_http_info(
         self,
         client_id: StrictStr,
         _request_timeout: Union[
@@ -694,11 +694,11 @@ class MeasurementClientsApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '204': None,
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -706,7 +706,7 @@ class MeasurementClientsApi:
 
 
     @validate_call
-    def delete_measurement_client_by_id_without_preload_content(
+    async def delete_measurement_client_by_id_without_preload_content(
         self,
         client_id: StrictStr,
         _request_timeout: Union[
@@ -761,7 +761,7 @@ class MeasurementClientsApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '204': None,
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -827,7 +827,7 @@ class MeasurementClientsApi:
 
 
     @validate_call
-    def get_client_logo(
+    async def get_client_logo(
         self,
         client_id: StrictStr,
         _request_timeout: Union[
@@ -883,11 +883,11 @@ class MeasurementClientsApi:
             '200': None,
             '404': None,
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -895,7 +895,7 @@ class MeasurementClientsApi:
 
 
     @validate_call
-    def get_client_logo_with_http_info(
+    async def get_client_logo_with_http_info(
         self,
         client_id: StrictStr,
         _request_timeout: Union[
@@ -951,11 +951,11 @@ class MeasurementClientsApi:
             '200': None,
             '404': None,
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -963,7 +963,7 @@ class MeasurementClientsApi:
 
 
     @validate_call
-    def get_client_logo_without_preload_content(
+    async def get_client_logo_without_preload_content(
         self,
         client_id: StrictStr,
         _request_timeout: Union[
@@ -1019,7 +1019,7 @@ class MeasurementClientsApi:
             '200': None,
             '404': None,
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -1085,7 +1085,7 @@ class MeasurementClientsApi:
 
 
     @validate_call
-    def get_measurement_client_by_id(
+    async def get_measurement_client_by_id(
         self,
         client_id: StrictStr,
         _request_timeout: Union[
@@ -1140,11 +1140,11 @@ class MeasurementClientsApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "CreateMeasurementClient201Response",
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -1152,7 +1152,7 @@ class MeasurementClientsApi:
 
 
     @validate_call
-    def get_measurement_client_by_id_with_http_info(
+    async def get_measurement_client_by_id_with_http_info(
         self,
         client_id: StrictStr,
         _request_timeout: Union[
@@ -1207,11 +1207,11 @@ class MeasurementClientsApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "CreateMeasurementClient201Response",
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -1219,7 +1219,7 @@ class MeasurementClientsApi:
 
 
     @validate_call
-    def get_measurement_client_by_id_without_preload_content(
+    async def get_measurement_client_by_id_without_preload_content(
         self,
         client_id: StrictStr,
         _request_timeout: Union[
@@ -1274,7 +1274,7 @@ class MeasurementClientsApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "CreateMeasurementClient201Response",
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -1346,7 +1346,7 @@ class MeasurementClientsApi:
 
 
     @validate_call
-    def list_measurement_clients(
+    async def list_measurement_clients(
         self,
         filter_account_id: Annotated[Optional[StrictStr], Field(description="Optional parameter used to query measurement clients by specific account IDs (only available to super admins). The value `*` is synonymous for \"all accounts\". ")] = None,
         filter_name_contains: Annotated[Optional[StrictStr], Field(description="Optional parameter used to search for clients where the name contains a substring (case insensitive)")] = None,
@@ -1413,11 +1413,11 @@ class MeasurementClientsApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ListMeasurementClients200Response",
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -1425,7 +1425,7 @@ class MeasurementClientsApi:
 
 
     @validate_call
-    def list_measurement_clients_with_http_info(
+    async def list_measurement_clients_with_http_info(
         self,
         filter_account_id: Annotated[Optional[StrictStr], Field(description="Optional parameter used to query measurement clients by specific account IDs (only available to super admins). The value `*` is synonymous for \"all accounts\". ")] = None,
         filter_name_contains: Annotated[Optional[StrictStr], Field(description="Optional parameter used to search for clients where the name contains a substring (case insensitive)")] = None,
@@ -1492,11 +1492,11 @@ class MeasurementClientsApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ListMeasurementClients200Response",
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -1504,7 +1504,7 @@ class MeasurementClientsApi:
 
 
     @validate_call
-    def list_measurement_clients_without_preload_content(
+    async def list_measurement_clients_without_preload_content(
         self,
         filter_account_id: Annotated[Optional[StrictStr], Field(description="Optional parameter used to query measurement clients by specific account IDs (only available to super admins). The value `*` is synonymous for \"all accounts\". ")] = None,
         filter_name_contains: Annotated[Optional[StrictStr], Field(description="Optional parameter used to search for clients where the name contains a substring (case insensitive)")] = None,
@@ -1571,7 +1571,7 @@ class MeasurementClientsApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ListMeasurementClients200Response",
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -1660,7 +1660,7 @@ class MeasurementClientsApi:
 
 
     @validate_call
-    def update_measurement_client_by_id(
+    async def update_measurement_client_by_id(
         self,
         client_id: StrictStr,
         measurement_client_mutation: MeasurementClientMutation,
@@ -1719,11 +1719,11 @@ class MeasurementClientsApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "CreateMeasurementClient201Response",
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -1731,7 +1731,7 @@ class MeasurementClientsApi:
 
 
     @validate_call
-    def update_measurement_client_by_id_with_http_info(
+    async def update_measurement_client_by_id_with_http_info(
         self,
         client_id: StrictStr,
         measurement_client_mutation: MeasurementClientMutation,
@@ -1790,11 +1790,11 @@ class MeasurementClientsApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "CreateMeasurementClient201Response",
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -1802,7 +1802,7 @@ class MeasurementClientsApi:
 
 
     @validate_call
-    def update_measurement_client_by_id_without_preload_content(
+    async def update_measurement_client_by_id_without_preload_content(
         self,
         client_id: StrictStr,
         measurement_client_mutation: MeasurementClientMutation,
@@ -1861,7 +1861,7 @@ class MeasurementClientsApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "CreateMeasurementClient201Response",
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -1949,7 +1949,7 @@ class MeasurementClientsApi:
 
 
     @validate_call
-    def upload_client_logo(
+    async def upload_client_logo(
         self,
         client_id: StrictStr,
         body: Union[StrictBytes, StrictStr],
@@ -2008,11 +2008,11 @@ class MeasurementClientsApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '204': None,
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -2020,7 +2020,7 @@ class MeasurementClientsApi:
 
 
     @validate_call
-    def upload_client_logo_with_http_info(
+    async def upload_client_logo_with_http_info(
         self,
         client_id: StrictStr,
         body: Union[StrictBytes, StrictStr],
@@ -2079,11 +2079,11 @@ class MeasurementClientsApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '204': None,
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -2091,7 +2091,7 @@ class MeasurementClientsApi:
 
 
     @validate_call
-    def upload_client_logo_without_preload_content(
+    async def upload_client_logo_without_preload_content(
         self,
         client_id: StrictStr,
         body: Union[StrictBytes, StrictStr],
@@ -2150,7 +2150,7 @@ class MeasurementClientsApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '204': None,
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )

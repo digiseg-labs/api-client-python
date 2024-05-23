@@ -5,7 +5,7 @@ codegen:
 	openapi-generator generate \
 		-i https://developer.digiseg.net/openapi.json \
 		-g python -o ${GENERATED_DIR} \
-		--additional-properties packageName=digiseg_api,projectName=digiseg-api-client \
+		--additional-properties packageName=digiseg_api,projectName=digiseg-api-client,library=asyncio \
 		--git-user-id digiseg-labs \
 		--git-repo-id api-client-python
 	cp -r ${GENERATED_DIR}/digiseg_api .

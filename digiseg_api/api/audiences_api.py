@@ -43,7 +43,7 @@ class AudiencesApi:
 
 
     @validate_call
-    def resolve_audiences_of_client(
+    async def resolve_audiences_of_client(
         self,
         include: Annotated[Optional[StrictStr], Field(description="Optional parameter used to specify which audience information to be returned. The value is comprised of comma-separated values, each indicating a set of audiences:    * `core` represents the core audiences that are directly linked to household characteristics   * `composite` represents the composite audiences, used to model likely behaviours or buying     needs associated with the household characteristics.   * `name` and `category` refer to the fields of the same names in the returned Audience     objects. There is a slight performance gain in leaving these out when they are not needed. ")] = None,
         type: Annotated[Optional[Annotated[str, Field(strict=True)]], Field(description="Optional parameter to set to `jsonp` if a JSONP response format is needed.")] = None,
@@ -103,11 +103,11 @@ class AudiencesApi:
             '400': "ErrorResponse",
             '500': "ErrorResponse",
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -115,7 +115,7 @@ class AudiencesApi:
 
 
     @validate_call
-    def resolve_audiences_of_client_with_http_info(
+    async def resolve_audiences_of_client_with_http_info(
         self,
         include: Annotated[Optional[StrictStr], Field(description="Optional parameter used to specify which audience information to be returned. The value is comprised of comma-separated values, each indicating a set of audiences:    * `core` represents the core audiences that are directly linked to household characteristics   * `composite` represents the composite audiences, used to model likely behaviours or buying     needs associated with the household characteristics.   * `name` and `category` refer to the fields of the same names in the returned Audience     objects. There is a slight performance gain in leaving these out when they are not needed. ")] = None,
         type: Annotated[Optional[Annotated[str, Field(strict=True)]], Field(description="Optional parameter to set to `jsonp` if a JSONP response format is needed.")] = None,
@@ -175,11 +175,11 @@ class AudiencesApi:
             '400': "ErrorResponse",
             '500': "ErrorResponse",
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -187,7 +187,7 @@ class AudiencesApi:
 
 
     @validate_call
-    def resolve_audiences_of_client_without_preload_content(
+    async def resolve_audiences_of_client_without_preload_content(
         self,
         include: Annotated[Optional[StrictStr], Field(description="Optional parameter used to specify which audience information to be returned. The value is comprised of comma-separated values, each indicating a set of audiences:    * `core` represents the core audiences that are directly linked to household characteristics   * `composite` represents the composite audiences, used to model likely behaviours or buying     needs associated with the household characteristics.   * `name` and `category` refer to the fields of the same names in the returned Audience     objects. There is a slight performance gain in leaving these out when they are not needed. ")] = None,
         type: Annotated[Optional[Annotated[str, Field(strict=True)]], Field(description="Optional parameter to set to `jsonp` if a JSONP response format is needed.")] = None,
@@ -247,7 +247,7 @@ class AudiencesApi:
             '400': "ErrorResponse",
             '500': "ErrorResponse",
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -326,7 +326,7 @@ class AudiencesApi:
 
 
     @validate_call
-    def resolve_audiences_of_multiple(
+    async def resolve_audiences_of_multiple(
         self,
         resolve_audiences_of_multiple_request: ResolveAudiencesOfMultipleRequest,
         include: Annotated[Optional[StrictStr], Field(description="Optional parameter used to specify which audience information to be returned. The value is comprised of comma-separated values, each indicating a set of audiences:    * `core` represents the core audiences that are directly linked to household characteristics   * `composite` represents the composite audiences, used to model likely behaviours or buying     needs associated with the household characteristics.   * `name` and `category` refer to the fields of the same names in the returned Audience     objects. There is a slight performance gain in leaving these out when they are not needed. ")] = None,
@@ -386,11 +386,11 @@ class AudiencesApi:
             '400': "ErrorResponse",
             '500': "ErrorResponse",
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -398,7 +398,7 @@ class AudiencesApi:
 
 
     @validate_call
-    def resolve_audiences_of_multiple_with_http_info(
+    async def resolve_audiences_of_multiple_with_http_info(
         self,
         resolve_audiences_of_multiple_request: ResolveAudiencesOfMultipleRequest,
         include: Annotated[Optional[StrictStr], Field(description="Optional parameter used to specify which audience information to be returned. The value is comprised of comma-separated values, each indicating a set of audiences:    * `core` represents the core audiences that are directly linked to household characteristics   * `composite` represents the composite audiences, used to model likely behaviours or buying     needs associated with the household characteristics.   * `name` and `category` refer to the fields of the same names in the returned Audience     objects. There is a slight performance gain in leaving these out when they are not needed. ")] = None,
@@ -458,11 +458,11 @@ class AudiencesApi:
             '400': "ErrorResponse",
             '500': "ErrorResponse",
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -470,7 +470,7 @@ class AudiencesApi:
 
 
     @validate_call
-    def resolve_audiences_of_multiple_without_preload_content(
+    async def resolve_audiences_of_multiple_without_preload_content(
         self,
         resolve_audiences_of_multiple_request: ResolveAudiencesOfMultipleRequest,
         include: Annotated[Optional[StrictStr], Field(description="Optional parameter used to specify which audience information to be returned. The value is comprised of comma-separated values, each indicating a set of audiences:    * `core` represents the core audiences that are directly linked to household characteristics   * `composite` represents the composite audiences, used to model likely behaviours or buying     needs associated with the household characteristics.   * `name` and `category` refer to the fields of the same names in the returned Audience     objects. There is a slight performance gain in leaving these out when they are not needed. ")] = None,
@@ -530,7 +530,7 @@ class AudiencesApi:
             '400': "ErrorResponse",
             '500': "ErrorResponse",
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -620,7 +620,7 @@ class AudiencesApi:
 
 
     @validate_call
-    def resolve_audiences_of_single(
+    async def resolve_audiences_of_single(
         self,
         user_ip: Annotated[StrictStr, Field(description="The IP address to look up.")],
         include: Annotated[Optional[StrictStr], Field(description="Optional parameter used to specify which audience information to be returned. The value is comprised of comma-separated values, each indicating a set of audiences:    * `core` represents the core audiences that are directly linked to household characteristics   * `composite` represents the composite audiences, used to model likely behaviours or buying     needs associated with the household characteristics.   * `name` and `category` refer to the fields of the same names in the returned Audience     objects. There is a slight performance gain in leaving these out when they are not needed. ")] = None,
@@ -680,11 +680,11 @@ class AudiencesApi:
             '400': "ErrorResponse",
             '500': "ErrorResponse",
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -692,7 +692,7 @@ class AudiencesApi:
 
 
     @validate_call
-    def resolve_audiences_of_single_with_http_info(
+    async def resolve_audiences_of_single_with_http_info(
         self,
         user_ip: Annotated[StrictStr, Field(description="The IP address to look up.")],
         include: Annotated[Optional[StrictStr], Field(description="Optional parameter used to specify which audience information to be returned. The value is comprised of comma-separated values, each indicating a set of audiences:    * `core` represents the core audiences that are directly linked to household characteristics   * `composite` represents the composite audiences, used to model likely behaviours or buying     needs associated with the household characteristics.   * `name` and `category` refer to the fields of the same names in the returned Audience     objects. There is a slight performance gain in leaving these out when they are not needed. ")] = None,
@@ -752,11 +752,11 @@ class AudiencesApi:
             '400': "ErrorResponse",
             '500': "ErrorResponse",
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        response_data.read()
+        await response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -764,7 +764,7 @@ class AudiencesApi:
 
 
     @validate_call
-    def resolve_audiences_of_single_without_preload_content(
+    async def resolve_audiences_of_single_without_preload_content(
         self,
         user_ip: Annotated[StrictStr, Field(description="The IP address to look up.")],
         include: Annotated[Optional[StrictStr], Field(description="Optional parameter used to specify which audience information to be returned. The value is comprised of comma-separated values, each indicating a set of audiences:    * `core` represents the core audiences that are directly linked to household characteristics   * `composite` represents the composite audiences, used to model likely behaviours or buying     needs associated with the household characteristics.   * `name` and `category` refer to the fields of the same names in the returned Audience     objects. There is a slight performance gain in leaving these out when they are not needed. ")] = None,
@@ -824,7 +824,7 @@ class AudiencesApi:
             '400': "ErrorResponse",
             '500': "ErrorResponse",
         }
-        response_data = self.api_client.call_api(
+        response_data = await self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
