@@ -3,7 +3,7 @@
 """
     Digiseg API
 
-    ### Digiseg API documentation  # Introduction  This API let you harness the power of Digisegs powerful and tracking-free segmentation engine.  Audiences by Digiseg are available in 50+ countries, probablistically mapping neighborhood characteristics to the IP addresses observed on the internet - Household targeting & measurement for the post-cookie world.  ## Developer SDKs  In addition to using these APIs directly through any HTTP client, we provide a set of API client SDKs for popular programming languages:  <div class=\"api-clients\">   <a class=\"api-client-box\" href=\"https://github.com/digiseg-labs/api-client-python\">     <i class=\"api-client-sdk-logo devicon-python-plain\"></i>     <p>API client for Python</p>   </a>   <a class=\"api-client-box\" href=\"https://github.com/digiseg-labs/api-client-go\">     <i class=\"api-client-sdk-logo devicon-go-original-wordmark\"></i>     <p>API client for Go</p>   </a> </div> <div class=\"api-clients-breaker\" />  ## Audience taxonomy  Digiseg audiences are grouped into private and business audiences. In each group there are categories that then contain the audiences. The API endpoints that communicate audiences and household characteristics, audience codes are being used.  The following table can be used as a reference for audience codes. Note that Digiseg will at times update names of audiences for purposes of internationalization, clarity or other such purposes - but the codes will remain as-is and should be considered a stable point of reference for the audience.  | Group | Category | Audience Code | Audience Name | |-------|----------|---------------|---------------| | private | home_type | a1 | Apartment | |  |  | a2 | House | |  | savings | b1 | No Savings | |  |  | b2 | Smaller Savings | |  |  | b3 | Larger Savings | |  | lifecycle | c1 | Young singles and couples | |  |  | c2 | Young couples with children | |  |  | c3 | Families with school children | |  |  | c4 | Older families | |  |  | c5 | Pensioners | |  | cars | d1 | No cars | |  |  | d2 | 1 car | |  |  | d3 | 2 or more cars | |  | children | e1 | No children | |  |  | e2 | 1 child | |  |  | e3 | 2 or more children | |  | education | f1 | Basic | |  |  | f2 | Medium | |  |  | f3 | Higher | |  | neighbourhood_type | g1 | Countryside | |  |  | g2 | Village | |  |  | g3 | Suburban | |  |  | g4 | City | |  | income | h1 | Lowest 20% | |  |  | h2 | Lowest 20-40% | |  |  | h3 | Middle 40-60% | |  |  | h4 | Highest 60-80% | |  |  | h5 | Top 20% | |  | home_ownership | j1 | Rent | |  |  | j2 | Own | |  | building_age | k1 | Pre 1945 | |  |  | k2 | 1945-1989 | |  |  | k3 | 1990 until today | |  | living_space | l1 | Up to 80 m² | |  |  | l2 | 80-119 m² | |  |  | l3 | Above 120 m² | |  | tech_level | n1 | Basic | |  |  | n2 | Medium | |  |  | n3 | High | | business | size | ba1 | Small Business | |  |  | ba2 | Medium Business | |  |  | ba3 | Larger Business |  There is also an interactive [Audience builder](https://digiseg.io/cookieless-audience-builder/) which lets you discover the targeting reach and power of combining various household characteristics into composite audiences. 
+    ### Digiseg API documentation  # Introduction  This API let you harness the power of Digisegs powerful and tracking-free segmentation engine.  Audiences by Digiseg are available in 50+ countries, probablistically mapping neighborhood characteristics to the IP addresses observed on the internet - Household targeting & measurement for the post-cookie world.  ## Developer SDKs  In addition to using these APIs directly through any HTTP client, we provide a set of API client SDKs for popular programming languages:  <div class=\"api-clients\">   <a class=\"api-client-box\" href=\"https://github.com/digiseg-labs/api-client-python\">     <i class=\"api-client-sdk-logo devicon-python-plain\"></i>     <p>API client for Python</p>   </a>   <a class=\"api-client-box\" href=\"https://github.com/digiseg-labs/api-client-go\">     <i class=\"api-client-sdk-logo devicon-go-original-wordmark\"></i>     <p>API client for Go</p>   </a> </div> <div class=\"api-clients-breaker\" />  ## Audience taxonomy  Digiseg audiences are grouped into private and business audiences. In each group there are categories that then contain the audiences. The API endpoints that communicate audiences and household characteristics, audience codes are being used.  The following table can be used as a reference for audience codes. Note that Digiseg will at times update names of audiences for purposes of internationalization, clarity or other such purposes - but the codes will remain as-is and should be considered a stable point of reference for the audience.  | Group | Category | Audience Code | Audience Name | |-------|----------|---------------|---------------| | private | home_type | a1 | Apartment | |  |  | a2 | House | |  | savings | b1 | No Savings | |  |  | b2 | Smaller Savings | |  |  | b3 | Larger Savings | |  | lifecycle | c1 | Young couples and singles | |  |  | c2 | Early family life | |  |  | c3 | Middle-aged families | |  |  | c4 | Mature families | |  |  | c5 | Pensioners | |  | cars | d1 | No cars | |  |  | d2 | 1 car | |  |  | d3 | 2 or more cars | |  | children | e1 | No children | |  |  | e2 | 1 child | |  |  | e3 | 2 or more children | |  | education | f1 | Basic | |  |  | f2 | Medium | |  |  | f3 | Higher | |  | neighbourhood_type | g1 | Countryside | |  |  | g2 | Village | |  |  | g3 | Suburban | |  |  | g4 | City | |  | income | h1 | Lowest 20% | |  |  | h2 | Lowest 20-40% | |  |  | h3 | Middle 40-60% | |  |  | h4 | Highest 60-80% | |  |  | h5 | Top 20% | |  | home_ownership | j1 | Rent | |  |  | j2 | Own | |  | building_age | k1 | Pre 1945 | |  |  | k2 | 1945-1989 | |  |  | k3 | 1990 until today | |  | living_space | l1 | Small | |  |  | l2 | Medium | |  |  | l3 | Large | |  | tech_level | n1 | Basic | |  |  | n2 | Medium | |  |  | n3 | High | | business | size | ba1 | Small Business | |  |  | ba2 | Medium Business | |  |  | ba3 | Larger Business |  There is also an interactive [Audience builder](https://digiseg.io/cookieless-audience-builder/) which lets you discover the targeting reach and power of combining various household characteristics into composite audiences. 
 
     The version of the OpenAPI document: 1.0.0
     Contact: support@digiseg.io
@@ -25,7 +25,9 @@ from digiseg_api.models.create_user_in_account201_response import CreateUserInAc
 from digiseg_api.models.get_account_by_id200_response import GetAccountById200Response
 from digiseg_api.models.list_api_keys_by_account_id200_response import ListApiKeysByAccountId200Response
 from digiseg_api.models.list_users_by_account_id200_response import ListUsersByAccountId200Response
-from digiseg_api.models.user_mutation import UserMutation
+from digiseg_api.models.user_creation import UserCreation
+from digiseg_api.models.user_platform_role import UserPlatformRole
+from digiseg_api.models.user_sort_option import UserSortOption
 
 from digiseg_api.api_client import ApiClient, RequestSerialized
 from digiseg_api.api_response import ApiResponse
@@ -49,7 +51,7 @@ class AccountsApi:
     def create_user_in_account(
         self,
         account_id: StrictStr,
-        user_mutation: UserMutation,
+        user_creation: UserCreation,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -69,8 +71,8 @@ class AccountsApi:
 
         :param account_id: (required)
         :type account_id: str
-        :param user_mutation: (required)
-        :type user_mutation: UserMutation
+        :param user_creation: (required)
+        :type user_creation: UserCreation
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -95,7 +97,7 @@ class AccountsApi:
 
         _param = self._create_user_in_account_serialize(
             account_id=account_id,
-            user_mutation=user_mutation,
+            user_creation=user_creation,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -123,7 +125,7 @@ class AccountsApi:
     def create_user_in_account_with_http_info(
         self,
         account_id: StrictStr,
-        user_mutation: UserMutation,
+        user_creation: UserCreation,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -143,8 +145,8 @@ class AccountsApi:
 
         :param account_id: (required)
         :type account_id: str
-        :param user_mutation: (required)
-        :type user_mutation: UserMutation
+        :param user_creation: (required)
+        :type user_creation: UserCreation
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -169,7 +171,7 @@ class AccountsApi:
 
         _param = self._create_user_in_account_serialize(
             account_id=account_id,
-            user_mutation=user_mutation,
+            user_creation=user_creation,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -197,7 +199,7 @@ class AccountsApi:
     def create_user_in_account_without_preload_content(
         self,
         account_id: StrictStr,
-        user_mutation: UserMutation,
+        user_creation: UserCreation,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -217,8 +219,8 @@ class AccountsApi:
 
         :param account_id: (required)
         :type account_id: str
-        :param user_mutation: (required)
-        :type user_mutation: UserMutation
+        :param user_creation: (required)
+        :type user_creation: UserCreation
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -243,7 +245,7 @@ class AccountsApi:
 
         _param = self._create_user_in_account_serialize(
             account_id=account_id,
-            user_mutation=user_mutation,
+            user_creation=user_creation,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -266,7 +268,7 @@ class AccountsApi:
     def _create_user_in_account_serialize(
         self,
         account_id,
-        user_mutation,
+        user_creation,
         _request_auth,
         _content_type,
         _headers,
@@ -282,7 +284,7 @@ class AccountsApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, str] = {}
+        _files: Dict[str, Union[str, bytes]] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
@@ -292,8 +294,8 @@ class AccountsApi:
         # process the header parameters
         # process the form parameters
         # process the body parameter
-        if user_mutation is not None:
-            _body_params = user_mutation
+        if user_creation is not None:
+            _body_params = user_creation
 
 
         # set the HTTP header `Accept`
@@ -558,7 +560,7 @@ class AccountsApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, str] = {}
+        _files: Dict[str, Union[str, bytes]] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
@@ -816,7 +818,7 @@ class AccountsApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, str] = {}
+        _files: Dict[str, Union[str, bytes]] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
@@ -1080,7 +1082,7 @@ class AccountsApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, str] = {}
+        _files: Dict[str, Union[str, bytes]] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
@@ -1338,7 +1340,7 @@ class AccountsApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, str] = {}
+        _files: Dict[str, Union[str, bytes]] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
@@ -1388,8 +1390,9 @@ class AccountsApi:
     def list_users_by_account_id(
         self,
         account_id: StrictStr,
-        filter_platform_roles: Annotated[Optional[StrictStr], Field(description="Filter based on platform roles, e.g. super_admin")] = None,
+        filter_platform_roles: Annotated[Optional[UserPlatformRole], Field(description="Filter based on platform roles, e.g. super_admin")] = None,
         filter_name_contains: Annotated[Optional[StrictStr], Field(description="Optional parameter used to search for users where the name contains a substring (case insensitive)")] = None,
+        sort: Annotated[Optional[UserSortOption], Field(description="Defines the field to sort the result items by. Ascending order is applied by default, but the minus character can be used to indicate descending order instead. ")] = None,
         page_size: Annotated[Optional[Annotated[int, Field(le=500, strict=True, ge=1)]], Field(description="The desired page size")] = None,
         page_after: Annotated[Optional[StrictStr], Field(description="Optional pagination parameter, indicating the previous cursor value to paginate beyond. The value to provide here is opaque, but can be found in previous requests in the `meta.page.last_cursor` field. ")] = None,
         _request_timeout: Union[
@@ -1411,9 +1414,11 @@ class AccountsApi:
         :param account_id: (required)
         :type account_id: str
         :param filter_platform_roles: Filter based on platform roles, e.g. super_admin
-        :type filter_platform_roles: str
+        :type filter_platform_roles: UserPlatformRole
         :param filter_name_contains: Optional parameter used to search for users where the name contains a substring (case insensitive)
         :type filter_name_contains: str
+        :param sort: Defines the field to sort the result items by. Ascending order is applied by default, but the minus character can be used to indicate descending order instead. 
+        :type sort: UserSortOption
         :param page_size: The desired page size
         :type page_size: int
         :param page_after: Optional pagination parameter, indicating the previous cursor value to paginate beyond. The value to provide here is opaque, but can be found in previous requests in the `meta.page.last_cursor` field. 
@@ -1444,6 +1449,7 @@ class AccountsApi:
             account_id=account_id,
             filter_platform_roles=filter_platform_roles,
             filter_name_contains=filter_name_contains,
+            sort=sort,
             page_size=page_size,
             page_after=page_after,
             _request_auth=_request_auth,
@@ -1472,8 +1478,9 @@ class AccountsApi:
     def list_users_by_account_id_with_http_info(
         self,
         account_id: StrictStr,
-        filter_platform_roles: Annotated[Optional[StrictStr], Field(description="Filter based on platform roles, e.g. super_admin")] = None,
+        filter_platform_roles: Annotated[Optional[UserPlatformRole], Field(description="Filter based on platform roles, e.g. super_admin")] = None,
         filter_name_contains: Annotated[Optional[StrictStr], Field(description="Optional parameter used to search for users where the name contains a substring (case insensitive)")] = None,
+        sort: Annotated[Optional[UserSortOption], Field(description="Defines the field to sort the result items by. Ascending order is applied by default, but the minus character can be used to indicate descending order instead. ")] = None,
         page_size: Annotated[Optional[Annotated[int, Field(le=500, strict=True, ge=1)]], Field(description="The desired page size")] = None,
         page_after: Annotated[Optional[StrictStr], Field(description="Optional pagination parameter, indicating the previous cursor value to paginate beyond. The value to provide here is opaque, but can be found in previous requests in the `meta.page.last_cursor` field. ")] = None,
         _request_timeout: Union[
@@ -1495,9 +1502,11 @@ class AccountsApi:
         :param account_id: (required)
         :type account_id: str
         :param filter_platform_roles: Filter based on platform roles, e.g. super_admin
-        :type filter_platform_roles: str
+        :type filter_platform_roles: UserPlatformRole
         :param filter_name_contains: Optional parameter used to search for users where the name contains a substring (case insensitive)
         :type filter_name_contains: str
+        :param sort: Defines the field to sort the result items by. Ascending order is applied by default, but the minus character can be used to indicate descending order instead. 
+        :type sort: UserSortOption
         :param page_size: The desired page size
         :type page_size: int
         :param page_after: Optional pagination parameter, indicating the previous cursor value to paginate beyond. The value to provide here is opaque, but can be found in previous requests in the `meta.page.last_cursor` field. 
@@ -1528,6 +1537,7 @@ class AccountsApi:
             account_id=account_id,
             filter_platform_roles=filter_platform_roles,
             filter_name_contains=filter_name_contains,
+            sort=sort,
             page_size=page_size,
             page_after=page_after,
             _request_auth=_request_auth,
@@ -1556,8 +1566,9 @@ class AccountsApi:
     def list_users_by_account_id_without_preload_content(
         self,
         account_id: StrictStr,
-        filter_platform_roles: Annotated[Optional[StrictStr], Field(description="Filter based on platform roles, e.g. super_admin")] = None,
+        filter_platform_roles: Annotated[Optional[UserPlatformRole], Field(description="Filter based on platform roles, e.g. super_admin")] = None,
         filter_name_contains: Annotated[Optional[StrictStr], Field(description="Optional parameter used to search for users where the name contains a substring (case insensitive)")] = None,
+        sort: Annotated[Optional[UserSortOption], Field(description="Defines the field to sort the result items by. Ascending order is applied by default, but the minus character can be used to indicate descending order instead. ")] = None,
         page_size: Annotated[Optional[Annotated[int, Field(le=500, strict=True, ge=1)]], Field(description="The desired page size")] = None,
         page_after: Annotated[Optional[StrictStr], Field(description="Optional pagination parameter, indicating the previous cursor value to paginate beyond. The value to provide here is opaque, but can be found in previous requests in the `meta.page.last_cursor` field. ")] = None,
         _request_timeout: Union[
@@ -1579,9 +1590,11 @@ class AccountsApi:
         :param account_id: (required)
         :type account_id: str
         :param filter_platform_roles: Filter based on platform roles, e.g. super_admin
-        :type filter_platform_roles: str
+        :type filter_platform_roles: UserPlatformRole
         :param filter_name_contains: Optional parameter used to search for users where the name contains a substring (case insensitive)
         :type filter_name_contains: str
+        :param sort: Defines the field to sort the result items by. Ascending order is applied by default, but the minus character can be used to indicate descending order instead. 
+        :type sort: UserSortOption
         :param page_size: The desired page size
         :type page_size: int
         :param page_after: Optional pagination parameter, indicating the previous cursor value to paginate beyond. The value to provide here is opaque, but can be found in previous requests in the `meta.page.last_cursor` field. 
@@ -1612,6 +1625,7 @@ class AccountsApi:
             account_id=account_id,
             filter_platform_roles=filter_platform_roles,
             filter_name_contains=filter_name_contains,
+            sort=sort,
             page_size=page_size,
             page_after=page_after,
             _request_auth=_request_auth,
@@ -1637,6 +1651,7 @@ class AccountsApi:
         account_id,
         filter_platform_roles,
         filter_name_contains,
+        sort,
         page_size,
         page_after,
         _request_auth,
@@ -1654,7 +1669,7 @@ class AccountsApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, str] = {}
+        _files: Dict[str, Union[str, bytes]] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
@@ -1663,11 +1678,15 @@ class AccountsApi:
         # process the query parameters
         if filter_platform_roles is not None:
             
-            _query_params.append(('filter[platform_roles]', filter_platform_roles))
+            _query_params.append(('filter[platform_roles]', filter_platform_roles.value))
             
         if filter_name_contains is not None:
             
             _query_params.append(('filter[name][contains]', filter_name_contains))
+            
+        if sort is not None:
+            
+            _query_params.append(('sort', sort.value))
             
         if page_size is not None:
             
@@ -1950,7 +1969,7 @@ class AccountsApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, str] = {}
+        _files: Dict[str, Union[str, bytes]] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
@@ -2239,7 +2258,7 @@ class AccountsApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, str] = {}
+        _files: Dict[str, Union[str, bytes]] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
