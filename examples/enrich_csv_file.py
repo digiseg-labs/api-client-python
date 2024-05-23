@@ -55,15 +55,15 @@ def enrichLines(lines: List[str], apiKey: str):
 def main():
     filename = " ".join(sys.argv[1:])
     if len(filename) < 2:
-        print("Usage: python examples/enrich_csv_file.py <filename>")
-        print("Example: python examples/enrich_csv_file.py input.csv > output.csv")
+        print("Usage: python examples/enrich_csv_file.py <filename>", file=sys.stderr)
+        print("Example: python examples/enrich_csv_file.py input.csv > output.csv", file=sys.stderr)
         exit(1)
     if not os.path.isfile(filename):
-        print(f"File '{filename}' does not exist")
+        print(f"File '{filename}' does not exist", file=sys.stderr)
         exit(1)
     apiKey = os.getenv("DIGISEG_API_KEY")
     if not apiKey:
-        print("Please provide a Digiseg API key in environment variable DIGISEG_API_KEY")
+        print("Please provide a Digiseg API key in environment variable DIGISEG_API_KEY", file=sys.stderr)
         exit(1)
 
     with open(filename, "r") as file:
