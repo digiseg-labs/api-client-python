@@ -34,6 +34,7 @@ def enrichLines(lines: List[str], apiKey: str):
     queries = map(lambda kv: {"id": f"{kv[0]}", "ip_address": kv[1]}, ips.items())
     configuration = digiseg_api.Configuration()
     configuration.api_key['apiKeyHeaderAuth'] = apiKey
+    api_client = digiseg_api.ApiClient(configuration)
     with digiseg_api.ApiClient(configuration) as api_client:
         audiencesApi = digiseg_api.AudiencesApi(api_client)
         response = audiencesApi.resolve_audiences_of_multiple({

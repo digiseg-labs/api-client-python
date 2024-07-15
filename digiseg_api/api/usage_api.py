@@ -3,7 +3,7 @@
 """
     Digiseg API
 
-    ### Digiseg API documentation  # Introduction  This API let you harness the power of Digisegs powerful and tracking-free segmentation engine.  Audiences by Digiseg are available in 50+ countries, probablistically mapping neighborhood characteristics to the IP addresses observed on the internet - Household targeting & measurement for the post-cookie world.  ## Developer SDKs  In addition to using these APIs directly through any HTTP client, we provide a set of API client SDKs for popular programming languages:  <div class=\"api-clients\">   <a class=\"api-client-box\" href=\"https://github.com/digiseg-labs/api-client-python\">     <i class=\"api-client-sdk-logo devicon-python-plain\"></i>     <p>API client for Python</p>   </a>   <a class=\"api-client-box\" href=\"https://github.com/digiseg-labs/api-client-go\">     <i class=\"api-client-sdk-logo devicon-go-original-wordmark\"></i>     <p>API client for Go</p>   </a> </div> <div class=\"api-clients-breaker\" />  ## Audience taxonomy  Digiseg audiences are grouped into private and business audiences. In each group there are categories that then contain the audiences. The API endpoints that communicate audiences and household characteristics, audience codes are being used.  The following table can be used as a reference for audience codes. Note that Digiseg will at times update names of audiences for purposes of internationalization, clarity or other such purposes - but the codes will remain as-is and should be considered a stable point of reference for the audience.  | Group | Category | Audience Code | Audience Name | |-------|----------|---------------|---------------| | private | home_type | a1 | Apartment | |  |  | a2 | House | |  | savings | b1 | No Savings | |  |  | b2 | Smaller Savings | |  |  | b3 | Larger Savings | |  | lifecycle | c1 | Young couples and singles | |  |  | c2 | Early family life | |  |  | c3 | Middle-aged families | |  |  | c4 | Mature families | |  |  | c5 | Pensioners | |  | cars | d1 | No cars | |  |  | d2 | 1 car | |  |  | d3 | 2 or more cars | |  | children | e1 | No children | |  |  | e2 | 1 child | |  |  | e3 | 2 or more children | |  | education | f1 | Basic | |  |  | f2 | Medium | |  |  | f3 | Higher | |  | neighbourhood_type | g1 | Countryside | |  |  | g2 | Village | |  |  | g3 | Suburban | |  |  | g4 | City | |  | income | h1 | Lowest 20% | |  |  | h2 | Lowest 20-40% | |  |  | h3 | Middle 40-60% | |  |  | h4 | Highest 60-80% | |  |  | h5 | Top 20% | |  | home_ownership | j1 | Rent | |  |  | j2 | Own | |  | building_age | k1 | Pre 1945 | |  |  | k2 | 1945-1989 | |  |  | k3 | 1990 until today | |  | living_space | l1 | Small | |  |  | l2 | Medium | |  |  | l3 | Large | |  | tech_level | n1 | Basic | |  |  | n2 | Medium | |  |  | n3 | High | | business | size | ba1 | Small Business | |  |  | ba2 | Medium Business | |  |  | ba3 | Larger Business |  There is also an interactive [Audience builder](https://digiseg.io/cookieless-audience-builder/) which lets you discover the targeting reach and power of combining various household characteristics into composite audiences. 
+    ### Digiseg API documentation  # Introduction  This API let you harness the power of Digisegs powerful and tracking-free segmentation engine.  Audiences by Digiseg are available in 50+ countries, probablistically mapping neighborhood characteristics to the IP addresses observed on the internet - Household targeting & measurement for the post-cookie world.  ## Developer SDKs  In addition to using these APIs directly through any HTTP client, we provide a set of API client SDKs for popular programming languages:  <div class=\"api-clients\">   <a class=\"api-client-box\" href=\"https://github.com/digiseg-labs/api-client-python\">     <i class=\"api-client-sdk-logo devicon-python-plain\"></i>     <p>API client for Python</p>   </a>   <a class=\"api-client-box\" href=\"https://github.com/digiseg-labs/api-client-ts\">     <i class=\"api-client-sdk-logo devicon-typescript-plain\"></i>     <p>API client for TypeScript</p>   </a>   <a class=\"api-client-box\" href=\"https://github.com/digiseg-labs/api-client-go\">     <i class=\"api-client-sdk-logo devicon-go-original-wordmark\"></i>     <p>API client for Go</p>   </a> </div> <div class=\"api-clients-breaker\" />  ## Audience taxonomy  Digiseg audiences are grouped into private and business audiences. In each group there are categories that then contain the audiences. The API endpoints that communicate audiences and household characteristics, audience codes are being used.  The following table can be used as a reference for audience codes. Note that Digiseg will at times update names of audiences for purposes of internationalization, clarity or other such purposes - but the codes will remain as-is and should be considered a stable point of reference for the audience.  | Group | Category | Audience Code | Audience Name | |-------|----------|---------------|---------------| | private | home_type | a1 | Apartment | |  |  | a2 | House | |  | savings | b1 | No Savings | |  |  | b2 | Smaller Savings | |  |  | b3 | Larger Savings | |  | lifecycle | c1 | Young couples and singles | |  |  | c2 | Early family life | |  |  | c3 | Middle-aged families | |  |  | c4 | Mature families | |  |  | c5 | Pensioners / Retirees | |  | cars | d1 | No cars | |  |  | d2 | 1 car | |  |  | d3 | 2 or more cars | |  | children | e1 | No children | |  |  | e2 | 1 child | |  |  | e3 | 2 or more children | |  | education | f1 | Basic | |  |  | f2 | Medium | |  |  | f3 | Higher | |  | neighbourhood_type | g1 | Countryside | |  |  | g2 | Village | |  |  | g3 | Suburban | |  |  | g4 | City | |  | income | h1 | Lowest 20% | |  |  | h2 | Lowest 20-40% | |  |  | h3 | Middle 40-60% | |  |  | h4 | Highest 60-80% | |  |  | h5 | Top 20% | |  | home_ownership | j1 | Rent | |  |  | j2 | Own | |  | building_age | k1 | Pre 1945 | |  |  | k2 | 1945-1989 | |  |  | k3 | 1990 until today | |  | living_space | l1 | Small | |  |  | l2 | Medium | |  |  | l3 | Large | |  | tech_level | n1 | Basic | |  |  | n2 | Medium | |  |  | n3 | High | | business | size | ba1 | Small Business | |  |  | ba2 | Medium Business | |  |  | ba3 | Larger Business |  There is also an interactive [Audience builder](https://digiseg.io/cookieless-audience-builder/) which lets you discover the targeting reach and power of combining various household characteristics into composite audiences. 
 
     The version of the OpenAPI document: 1.0.0
     Contact: support@digiseg.io
@@ -44,7 +44,7 @@ class UsageApi:
 
 
     @validate_call
-    async def list_audience_data_daily_usage(
+    def list_audience_data_daily_usage(
         self,
         filter_date_from: Annotated[Optional[date], Field(description="Date to query from")] = None,
         filter_date_to: Annotated[Optional[date], Field(description="Date to query to")] = None,
@@ -107,11 +107,11 @@ class UsageApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ListAudienceDataDailyUsage200Response",
         }
-        response_data = await self.api_client.call_api(
+        response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        await response_data.read()
+        response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -119,7 +119,7 @@ class UsageApi:
 
 
     @validate_call
-    async def list_audience_data_daily_usage_with_http_info(
+    def list_audience_data_daily_usage_with_http_info(
         self,
         filter_date_from: Annotated[Optional[date], Field(description="Date to query from")] = None,
         filter_date_to: Annotated[Optional[date], Field(description="Date to query to")] = None,
@@ -182,11 +182,11 @@ class UsageApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ListAudienceDataDailyUsage200Response",
         }
-        response_data = await self.api_client.call_api(
+        response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        await response_data.read()
+        response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -194,7 +194,7 @@ class UsageApi:
 
 
     @validate_call
-    async def list_audience_data_daily_usage_without_preload_content(
+    def list_audience_data_daily_usage_without_preload_content(
         self,
         filter_date_from: Annotated[Optional[date], Field(description="Date to query from")] = None,
         filter_date_to: Annotated[Optional[date], Field(description="Date to query to")] = None,
@@ -257,7 +257,7 @@ class UsageApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ListAudienceDataDailyUsage200Response",
         }
-        response_data = await self.api_client.call_api(
+        response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -359,7 +359,7 @@ class UsageApi:
 
 
     @validate_call
-    async def list_audience_data_monthly_usage(
+    def list_audience_data_monthly_usage(
         self,
         filter_year: Annotated[Optional[StrictInt], Field(description="Year to filter by")] = None,
         filter_account_id: Annotated[Optional[StrictStr], Field(description="Optional parameter used to query usage of specific account IDs (only available to super admins). ")] = None,
@@ -418,11 +418,11 @@ class UsageApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ListAudienceDataMonthlyUsage200Response",
         }
-        response_data = await self.api_client.call_api(
+        response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        await response_data.read()
+        response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -430,7 +430,7 @@ class UsageApi:
 
 
     @validate_call
-    async def list_audience_data_monthly_usage_with_http_info(
+    def list_audience_data_monthly_usage_with_http_info(
         self,
         filter_year: Annotated[Optional[StrictInt], Field(description="Year to filter by")] = None,
         filter_account_id: Annotated[Optional[StrictStr], Field(description="Optional parameter used to query usage of specific account IDs (only available to super admins). ")] = None,
@@ -489,11 +489,11 @@ class UsageApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ListAudienceDataMonthlyUsage200Response",
         }
-        response_data = await self.api_client.call_api(
+        response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        await response_data.read()
+        response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -501,7 +501,7 @@ class UsageApi:
 
 
     @validate_call
-    async def list_audience_data_monthly_usage_without_preload_content(
+    def list_audience_data_monthly_usage_without_preload_content(
         self,
         filter_year: Annotated[Optional[StrictInt], Field(description="Year to filter by")] = None,
         filter_account_id: Annotated[Optional[StrictStr], Field(description="Optional parameter used to query usage of specific account IDs (only available to super admins). ")] = None,
@@ -560,7 +560,7 @@ class UsageApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ListAudienceDataMonthlyUsage200Response",
         }
-        response_data = await self.api_client.call_api(
+        response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -639,7 +639,7 @@ class UsageApi:
 
 
     @validate_call
-    async def list_audience_data_realtime_usage(
+    def list_audience_data_realtime_usage(
         self,
         filter_account_id: Annotated[Optional[StrictStr], Field(description="Optional parameter used to query usage of specific account IDs (only available to super admins). ")] = None,
         _request_timeout: Union[
@@ -657,7 +657,7 @@ class UsageApi:
     ) -> ListAudienceDataRealtimeUsage200Response:
         """List realtime usage of Audience Data
 
-        Provides usage stats on a near-realtime basis. Results available for the last 24 hours, provided with as short delay as possible.
+        Provides usage stats on a near-realtime basis. Results available for the last 24 hours, provided with as short delay as possible. The results will be returned in usage objects, each representing 5 minutes of non-zero usage. 
 
         :param filter_account_id: Optional parameter used to query usage of specific account IDs (only available to super admins). 
         :type filter_account_id: str
@@ -694,11 +694,11 @@ class UsageApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ListAudienceDataRealtimeUsage200Response",
         }
-        response_data = await self.api_client.call_api(
+        response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        await response_data.read()
+        response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -706,7 +706,7 @@ class UsageApi:
 
 
     @validate_call
-    async def list_audience_data_realtime_usage_with_http_info(
+    def list_audience_data_realtime_usage_with_http_info(
         self,
         filter_account_id: Annotated[Optional[StrictStr], Field(description="Optional parameter used to query usage of specific account IDs (only available to super admins). ")] = None,
         _request_timeout: Union[
@@ -724,7 +724,7 @@ class UsageApi:
     ) -> ApiResponse[ListAudienceDataRealtimeUsage200Response]:
         """List realtime usage of Audience Data
 
-        Provides usage stats on a near-realtime basis. Results available for the last 24 hours, provided with as short delay as possible.
+        Provides usage stats on a near-realtime basis. Results available for the last 24 hours, provided with as short delay as possible. The results will be returned in usage objects, each representing 5 minutes of non-zero usage. 
 
         :param filter_account_id: Optional parameter used to query usage of specific account IDs (only available to super admins). 
         :type filter_account_id: str
@@ -761,11 +761,11 @@ class UsageApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ListAudienceDataRealtimeUsage200Response",
         }
-        response_data = await self.api_client.call_api(
+        response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        await response_data.read()
+        response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -773,7 +773,7 @@ class UsageApi:
 
 
     @validate_call
-    async def list_audience_data_realtime_usage_without_preload_content(
+    def list_audience_data_realtime_usage_without_preload_content(
         self,
         filter_account_id: Annotated[Optional[StrictStr], Field(description="Optional parameter used to query usage of specific account IDs (only available to super admins). ")] = None,
         _request_timeout: Union[
@@ -791,7 +791,7 @@ class UsageApi:
     ) -> RESTResponseType:
         """List realtime usage of Audience Data
 
-        Provides usage stats on a near-realtime basis. Results available for the last 24 hours, provided with as short delay as possible.
+        Provides usage stats on a near-realtime basis. Results available for the last 24 hours, provided with as short delay as possible. The results will be returned in usage objects, each representing 5 minutes of non-zero usage. 
 
         :param filter_account_id: Optional parameter used to query usage of specific account IDs (only available to super admins). 
         :type filter_account_id: str
@@ -828,7 +828,7 @@ class UsageApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ListAudienceDataRealtimeUsage200Response",
         }
-        response_data = await self.api_client.call_api(
+        response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )

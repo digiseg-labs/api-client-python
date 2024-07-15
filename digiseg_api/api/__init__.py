@@ -8,6 +8,7 @@ from digiseg_api.api.measurement_clients_api import MeasurementClientsApi
 from digiseg_api.api.measurement_labels_api import MeasurementLabelsApi
 from digiseg_api.api.populations_api import PopulationsApi
 from digiseg_api.api.studies_api import StudiesApi
+from digiseg_api.api.subscriptions_api import SubscriptionsApi
 from digiseg_api.api.usage_api import UsageApi
 from digiseg_api.api.users_api import UsersApi
 

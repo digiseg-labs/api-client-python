@@ -4,7 +4,7 @@
 """
     Digiseg API
 
-    ### Digiseg API documentation  # Introduction  This API let you harness the power of Digisegs powerful and tracking-free segmentation engine.  Audiences by Digiseg are available in 50+ countries, probablistically mapping neighborhood characteristics to the IP addresses observed on the internet - Household targeting & measurement for the post-cookie world.  ## Developer SDKs  In addition to using these APIs directly through any HTTP client, we provide a set of API client SDKs for popular programming languages:  <div class=\"api-clients\">   <a class=\"api-client-box\" href=\"https://github.com/digiseg-labs/api-client-python\">     <i class=\"api-client-sdk-logo devicon-python-plain\"></i>     <p>API client for Python</p>   </a>   <a class=\"api-client-box\" href=\"https://github.com/digiseg-labs/api-client-go\">     <i class=\"api-client-sdk-logo devicon-go-original-wordmark\"></i>     <p>API client for Go</p>   </a> </div> <div class=\"api-clients-breaker\" />  ## Audience taxonomy  Digiseg audiences are grouped into private and business audiences. In each group there are categories that then contain the audiences. The API endpoints that communicate audiences and household characteristics, audience codes are being used.  The following table can be used as a reference for audience codes. Note that Digiseg will at times update names of audiences for purposes of internationalization, clarity or other such purposes - but the codes will remain as-is and should be considered a stable point of reference for the audience.  | Group | Category | Audience Code | Audience Name | |-------|----------|---------------|---------------| | private | home_type | a1 | Apartment | |  |  | a2 | House | |  | savings | b1 | No Savings | |  |  | b2 | Smaller Savings | |  |  | b3 | Larger Savings | |  | lifecycle | c1 | Young couples and singles | |  |  | c2 | Early family life | |  |  | c3 | Middle-aged families | |  |  | c4 | Mature families | |  |  | c5 | Pensioners | |  | cars | d1 | No cars | |  |  | d2 | 1 car | |  |  | d3 | 2 or more cars | |  | children | e1 | No children | |  |  | e2 | 1 child | |  |  | e3 | 2 or more children | |  | education | f1 | Basic | |  |  | f2 | Medium | |  |  | f3 | Higher | |  | neighbourhood_type | g1 | Countryside | |  |  | g2 | Village | |  |  | g3 | Suburban | |  |  | g4 | City | |  | income | h1 | Lowest 20% | |  |  | h2 | Lowest 20-40% | |  |  | h3 | Middle 40-60% | |  |  | h4 | Highest 60-80% | |  |  | h5 | Top 20% | |  | home_ownership | j1 | Rent | |  |  | j2 | Own | |  | building_age | k1 | Pre 1945 | |  |  | k2 | 1945-1989 | |  |  | k3 | 1990 until today | |  | living_space | l1 | Small | |  |  | l2 | Medium | |  |  | l3 | Large | |  | tech_level | n1 | Basic | |  |  | n2 | Medium | |  |  | n3 | High | | business | size | ba1 | Small Business | |  |  | ba2 | Medium Business | |  |  | ba3 | Larger Business |  There is also an interactive [Audience builder](https://digiseg.io/cookieless-audience-builder/) which lets you discover the targeting reach and power of combining various household characteristics into composite audiences. 
+    ### Digiseg API documentation  # Introduction  This API let you harness the power of Digisegs powerful and tracking-free segmentation engine.  Audiences by Digiseg are available in 50+ countries, probablistically mapping neighborhood characteristics to the IP addresses observed on the internet - Household targeting & measurement for the post-cookie world.  ## Developer SDKs  In addition to using these APIs directly through any HTTP client, we provide a set of API client SDKs for popular programming languages:  <div class=\"api-clients\">   <a class=\"api-client-box\" href=\"https://github.com/digiseg-labs/api-client-python\">     <i class=\"api-client-sdk-logo devicon-python-plain\"></i>     <p>API client for Python</p>   </a>   <a class=\"api-client-box\" href=\"https://github.com/digiseg-labs/api-client-ts\">     <i class=\"api-client-sdk-logo devicon-typescript-plain\"></i>     <p>API client for TypeScript</p>   </a>   <a class=\"api-client-box\" href=\"https://github.com/digiseg-labs/api-client-go\">     <i class=\"api-client-sdk-logo devicon-go-original-wordmark\"></i>     <p>API client for Go</p>   </a> </div> <div class=\"api-clients-breaker\" />  ## Audience taxonomy  Digiseg audiences are grouped into private and business audiences. In each group there are categories that then contain the audiences. The API endpoints that communicate audiences and household characteristics, audience codes are being used.  The following table can be used as a reference for audience codes. Note that Digiseg will at times update names of audiences for purposes of internationalization, clarity or other such purposes - but the codes will remain as-is and should be considered a stable point of reference for the audience.  | Group | Category | Audience Code | Audience Name | |-------|----------|---------------|---------------| | private | home_type | a1 | Apartment | |  |  | a2 | House | |  | savings | b1 | No Savings | |  |  | b2 | Smaller Savings | |  |  | b3 | Larger Savings | |  | lifecycle | c1 | Young couples and singles | |  |  | c2 | Early family life | |  |  | c3 | Middle-aged families | |  |  | c4 | Mature families | |  |  | c5 | Pensioners / Retirees | |  | cars | d1 | No cars | |  |  | d2 | 1 car | |  |  | d3 | 2 or more cars | |  | children | e1 | No children | |  |  | e2 | 1 child | |  |  | e3 | 2 or more children | |  | education | f1 | Basic | |  |  | f2 | Medium | |  |  | f3 | Higher | |  | neighbourhood_type | g1 | Countryside | |  |  | g2 | Village | |  |  | g3 | Suburban | |  |  | g4 | City | |  | income | h1 | Lowest 20% | |  |  | h2 | Lowest 20-40% | |  |  | h3 | Middle 40-60% | |  |  | h4 | Highest 60-80% | |  |  | h5 | Top 20% | |  | home_ownership | j1 | Rent | |  |  | j2 | Own | |  | building_age | k1 | Pre 1945 | |  |  | k2 | 1945-1989 | |  |  | k3 | 1990 until today | |  | living_space | l1 | Small | |  |  | l2 | Medium | |  |  | l3 | Large | |  | tech_level | n1 | Basic | |  |  | n2 | Medium | |  |  | n3 | High | | business | size | ba1 | Small Business | |  |  | ba2 | Medium Business | |  |  | ba3 | Larger Business |  There is also an interactive [Audience builder](https://digiseg.io/cookieless-audience-builder/) which lets you discover the targeting reach and power of combining various household characteristics into composite audiences. 
 
     The version of the OpenAPI document: 1.0.0
     Contact: support@digiseg.io
@@ -21,11 +21,23 @@ from digiseg_api.models.account_base import AccountBase
 from digiseg_api.models.account_creation import AccountCreation
 from digiseg_api.models.account_creation_aux import AccountCreationAux
 from digiseg_api.models.account_full import AccountFull
+from digiseg_api.models.account_include_aux import AccountIncludeAux
+from digiseg_api.models.account_include_param import AccountIncludeParam
 from digiseg_api.models.account_item import AccountItem
 from digiseg_api.models.account_links import AccountLinks
 from digiseg_api.models.account_mutation import AccountMutation
 from digiseg_api.models.account_mutation_aux import AccountMutationAux
 from digiseg_api.models.account_owner_creation import AccountOwnerCreation
+from digiseg_api.models.account_sort_option import AccountSortOption
+from digiseg_api.models.account_stripe_billing_info import AccountStripeBillingInfo
+from digiseg_api.models.account_subscription_base import AccountSubscriptionBase
+from digiseg_api.models.account_subscription_creation import AccountSubscriptionCreation
+from digiseg_api.models.account_subscription_full import AccountSubscriptionFull
+from digiseg_api.models.account_subscription_full_aux import AccountSubscriptionFullAux
+from digiseg_api.models.account_subscription_item import AccountSubscriptionItem
+from digiseg_api.models.account_subscription_item_aux import AccountSubscriptionItemAux
+from digiseg_api.models.account_subscription_payment_configuration import AccountSubscriptionPaymentConfiguration
+from digiseg_api.models.account_subscriptions_summary import AccountSubscriptionsSummary
 from digiseg_api.models.api_key_aux import ApiKeyAux
 from digiseg_api.models.api_key_base import ApiKeyBase
 from digiseg_api.models.api_key_creation import ApiKeyCreation
@@ -47,6 +59,7 @@ from digiseg_api.models.audience_example_inputs_response import AudienceExampleI
 from digiseg_api.models.audience_response import AudienceResponse
 from digiseg_api.models.audience_response_status import AudienceResponseStatus
 from digiseg_api.models.audience_stats import AudienceStats
+from digiseg_api.models.audiences_include_param import AudiencesIncludeParam
 from digiseg_api.models.auth_token_request import AuthTokenRequest
 from digiseg_api.models.auth_token_response import AuthTokenResponse
 from digiseg_api.models.business_audience_stats import BusinessAudienceStats
@@ -66,11 +79,14 @@ from digiseg_api.models.day_of_week_stats import DayOfWeekStats
 from digiseg_api.models.error_response import ErrorResponse
 from digiseg_api.models.frequency_stats import FrequencyStats
 from digiseg_api.models.get_account_by_id200_response import GetAccountById200Response
+from digiseg_api.models.get_account_subscription_by_id200_response import GetAccountSubscriptionById200Response
+from digiseg_api.models.get_account_subscriptions200_response import GetAccountSubscriptions200Response
 from digiseg_api.models.get_api_key_by_id200_response import GetApiKeyById200Response
 from digiseg_api.models.get_popuplation_by_key200_response import GetPopuplationByKey200Response
 from digiseg_api.models.hour_of_day_stats import HourOfDayStats
 from digiseg_api.models.identifyable_object import IdentifyableObject
 from digiseg_api.models.identifyable_object1 import IdentifyableObject1
+from digiseg_api.models.limited_or_full_feature import LimitedOrFullFeature
 from digiseg_api.models.list_api_keys_by_account_id200_response import ListApiKeysByAccountId200Response
 from digiseg_api.models.list_audience_data_daily_usage200_response import ListAudienceDataDailyUsage200Response
 from digiseg_api.models.list_audience_data_monthly_usage200_response import ListAudienceDataMonthlyUsage200Response
@@ -82,6 +98,7 @@ from digiseg_api.models.list_pagination_meta import ListPaginationMeta
 from digiseg_api.models.list_pagination_meta_page import ListPaginationMetaPage
 from digiseg_api.models.list_popuplations200_response import ListPopuplations200Response
 from digiseg_api.models.list_studies200_response import ListStudies200Response
+from digiseg_api.models.list_subscription_plans200_response import ListSubscriptionPlans200Response
 from digiseg_api.models.list_users_by_account_id200_response import ListUsersByAccountId200Response
 from digiseg_api.models.measurement import Measurement
 from digiseg_api.models.measurement_client_base import MeasurementClientBase
@@ -96,6 +113,7 @@ from digiseg_api.models.measurement_integration_platform import MeasurementInteg
 from digiseg_api.models.measurements_container import MeasurementsContainer
 from digiseg_api.models.passwordless_auth_request import PasswordlessAuthRequest
 from digiseg_api.models.permission_scopes import PermissionScopes
+from digiseg_api.models.plan_feature_set import PlanFeatureSet
 from digiseg_api.models.population_audience_category_set_business_section import PopulationAudienceCategorySetBusinessSection
 from digiseg_api.models.population_audience_category_set_private_section import PopulationAudienceCategorySetPrivateSection
 from digiseg_api.models.population_audience_category_set_section import PopulationAudienceCategorySetSection
@@ -136,6 +154,8 @@ from digiseg_api.models.resolve_audiences_of_multiple_request import ResolveAudi
 from digiseg_api.models.resolve_audiences_of_multiple_request_item import ResolveAudiencesOfMultipleRequestItem
 from digiseg_api.models.resolve_audiences_of_multiple_response import ResolveAudiencesOfMultipleResponse
 from digiseg_api.models.resolve_audiences_of_multiple_response_item import ResolveAudiencesOfMultipleResponseItem
+from digiseg_api.models.stripe_account_subscription_checkout_session import StripeAccountSubscriptionCheckoutSession
+from digiseg_api.models.stripe_account_subscription_purchase_creation import StripeAccountSubscriptionPurchaseCreation
 from digiseg_api.models.study_audience_stats import StudyAudienceStats
 from digiseg_api.models.study_aux import StudyAux
 from digiseg_api.models.study_base import StudyBase
@@ -153,9 +173,20 @@ from digiseg_api.models.study_mutation import StudyMutation
 from digiseg_api.models.study_permissions import StudyPermissions
 from digiseg_api.models.study_summary_stats import StudySummaryStats
 from digiseg_api.models.study_timing_stats import StudyTimingStats
+from digiseg_api.models.subscription_plan_aux import SubscriptionPlanAux
+from digiseg_api.models.subscription_plan_base import SubscriptionPlanBase
+from digiseg_api.models.subscription_plan_full import SubscriptionPlanFull
+from digiseg_api.models.subscription_plan_item import SubscriptionPlanItem
+from digiseg_api.models.subscription_price import SubscriptionPrice
+from digiseg_api.models.subscription_price_currency import SubscriptionPriceCurrency
+from digiseg_api.models.subscription_price_interval import SubscriptionPriceInterval
+from digiseg_api.models.subscription_product_type import SubscriptionProductType
+from digiseg_api.models.tax_id import TaxId
 from digiseg_api.models.timestamped_object import TimestampedObject
 from digiseg_api.models.timestamped_object1 import TimestampedObject1
 from digiseg_api.models.user_account_membership import UserAccountMembership
+from digiseg_api.models.user_account_membership_base import UserAccountMembershipBase
+from digiseg_api.models.user_account_membership_include_aux import UserAccountMembershipIncludeAux
 from digiseg_api.models.user_account_role import UserAccountRole
 from digiseg_api.models.user_aux import UserAux
 from digiseg_api.models.user_base import UserBase
@@ -163,6 +194,7 @@ from digiseg_api.models.user_creation import UserCreation
 from digiseg_api.models.user_creation_notification import UserCreationNotification
 from digiseg_api.models.user_credentials import UserCredentials
 from digiseg_api.models.user_full import UserFull
+from digiseg_api.models.user_include_param import UserIncludeParam
 from digiseg_api.models.user_item import UserItem
 from digiseg_api.models.user_links import UserLinks
 from digiseg_api.models.user_mutation import UserMutation

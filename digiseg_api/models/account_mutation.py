@@ -3,7 +3,7 @@
 """
     Digiseg API
 
-    ### Digiseg API documentation  # Introduction  This API let you harness the power of Digisegs powerful and tracking-free segmentation engine.  Audiences by Digiseg are available in 50+ countries, probablistically mapping neighborhood characteristics to the IP addresses observed on the internet - Household targeting & measurement for the post-cookie world.  ## Developer SDKs  In addition to using these APIs directly through any HTTP client, we provide a set of API client SDKs for popular programming languages:  <div class=\"api-clients\">   <a class=\"api-client-box\" href=\"https://github.com/digiseg-labs/api-client-python\">     <i class=\"api-client-sdk-logo devicon-python-plain\"></i>     <p>API client for Python</p>   </a>   <a class=\"api-client-box\" href=\"https://github.com/digiseg-labs/api-client-go\">     <i class=\"api-client-sdk-logo devicon-go-original-wordmark\"></i>     <p>API client for Go</p>   </a> </div> <div class=\"api-clients-breaker\" />  ## Audience taxonomy  Digiseg audiences are grouped into private and business audiences. In each group there are categories that then contain the audiences. The API endpoints that communicate audiences and household characteristics, audience codes are being used.  The following table can be used as a reference for audience codes. Note that Digiseg will at times update names of audiences for purposes of internationalization, clarity or other such purposes - but the codes will remain as-is and should be considered a stable point of reference for the audience.  | Group | Category | Audience Code | Audience Name | |-------|----------|---------------|---------------| | private | home_type | a1 | Apartment | |  |  | a2 | House | |  | savings | b1 | No Savings | |  |  | b2 | Smaller Savings | |  |  | b3 | Larger Savings | |  | lifecycle | c1 | Young couples and singles | |  |  | c2 | Early family life | |  |  | c3 | Middle-aged families | |  |  | c4 | Mature families | |  |  | c5 | Pensioners | |  | cars | d1 | No cars | |  |  | d2 | 1 car | |  |  | d3 | 2 or more cars | |  | children | e1 | No children | |  |  | e2 | 1 child | |  |  | e3 | 2 or more children | |  | education | f1 | Basic | |  |  | f2 | Medium | |  |  | f3 | Higher | |  | neighbourhood_type | g1 | Countryside | |  |  | g2 | Village | |  |  | g3 | Suburban | |  |  | g4 | City | |  | income | h1 | Lowest 20% | |  |  | h2 | Lowest 20-40% | |  |  | h3 | Middle 40-60% | |  |  | h4 | Highest 60-80% | |  |  | h5 | Top 20% | |  | home_ownership | j1 | Rent | |  |  | j2 | Own | |  | building_age | k1 | Pre 1945 | |  |  | k2 | 1945-1989 | |  |  | k3 | 1990 until today | |  | living_space | l1 | Small | |  |  | l2 | Medium | |  |  | l3 | Large | |  | tech_level | n1 | Basic | |  |  | n2 | Medium | |  |  | n3 | High | | business | size | ba1 | Small Business | |  |  | ba2 | Medium Business | |  |  | ba3 | Larger Business |  There is also an interactive [Audience builder](https://digiseg.io/cookieless-audience-builder/) which lets you discover the targeting reach and power of combining various household characteristics into composite audiences. 
+    ### Digiseg API documentation  # Introduction  This API let you harness the power of Digisegs powerful and tracking-free segmentation engine.  Audiences by Digiseg are available in 50+ countries, probablistically mapping neighborhood characteristics to the IP addresses observed on the internet - Household targeting & measurement for the post-cookie world.  ## Developer SDKs  In addition to using these APIs directly through any HTTP client, we provide a set of API client SDKs for popular programming languages:  <div class=\"api-clients\">   <a class=\"api-client-box\" href=\"https://github.com/digiseg-labs/api-client-python\">     <i class=\"api-client-sdk-logo devicon-python-plain\"></i>     <p>API client for Python</p>   </a>   <a class=\"api-client-box\" href=\"https://github.com/digiseg-labs/api-client-ts\">     <i class=\"api-client-sdk-logo devicon-typescript-plain\"></i>     <p>API client for TypeScript</p>   </a>   <a class=\"api-client-box\" href=\"https://github.com/digiseg-labs/api-client-go\">     <i class=\"api-client-sdk-logo devicon-go-original-wordmark\"></i>     <p>API client for Go</p>   </a> </div> <div class=\"api-clients-breaker\" />  ## Audience taxonomy  Digiseg audiences are grouped into private and business audiences. In each group there are categories that then contain the audiences. The API endpoints that communicate audiences and household characteristics, audience codes are being used.  The following table can be used as a reference for audience codes. Note that Digiseg will at times update names of audiences for purposes of internationalization, clarity or other such purposes - but the codes will remain as-is and should be considered a stable point of reference for the audience.  | Group | Category | Audience Code | Audience Name | |-------|----------|---------------|---------------| | private | home_type | a1 | Apartment | |  |  | a2 | House | |  | savings | b1 | No Savings | |  |  | b2 | Smaller Savings | |  |  | b3 | Larger Savings | |  | lifecycle | c1 | Young couples and singles | |  |  | c2 | Early family life | |  |  | c3 | Middle-aged families | |  |  | c4 | Mature families | |  |  | c5 | Pensioners / Retirees | |  | cars | d1 | No cars | |  |  | d2 | 1 car | |  |  | d3 | 2 or more cars | |  | children | e1 | No children | |  |  | e2 | 1 child | |  |  | e3 | 2 or more children | |  | education | f1 | Basic | |  |  | f2 | Medium | |  |  | f3 | Higher | |  | neighbourhood_type | g1 | Countryside | |  |  | g2 | Village | |  |  | g3 | Suburban | |  |  | g4 | City | |  | income | h1 | Lowest 20% | |  |  | h2 | Lowest 20-40% | |  |  | h3 | Middle 40-60% | |  |  | h4 | Highest 60-80% | |  |  | h5 | Top 20% | |  | home_ownership | j1 | Rent | |  |  | j2 | Own | |  | building_age | k1 | Pre 1945 | |  |  | k2 | 1945-1989 | |  |  | k3 | 1990 until today | |  | living_space | l1 | Small | |  |  | l2 | Medium | |  |  | l3 | Large | |  | tech_level | n1 | Basic | |  |  | n2 | Medium | |  |  | n3 | High | | business | size | ba1 | Small Business | |  |  | ba2 | Medium Business | |  |  | ba3 | Larger Business |  There is also an interactive [Audience builder](https://digiseg.io/cookieless-audience-builder/) which lets you discover the targeting reach and power of combining various household characteristics into composite audiences. 
 
     The version of the OpenAPI document: 1.0.0
     Contact: support@digiseg.io
@@ -24,6 +24,8 @@ from typing_extensions import Annotated
 from digiseg_api.models.company_size import CompanySize
 from digiseg_api.models.company_type import CompanyType
 from digiseg_api.models.postal_address import PostalAddress
+from digiseg_api.models.subscription_price_currency import SubscriptionPriceCurrency
+from digiseg_api.models.tax_id import TaxId
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -42,7 +44,11 @@ class AccountMutation(BaseModel):
     owner_id: Optional[StrictStr] = Field(default=None, description="ID of the user who is the ultimate owner of the account. Deprecated in favor of the `owner` role of the user's account membership.")
     billing_email: Optional[StrictStr] = Field(default=None, description="The email address to send billing information to. Requires `owner` role to change.")
     billing_address: Optional[PostalAddress] = None
-    __properties: ClassVar[List[str]] = ["name", "logo_url", "website_url", "billing_country", "company_type", "company_size", "has_clients", "slug", "owner_id", "billing_email", "billing_address"]
+    billing_tax_ids: Optional[List[TaxId]] = Field(default=None, description="A list of Tax IDs used by the account, for billing purposes.")
+    billing_currency: Optional[SubscriptionPriceCurrency] = None
+    billing_name: Optional[StrictStr] = Field(default=None, description="An optional official name to use for billing purposes. Requires `owner` role to change.")
+    stripe_customer_id: Optional[StrictStr] = None
+    __properties: ClassVar[List[str]] = ["name", "logo_url", "website_url", "billing_country", "company_type", "company_size", "has_clients", "slug", "owner_id", "billing_email", "billing_address", "billing_tax_ids", "billing_currency", "billing_name", "stripe_customer_id"]
 
     @field_validator('slug')
     def slug_validate_regular_expression(cls, value):
@@ -84,8 +90,12 @@ class AccountMutation(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
+            "billing_tax_ids",
+            "stripe_customer_id",
         ])
 
         _dict = self.model_dump(
@@ -96,6 +106,13 @@ class AccountMutation(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of billing_address
         if self.billing_address:
             _dict['billing_address'] = self.billing_address.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of each item in billing_tax_ids (list)
+        _items = []
+        if self.billing_tax_ids:
+            for _item in self.billing_tax_ids:
+                if _item:
+                    _items.append(_item.to_dict())
+            _dict['billing_tax_ids'] = _items
         return _dict
 
     @classmethod
@@ -118,7 +135,11 @@ class AccountMutation(BaseModel):
             "slug": obj.get("slug"),
             "owner_id": obj.get("owner_id"),
             "billing_email": obj.get("billing_email"),
-            "billing_address": PostalAddress.from_dict(obj["billing_address"]) if obj.get("billing_address") is not None else None
+            "billing_address": PostalAddress.from_dict(obj["billing_address"]) if obj.get("billing_address") is not None else None,
+            "billing_tax_ids": [TaxId.from_dict(_item) for _item in obj["billing_tax_ids"]] if obj.get("billing_tax_ids") is not None else None,
+            "billing_currency": obj.get("billing_currency"),
+            "billing_name": obj.get("billing_name"),
+            "stripe_customer_id": obj.get("stripe_customer_id")
         })
         return _obj
 

@@ -3,7 +3,7 @@
 """
     Digiseg API
 
-    ### Digiseg API documentation  # Introduction  This API let you harness the power of Digisegs powerful and tracking-free segmentation engine.  Audiences by Digiseg are available in 50+ countries, probablistically mapping neighborhood characteristics to the IP addresses observed on the internet - Household targeting & measurement for the post-cookie world.  ## Developer SDKs  In addition to using these APIs directly through any HTTP client, we provide a set of API client SDKs for popular programming languages:  <div class=\"api-clients\">   <a class=\"api-client-box\" href=\"https://github.com/digiseg-labs/api-client-python\">     <i class=\"api-client-sdk-logo devicon-python-plain\"></i>     <p>API client for Python</p>   </a>   <a class=\"api-client-box\" href=\"https://github.com/digiseg-labs/api-client-go\">     <i class=\"api-client-sdk-logo devicon-go-original-wordmark\"></i>     <p>API client for Go</p>   </a> </div> <div class=\"api-clients-breaker\" />  ## Audience taxonomy  Digiseg audiences are grouped into private and business audiences. In each group there are categories that then contain the audiences. The API endpoints that communicate audiences and household characteristics, audience codes are being used.  The following table can be used as a reference for audience codes. Note that Digiseg will at times update names of audiences for purposes of internationalization, clarity or other such purposes - but the codes will remain as-is and should be considered a stable point of reference for the audience.  | Group | Category | Audience Code | Audience Name | |-------|----------|---------------|---------------| | private | home_type | a1 | Apartment | |  |  | a2 | House | |  | savings | b1 | No Savings | |  |  | b2 | Smaller Savings | |  |  | b3 | Larger Savings | |  | lifecycle | c1 | Young couples and singles | |  |  | c2 | Early family life | |  |  | c3 | Middle-aged families | |  |  | c4 | Mature families | |  |  | c5 | Pensioners | |  | cars | d1 | No cars | |  |  | d2 | 1 car | |  |  | d3 | 2 or more cars | |  | children | e1 | No children | |  |  | e2 | 1 child | |  |  | e3 | 2 or more children | |  | education | f1 | Basic | |  |  | f2 | Medium | |  |  | f3 | Higher | |  | neighbourhood_type | g1 | Countryside | |  |  | g2 | Village | |  |  | g3 | Suburban | |  |  | g4 | City | |  | income | h1 | Lowest 20% | |  |  | h2 | Lowest 20-40% | |  |  | h3 | Middle 40-60% | |  |  | h4 | Highest 60-80% | |  |  | h5 | Top 20% | |  | home_ownership | j1 | Rent | |  |  | j2 | Own | |  | building_age | k1 | Pre 1945 | |  |  | k2 | 1945-1989 | |  |  | k3 | 1990 until today | |  | living_space | l1 | Small | |  |  | l2 | Medium | |  |  | l3 | Large | |  | tech_level | n1 | Basic | |  |  | n2 | Medium | |  |  | n3 | High | | business | size | ba1 | Small Business | |  |  | ba2 | Medium Business | |  |  | ba3 | Larger Business |  There is also an interactive [Audience builder](https://digiseg.io/cookieless-audience-builder/) which lets you discover the targeting reach and power of combining various household characteristics into composite audiences. 
+    ### Digiseg API documentation  # Introduction  This API let you harness the power of Digisegs powerful and tracking-free segmentation engine.  Audiences by Digiseg are available in 50+ countries, probablistically mapping neighborhood characteristics to the IP addresses observed on the internet - Household targeting & measurement for the post-cookie world.  ## Developer SDKs  In addition to using these APIs directly through any HTTP client, we provide a set of API client SDKs for popular programming languages:  <div class=\"api-clients\">   <a class=\"api-client-box\" href=\"https://github.com/digiseg-labs/api-client-python\">     <i class=\"api-client-sdk-logo devicon-python-plain\"></i>     <p>API client for Python</p>   </a>   <a class=\"api-client-box\" href=\"https://github.com/digiseg-labs/api-client-ts\">     <i class=\"api-client-sdk-logo devicon-typescript-plain\"></i>     <p>API client for TypeScript</p>   </a>   <a class=\"api-client-box\" href=\"https://github.com/digiseg-labs/api-client-go\">     <i class=\"api-client-sdk-logo devicon-go-original-wordmark\"></i>     <p>API client for Go</p>   </a> </div> <div class=\"api-clients-breaker\" />  ## Audience taxonomy  Digiseg audiences are grouped into private and business audiences. In each group there are categories that then contain the audiences. The API endpoints that communicate audiences and household characteristics, audience codes are being used.  The following table can be used as a reference for audience codes. Note that Digiseg will at times update names of audiences for purposes of internationalization, clarity or other such purposes - but the codes will remain as-is and should be considered a stable point of reference for the audience.  | Group | Category | Audience Code | Audience Name | |-------|----------|---------------|---------------| | private | home_type | a1 | Apartment | |  |  | a2 | House | |  | savings | b1 | No Savings | |  |  | b2 | Smaller Savings | |  |  | b3 | Larger Savings | |  | lifecycle | c1 | Young couples and singles | |  |  | c2 | Early family life | |  |  | c3 | Middle-aged families | |  |  | c4 | Mature families | |  |  | c5 | Pensioners / Retirees | |  | cars | d1 | No cars | |  |  | d2 | 1 car | |  |  | d3 | 2 or more cars | |  | children | e1 | No children | |  |  | e2 | 1 child | |  |  | e3 | 2 or more children | |  | education | f1 | Basic | |  |  | f2 | Medium | |  |  | f3 | Higher | |  | neighbourhood_type | g1 | Countryside | |  |  | g2 | Village | |  |  | g3 | Suburban | |  |  | g4 | City | |  | income | h1 | Lowest 20% | |  |  | h2 | Lowest 20-40% | |  |  | h3 | Middle 40-60% | |  |  | h4 | Highest 60-80% | |  |  | h5 | Top 20% | |  | home_ownership | j1 | Rent | |  |  | j2 | Own | |  | building_age | k1 | Pre 1945 | |  |  | k2 | 1945-1989 | |  |  | k3 | 1990 until today | |  | living_space | l1 | Small | |  |  | l2 | Medium | |  |  | l3 | Large | |  | tech_level | n1 | Basic | |  |  | n2 | Medium | |  |  | n3 | High | | business | size | ba1 | Small Business | |  |  | ba2 | Medium Business | |  |  | ba3 | Larger Business |  There is also an interactive [Audience builder](https://digiseg.io/cookieless-audience-builder/) which lets you discover the targeting reach and power of combining various household characteristics into composite audiences. 
 
     The version of the OpenAPI document: 1.0.0
     Contact: support@digiseg.io
@@ -18,9 +18,10 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
 from pydantic import Field, StrictStr, field_validator
-from typing import Optional
+from typing import List, Optional
 from typing_extensions import Annotated
 from digiseg_api.models.audience_response import AudienceResponse
+from digiseg_api.models.audiences_include_param import AudiencesIncludeParam
 from digiseg_api.models.resolve_audiences_of_multiple_request import ResolveAudiencesOfMultipleRequest
 from digiseg_api.models.resolve_audiences_of_multiple_response import ResolveAudiencesOfMultipleResponse
 
@@ -43,9 +44,9 @@ class AudiencesApi:
 
 
     @validate_call
-    async def resolve_audiences_of_client(
+    def resolve_audiences_of_client(
         self,
-        include: Annotated[Optional[StrictStr], Field(description="Optional parameter used to specify which audience information to be returned. The value is comprised of comma-separated values, each indicating a set of audiences:    * `core` represents the core audiences that are directly linked to household characteristics   * `composite` represents the composite audiences, used to model likely behaviours or buying     needs associated with the household characteristics.   * `name` and `category` refer to the fields of the same names in the returned Audience     objects. There is a slight performance gain in leaving these out when they are not needed. ")] = None,
+        include: Annotated[Optional[List[AudiencesIncludeParam]], Field(description="Optional parameter used to specify which audience information to be returned. The value is comprised of comma-separated values, each indicating a set of audiences:    * `core` represents the core audiences that are directly linked to household characteristics   * `composite` represents the composite audiences, used to model likely behaviours or buying     needs associated with the household characteristics.   * `name` and `category` refer to the fields of the same names in the returned Audience     objects. There is a slight performance gain in leaving these out when they are not needed. ")] = None,
         type: Annotated[Optional[Annotated[str, Field(strict=True)]], Field(description="Optional parameter to set to `jsonp` if a JSONP response format is needed.")] = None,
         _request_timeout: Union[
             None,
@@ -64,7 +65,7 @@ class AudiencesApi:
 
 
         :param include: Optional parameter used to specify which audience information to be returned. The value is comprised of comma-separated values, each indicating a set of audiences:    * `core` represents the core audiences that are directly linked to household characteristics   * `composite` represents the composite audiences, used to model likely behaviours or buying     needs associated with the household characteristics.   * `name` and `category` refer to the fields of the same names in the returned Audience     objects. There is a slight performance gain in leaving these out when they are not needed. 
-        :type include: str
+        :type include: List[AudiencesIncludeParam]
         :param type: Optional parameter to set to `jsonp` if a JSONP response format is needed.
         :type type: str
         :param _request_timeout: timeout setting for this request. If one
@@ -103,11 +104,11 @@ class AudiencesApi:
             '400': "ErrorResponse",
             '500': "ErrorResponse",
         }
-        response_data = await self.api_client.call_api(
+        response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        await response_data.read()
+        response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -115,9 +116,9 @@ class AudiencesApi:
 
 
     @validate_call
-    async def resolve_audiences_of_client_with_http_info(
+    def resolve_audiences_of_client_with_http_info(
         self,
-        include: Annotated[Optional[StrictStr], Field(description="Optional parameter used to specify which audience information to be returned. The value is comprised of comma-separated values, each indicating a set of audiences:    * `core` represents the core audiences that are directly linked to household characteristics   * `composite` represents the composite audiences, used to model likely behaviours or buying     needs associated with the household characteristics.   * `name` and `category` refer to the fields of the same names in the returned Audience     objects. There is a slight performance gain in leaving these out when they are not needed. ")] = None,
+        include: Annotated[Optional[List[AudiencesIncludeParam]], Field(description="Optional parameter used to specify which audience information to be returned. The value is comprised of comma-separated values, each indicating a set of audiences:    * `core` represents the core audiences that are directly linked to household characteristics   * `composite` represents the composite audiences, used to model likely behaviours or buying     needs associated with the household characteristics.   * `name` and `category` refer to the fields of the same names in the returned Audience     objects. There is a slight performance gain in leaving these out when they are not needed. ")] = None,
         type: Annotated[Optional[Annotated[str, Field(strict=True)]], Field(description="Optional parameter to set to `jsonp` if a JSONP response format is needed.")] = None,
         _request_timeout: Union[
             None,
@@ -136,7 +137,7 @@ class AudiencesApi:
 
 
         :param include: Optional parameter used to specify which audience information to be returned. The value is comprised of comma-separated values, each indicating a set of audiences:    * `core` represents the core audiences that are directly linked to household characteristics   * `composite` represents the composite audiences, used to model likely behaviours or buying     needs associated with the household characteristics.   * `name` and `category` refer to the fields of the same names in the returned Audience     objects. There is a slight performance gain in leaving these out when they are not needed. 
-        :type include: str
+        :type include: List[AudiencesIncludeParam]
         :param type: Optional parameter to set to `jsonp` if a JSONP response format is needed.
         :type type: str
         :param _request_timeout: timeout setting for this request. If one
@@ -175,11 +176,11 @@ class AudiencesApi:
             '400': "ErrorResponse",
             '500': "ErrorResponse",
         }
-        response_data = await self.api_client.call_api(
+        response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        await response_data.read()
+        response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -187,9 +188,9 @@ class AudiencesApi:
 
 
     @validate_call
-    async def resolve_audiences_of_client_without_preload_content(
+    def resolve_audiences_of_client_without_preload_content(
         self,
-        include: Annotated[Optional[StrictStr], Field(description="Optional parameter used to specify which audience information to be returned. The value is comprised of comma-separated values, each indicating a set of audiences:    * `core` represents the core audiences that are directly linked to household characteristics   * `composite` represents the composite audiences, used to model likely behaviours or buying     needs associated with the household characteristics.   * `name` and `category` refer to the fields of the same names in the returned Audience     objects. There is a slight performance gain in leaving these out when they are not needed. ")] = None,
+        include: Annotated[Optional[List[AudiencesIncludeParam]], Field(description="Optional parameter used to specify which audience information to be returned. The value is comprised of comma-separated values, each indicating a set of audiences:    * `core` represents the core audiences that are directly linked to household characteristics   * `composite` represents the composite audiences, used to model likely behaviours or buying     needs associated with the household characteristics.   * `name` and `category` refer to the fields of the same names in the returned Audience     objects. There is a slight performance gain in leaving these out when they are not needed. ")] = None,
         type: Annotated[Optional[Annotated[str, Field(strict=True)]], Field(description="Optional parameter to set to `jsonp` if a JSONP response format is needed.")] = None,
         _request_timeout: Union[
             None,
@@ -208,7 +209,7 @@ class AudiencesApi:
 
 
         :param include: Optional parameter used to specify which audience information to be returned. The value is comprised of comma-separated values, each indicating a set of audiences:    * `core` represents the core audiences that are directly linked to household characteristics   * `composite` represents the composite audiences, used to model likely behaviours or buying     needs associated with the household characteristics.   * `name` and `category` refer to the fields of the same names in the returned Audience     objects. There is a slight performance gain in leaving these out when they are not needed. 
-        :type include: str
+        :type include: List[AudiencesIncludeParam]
         :param type: Optional parameter to set to `jsonp` if a JSONP response format is needed.
         :type type: str
         :param _request_timeout: timeout setting for this request. If one
@@ -247,7 +248,7 @@ class AudiencesApi:
             '400': "ErrorResponse",
             '500': "ErrorResponse",
         }
-        response_data = await self.api_client.call_api(
+        response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -267,6 +268,7 @@ class AudiencesApi:
         _host = None
 
         _collection_formats: Dict[str, str] = {
+            'include': 'csv',
         }
 
         _path_params: Dict[str, str] = {}
@@ -326,10 +328,10 @@ class AudiencesApi:
 
 
     @validate_call
-    async def resolve_audiences_of_multiple(
+    def resolve_audiences_of_multiple(
         self,
         resolve_audiences_of_multiple_request: ResolveAudiencesOfMultipleRequest,
-        include: Annotated[Optional[StrictStr], Field(description="Optional parameter used to specify which audience information to be returned. The value is comprised of comma-separated values, each indicating a set of audiences:    * `core` represents the core audiences that are directly linked to household characteristics   * `composite` represents the composite audiences, used to model likely behaviours or buying     needs associated with the household characteristics.   * `name` and `category` refer to the fields of the same names in the returned Audience     objects. There is a slight performance gain in leaving these out when they are not needed. ")] = None,
+        include: Annotated[Optional[List[AudiencesIncludeParam]], Field(description="Optional parameter used to specify which audience information to be returned. The value is comprised of comma-separated values, each indicating a set of audiences:    * `core` represents the core audiences that are directly linked to household characteristics   * `composite` represents the composite audiences, used to model likely behaviours or buying     needs associated with the household characteristics.   * `name` and `category` refer to the fields of the same names in the returned Audience     objects. There is a slight performance gain in leaving these out when they are not needed. ")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -349,7 +351,7 @@ class AudiencesApi:
         :param resolve_audiences_of_multiple_request: (required)
         :type resolve_audiences_of_multiple_request: ResolveAudiencesOfMultipleRequest
         :param include: Optional parameter used to specify which audience information to be returned. The value is comprised of comma-separated values, each indicating a set of audiences:    * `core` represents the core audiences that are directly linked to household characteristics   * `composite` represents the composite audiences, used to model likely behaviours or buying     needs associated with the household characteristics.   * `name` and `category` refer to the fields of the same names in the returned Audience     objects. There is a slight performance gain in leaving these out when they are not needed. 
-        :type include: str
+        :type include: List[AudiencesIncludeParam]
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -386,11 +388,11 @@ class AudiencesApi:
             '400': "ErrorResponse",
             '500': "ErrorResponse",
         }
-        response_data = await self.api_client.call_api(
+        response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        await response_data.read()
+        response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -398,10 +400,10 @@ class AudiencesApi:
 
 
     @validate_call
-    async def resolve_audiences_of_multiple_with_http_info(
+    def resolve_audiences_of_multiple_with_http_info(
         self,
         resolve_audiences_of_multiple_request: ResolveAudiencesOfMultipleRequest,
-        include: Annotated[Optional[StrictStr], Field(description="Optional parameter used to specify which audience information to be returned. The value is comprised of comma-separated values, each indicating a set of audiences:    * `core` represents the core audiences that are directly linked to household characteristics   * `composite` represents the composite audiences, used to model likely behaviours or buying     needs associated with the household characteristics.   * `name` and `category` refer to the fields of the same names in the returned Audience     objects. There is a slight performance gain in leaving these out when they are not needed. ")] = None,
+        include: Annotated[Optional[List[AudiencesIncludeParam]], Field(description="Optional parameter used to specify which audience information to be returned. The value is comprised of comma-separated values, each indicating a set of audiences:    * `core` represents the core audiences that are directly linked to household characteristics   * `composite` represents the composite audiences, used to model likely behaviours or buying     needs associated with the household characteristics.   * `name` and `category` refer to the fields of the same names in the returned Audience     objects. There is a slight performance gain in leaving these out when they are not needed. ")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -421,7 +423,7 @@ class AudiencesApi:
         :param resolve_audiences_of_multiple_request: (required)
         :type resolve_audiences_of_multiple_request: ResolveAudiencesOfMultipleRequest
         :param include: Optional parameter used to specify which audience information to be returned. The value is comprised of comma-separated values, each indicating a set of audiences:    * `core` represents the core audiences that are directly linked to household characteristics   * `composite` represents the composite audiences, used to model likely behaviours or buying     needs associated with the household characteristics.   * `name` and `category` refer to the fields of the same names in the returned Audience     objects. There is a slight performance gain in leaving these out when they are not needed. 
-        :type include: str
+        :type include: List[AudiencesIncludeParam]
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -458,11 +460,11 @@ class AudiencesApi:
             '400': "ErrorResponse",
             '500': "ErrorResponse",
         }
-        response_data = await self.api_client.call_api(
+        response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        await response_data.read()
+        response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -470,10 +472,10 @@ class AudiencesApi:
 
 
     @validate_call
-    async def resolve_audiences_of_multiple_without_preload_content(
+    def resolve_audiences_of_multiple_without_preload_content(
         self,
         resolve_audiences_of_multiple_request: ResolveAudiencesOfMultipleRequest,
-        include: Annotated[Optional[StrictStr], Field(description="Optional parameter used to specify which audience information to be returned. The value is comprised of comma-separated values, each indicating a set of audiences:    * `core` represents the core audiences that are directly linked to household characteristics   * `composite` represents the composite audiences, used to model likely behaviours or buying     needs associated with the household characteristics.   * `name` and `category` refer to the fields of the same names in the returned Audience     objects. There is a slight performance gain in leaving these out when they are not needed. ")] = None,
+        include: Annotated[Optional[List[AudiencesIncludeParam]], Field(description="Optional parameter used to specify which audience information to be returned. The value is comprised of comma-separated values, each indicating a set of audiences:    * `core` represents the core audiences that are directly linked to household characteristics   * `composite` represents the composite audiences, used to model likely behaviours or buying     needs associated with the household characteristics.   * `name` and `category` refer to the fields of the same names in the returned Audience     objects. There is a slight performance gain in leaving these out when they are not needed. ")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -493,7 +495,7 @@ class AudiencesApi:
         :param resolve_audiences_of_multiple_request: (required)
         :type resolve_audiences_of_multiple_request: ResolveAudiencesOfMultipleRequest
         :param include: Optional parameter used to specify which audience information to be returned. The value is comprised of comma-separated values, each indicating a set of audiences:    * `core` represents the core audiences that are directly linked to household characteristics   * `composite` represents the composite audiences, used to model likely behaviours or buying     needs associated with the household characteristics.   * `name` and `category` refer to the fields of the same names in the returned Audience     objects. There is a slight performance gain in leaving these out when they are not needed. 
-        :type include: str
+        :type include: List[AudiencesIncludeParam]
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -530,7 +532,7 @@ class AudiencesApi:
             '400': "ErrorResponse",
             '500': "ErrorResponse",
         }
-        response_data = await self.api_client.call_api(
+        response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -550,6 +552,7 @@ class AudiencesApi:
         _host = None
 
         _collection_formats: Dict[str, str] = {
+            'include': 'csv',
         }
 
         _path_params: Dict[str, str] = {}
@@ -620,10 +623,10 @@ class AudiencesApi:
 
 
     @validate_call
-    async def resolve_audiences_of_single(
+    def resolve_audiences_of_single(
         self,
         user_ip: Annotated[StrictStr, Field(description="The IP address to look up.")],
-        include: Annotated[Optional[StrictStr], Field(description="Optional parameter used to specify which audience information to be returned. The value is comprised of comma-separated values, each indicating a set of audiences:    * `core` represents the core audiences that are directly linked to household characteristics   * `composite` represents the composite audiences, used to model likely behaviours or buying     needs associated with the household characteristics.   * `name` and `category` refer to the fields of the same names in the returned Audience     objects. There is a slight performance gain in leaving these out when they are not needed. ")] = None,
+        include: Annotated[Optional[List[AudiencesIncludeParam]], Field(description="Optional parameter used to specify which audience information to be returned. The value is comprised of comma-separated values, each indicating a set of audiences:    * `core` represents the core audiences that are directly linked to household characteristics   * `composite` represents the composite audiences, used to model likely behaviours or buying     needs associated with the household characteristics.   * `name` and `category` refer to the fields of the same names in the returned Audience     objects. There is a slight performance gain in leaving these out when they are not needed. ")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -643,7 +646,7 @@ class AudiencesApi:
         :param user_ip: The IP address to look up. (required)
         :type user_ip: str
         :param include: Optional parameter used to specify which audience information to be returned. The value is comprised of comma-separated values, each indicating a set of audiences:    * `core` represents the core audiences that are directly linked to household characteristics   * `composite` represents the composite audiences, used to model likely behaviours or buying     needs associated with the household characteristics.   * `name` and `category` refer to the fields of the same names in the returned Audience     objects. There is a slight performance gain in leaving these out when they are not needed. 
-        :type include: str
+        :type include: List[AudiencesIncludeParam]
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -680,11 +683,11 @@ class AudiencesApi:
             '400': "ErrorResponse",
             '500': "ErrorResponse",
         }
-        response_data = await self.api_client.call_api(
+        response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        await response_data.read()
+        response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -692,10 +695,10 @@ class AudiencesApi:
 
 
     @validate_call
-    async def resolve_audiences_of_single_with_http_info(
+    def resolve_audiences_of_single_with_http_info(
         self,
         user_ip: Annotated[StrictStr, Field(description="The IP address to look up.")],
-        include: Annotated[Optional[StrictStr], Field(description="Optional parameter used to specify which audience information to be returned. The value is comprised of comma-separated values, each indicating a set of audiences:    * `core` represents the core audiences that are directly linked to household characteristics   * `composite` represents the composite audiences, used to model likely behaviours or buying     needs associated with the household characteristics.   * `name` and `category` refer to the fields of the same names in the returned Audience     objects. There is a slight performance gain in leaving these out when they are not needed. ")] = None,
+        include: Annotated[Optional[List[AudiencesIncludeParam]], Field(description="Optional parameter used to specify which audience information to be returned. The value is comprised of comma-separated values, each indicating a set of audiences:    * `core` represents the core audiences that are directly linked to household characteristics   * `composite` represents the composite audiences, used to model likely behaviours or buying     needs associated with the household characteristics.   * `name` and `category` refer to the fields of the same names in the returned Audience     objects. There is a slight performance gain in leaving these out when they are not needed. ")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -715,7 +718,7 @@ class AudiencesApi:
         :param user_ip: The IP address to look up. (required)
         :type user_ip: str
         :param include: Optional parameter used to specify which audience information to be returned. The value is comprised of comma-separated values, each indicating a set of audiences:    * `core` represents the core audiences that are directly linked to household characteristics   * `composite` represents the composite audiences, used to model likely behaviours or buying     needs associated with the household characteristics.   * `name` and `category` refer to the fields of the same names in the returned Audience     objects. There is a slight performance gain in leaving these out when they are not needed. 
-        :type include: str
+        :type include: List[AudiencesIncludeParam]
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -752,11 +755,11 @@ class AudiencesApi:
             '400': "ErrorResponse",
             '500': "ErrorResponse",
         }
-        response_data = await self.api_client.call_api(
+        response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
-        await response_data.read()
+        response_data.read()
         return self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
@@ -764,10 +767,10 @@ class AudiencesApi:
 
 
     @validate_call
-    async def resolve_audiences_of_single_without_preload_content(
+    def resolve_audiences_of_single_without_preload_content(
         self,
         user_ip: Annotated[StrictStr, Field(description="The IP address to look up.")],
-        include: Annotated[Optional[StrictStr], Field(description="Optional parameter used to specify which audience information to be returned. The value is comprised of comma-separated values, each indicating a set of audiences:    * `core` represents the core audiences that are directly linked to household characteristics   * `composite` represents the composite audiences, used to model likely behaviours or buying     needs associated with the household characteristics.   * `name` and `category` refer to the fields of the same names in the returned Audience     objects. There is a slight performance gain in leaving these out when they are not needed. ")] = None,
+        include: Annotated[Optional[List[AudiencesIncludeParam]], Field(description="Optional parameter used to specify which audience information to be returned. The value is comprised of comma-separated values, each indicating a set of audiences:    * `core` represents the core audiences that are directly linked to household characteristics   * `composite` represents the composite audiences, used to model likely behaviours or buying     needs associated with the household characteristics.   * `name` and `category` refer to the fields of the same names in the returned Audience     objects. There is a slight performance gain in leaving these out when they are not needed. ")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -787,7 +790,7 @@ class AudiencesApi:
         :param user_ip: The IP address to look up. (required)
         :type user_ip: str
         :param include: Optional parameter used to specify which audience information to be returned. The value is comprised of comma-separated values, each indicating a set of audiences:    * `core` represents the core audiences that are directly linked to household characteristics   * `composite` represents the composite audiences, used to model likely behaviours or buying     needs associated with the household characteristics.   * `name` and `category` refer to the fields of the same names in the returned Audience     objects. There is a slight performance gain in leaving these out when they are not needed. 
-        :type include: str
+        :type include: List[AudiencesIncludeParam]
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -824,7 +827,7 @@ class AudiencesApi:
             '400': "ErrorResponse",
             '500': "ErrorResponse",
         }
-        response_data = await self.api_client.call_api(
+        response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -844,6 +847,7 @@ class AudiencesApi:
         _host = None
 
         _collection_formats: Dict[str, str] = {
+            'include': 'csv',
         }
 
         _path_params: Dict[str, str] = {}
