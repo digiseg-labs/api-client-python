@@ -9,18 +9,21 @@ def submitEventsFromLines(studyId: str, lines: List[str], apiKey: str):
     configuration = digiseg_api.Configuration()
     configuration.api_key['apiKeyHeaderAuth'] = apiKey
     api_client = digiseg_api.ApiClient(configuration)
+    requestNumber = 0
     with digiseg_api.ApiClient(configuration) as api_client:
         studiesApi = digiseg_api.StudiesApi(api_client)
         pattern = re.compile(r"\b(\d+\.\d+\.\d+\.\d+)\b")
         for line in lines:
             m = re.search(pattern, line)
             if m:
+                requestNumber = requestNumber+1
                 ip = m.group(1)
                 response = studiesApi.create_study_event_with_http_info(studyId, {
                     "ip_address": ip,
                     "event_type": "impression"
                 })
-                print(f"Submitted IP {ip} - HTTP response: {response.status_code}")
+                print(f"Submitted req. no. {requestNumber} - IP {ip} - HTTP response: {response.status_code}")
+    print(f"Done. {requestNumber} requests from {len(lines)} lines")
 
 
 def main():
