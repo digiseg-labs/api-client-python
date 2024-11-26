@@ -21,22 +21,19 @@ import json
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from typing_extensions import Annotated
-from digiseg_api.models.study_event_creation_base import StudyEventCreationBase
 from typing import Optional, Set
 from typing_extensions import Self
 
-class StudyEventCreation(BaseModel):
+class StudyEventCreationBase(BaseModel):
     """
-    Defines the creation of one or more study events. If creating a single event, the `events` array is not needed. If creating a bulk of events, repeated attributes (for example event_type) can be entered once and reused across the `events` array. 
+    StudyEventCreationBase
     """ # noqa: E501
-    events: Optional[Annotated[List[StudyEventCreationBase], Field(max_length=200)]] = None
     ip_address: Optional[StrictStr] = None
     user_agent: Optional[StrictStr] = Field(default=None, description="The user agent of the event")
     referer: Optional[StrictStr] = Field(default=None, description="The referer value of the event")
     event_time: Optional[datetime] = Field(default=None, description="Optionally, the time of the event")
     event_type: Optional[StrictStr] = Field(default=None, description="The event type to ingest, typically `impression` or `click`")
-    __properties: ClassVar[List[str]] = ["events", "ip_address", "user_agent", "referer", "event_time", "event_type"]
+    __properties: ClassVar[List[str]] = ["ip_address", "user_agent", "referer", "event_time", "event_type"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -56,7 +53,7 @@ class StudyEventCreation(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of StudyEventCreation from a JSON string"""
+        """Create an instance of StudyEventCreationBase from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -77,18 +74,11 @@ class StudyEventCreation(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in events (list)
-        _items = []
-        if self.events:
-            for _item_events in self.events:
-                if _item_events:
-                    _items.append(_item_events.to_dict())
-            _dict['events'] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of StudyEventCreation from a dict"""
+        """Create an instance of StudyEventCreationBase from a dict"""
         if obj is None:
             return None
 
@@ -96,7 +86,6 @@ class StudyEventCreation(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "events": [StudyEventCreationBase.from_dict(_item) for _item in obj["events"]] if obj.get("events") is not None else None,
             "ip_address": obj.get("ip_address"),
             "user_agent": obj.get("user_agent"),
             "referer": obj.get("referer"),

@@ -211,6 +211,8 @@ from digiseg_api.models.study_device_sub_type_stats import StudyDeviceSubTypeSta
 from digiseg_api.models.study_device_type_category import StudyDeviceTypeCategory
 from digiseg_api.models.study_device_type_category_stats import StudyDeviceTypeCategoryStats
 from digiseg_api.models.study_event_creation import StudyEventCreation
+from digiseg_api.models.study_event_creation_base import StudyEventCreationBase
+from digiseg_api.models.study_event_creation_bulk import StudyEventCreationBulk
 from digiseg_api.models.study_frequency_stats import StudyFrequencyStats
 from digiseg_api.models.study_full import StudyFull
 from digiseg_api.models.study_ingestion_status import StudyIngestionStatus

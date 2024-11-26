@@ -4,6 +4,20 @@ import os
 import sys
 import re
 
+BATCH_SIZE = 200
+
+
+def batched(lines: List[str], n):
+    batch = []
+    for line in lines:
+        line = line.strip()
+        batch.append(line)
+        if len(batch) == n:
+            yield batch
+            batch = []
+    if len(batch) > 0:
+        yield batch
+
 
 def submitEventsFromLines(studyId: str, lines: List[str], apiKey: str):
     configuration = digiseg_api.Configuration()
@@ -13,16 +27,22 @@ def submitEventsFromLines(studyId: str, lines: List[str], apiKey: str):
     with digiseg_api.ApiClient(configuration) as api_client:
         studiesApi = digiseg_api.StudiesApi(api_client)
         pattern = re.compile(r"\b(\d+\.\d+\.\d+\.\d+)\b")
-        for line in lines:
-            m = re.search(pattern, line)
-            if m:
+        for batch in batched(lines, BATCH_SIZE):
+            events = []
+            for line in batch:
+                m = re.search(pattern, line)
+                if m:
+                    ip = m.group(1)
+                    events.append({
+                        "ip_address": ip
+                    })
+            if len(events) > 0:
                 requestNumber = requestNumber+1
-                ip = m.group(1)
                 response = studiesApi.create_study_event_with_http_info(studyId, {
-                    "ip_address": ip,
-                    "event_type": "impression"
+                    "event_type": "impression",
+                    "events": events
                 })
-                print(f"Submitted req. no. {requestNumber} - IP {ip} - HTTP response: {response.status_code}")
+                print(f"Submitted req. no. {requestNumber} - {len(events)} IPs - HTTP response: {response.status_code}")
     print(f"Done. {requestNumber} requests from {len(lines)} lines")
 
 
