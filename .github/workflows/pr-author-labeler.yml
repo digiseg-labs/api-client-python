@@ -1,0 +1,29 @@
+name: PR Author Labeler
+
+on:
+  pull_request:
+    types: [opened]
+
+permissions:
+  pull-requests: write
+
+jobs:
+  label-by-author:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Add label based on author
+        run: |
+          AUTHOR="${{ github.actor }}"
+          PR_URL="${{ github.event.pull_request.html_url }}"
+          
+          if [ "$AUTHOR" = "dependabot[bot]" ]; then
+            LABEL="author-dependabot"
+          elif [ "$AUTHOR" = "github-actions[bot]" ]; then
+            LABEL="author-github-action"
+          else
+            LABEL="author-developer"
+          fi
+          
+          gh pr edit "$PR_URL" --add-label "$LABEL"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
