@@ -3,22 +3,24 @@
 #
 # ref: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
 
-name: digiseg_api Python package
+name: digiseg_api Python package build
 
 on: [push, pull_request]
 
 jobs:
   build:
-
+    if: |
+      (github.actor != 'dependabot[bot]' && github.event_name == 'push') ||
+      (github.actor == 'dependabot[bot]' && github.event_name == 'pull_request_target')
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ["3.7", "3.8", "3.9", "3.10", "3.11"]
+        python-version: ["3.11"]
 
     steps:
       - uses: actions/checkout@v3
       - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v6
         with:
           python-version: ${{ matrix.python-version }}
       - name: Install dependencies
