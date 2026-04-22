@@ -3,13 +3,15 @@
 #
 # ref: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
 
-name: digiseg_api Python package
+name: digiseg_api Python package build
 
 on: [push, pull_request]
 
 jobs:
   build:
-
+    if: |
+      (github.actor != 'dependabot[bot]' && github.event_name == 'push') ||
+      (github.actor == 'dependabot[bot]' && github.event_name == 'pull_request_target')
     runs-on: ubuntu-latest
     strategy:
       matrix:
